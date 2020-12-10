@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.Random;
 
 public class Board {
 
@@ -42,7 +43,61 @@ public class Board {
             return;
         }
 
-        
+        Random rndm = new Random();
+        int[] angreiferErgebniss = {0,0};
+        int[] verteiderEgebniss = new int[defender.getTroopCount()];
+
+        for (int i = 0; i < troops && i < 3; i++) {
+            int z = rndm.nextInt(6);
+
+            if(z > angreiferErgebniss[0] && angreiferErgebniss[0] < angreiferErgebniss[1]){
+                angreiferErgebniss[0] = z;
+            }else if(z > angreiferErgebniss[1]){
+                angreiferErgebniss[1] = z;
+            }
+
+        }
+
+        for (int i = 0; i < defender.getTroopCount() && i < 2; i++) {
+            verteiderEgebniss[i] = rndm.nextInt(6);
+        }
+
+
+
+        if(angreiferErgebniss[0] < angreiferErgebniss[1]){
+            int z = angreiferErgebniss[0];
+            angreiferErgebniss[0] = angreiferErgebniss[1];
+            angreiferErgebniss[1] = z;
+        }
+
+        if (defender.getTroopCount() > 2) {
+            if(verteiderEgebniss[0] < verteiderEgebniss[1]){
+                int z = verteiderEgebniss[0];
+                verteiderEgebniss[0] = verteiderEgebniss[1];
+                verteiderEgebniss[1] = z;
+            }
+
+            if(angreiferErgebniss[1] > verteiderEgebniss[1]){
+                defender.setTroopCount(defender.getTroopCount() - 1);
+            }else{
+                aggressor.setTroopCount(aggressor.getTroopCount() - 1);
+            }
+        }
+
+        if(angreiferErgebniss[0] > verteiderEgebniss[0]){
+            defender.setTroopCount(defender.getTroopCount() - 1);
+        }else{
+            aggressor.setTroopCount(aggressor.getTroopCount() - 1);
+        }
 
     }
+
+    public void moveTroop(Area a, Area b){
+        if(a.getFarbeOwner().equals(b.getFarbeOwner())) {
+            a.setTroopCount(a.getTroopCount() - 1);
+            b.setTroopCount(b.getTroopCount() + 1);
+        }
+    }
+
+
 }
