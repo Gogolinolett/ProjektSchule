@@ -38,6 +38,11 @@ public class Board {
     }
 
     public void fight(Area aggressor, Area defender, int troops){
+        if(troops + 1 > aggressor.getTroopCount()){
+            return;
+        }
+
+        
 
     }
 }
