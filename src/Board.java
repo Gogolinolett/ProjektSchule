@@ -32,4 +32,12 @@ public class Board {
         }
         return count;
     }
+
+    public void placeTroop(Area area){
+        area.setTroopCount(area.getTroopCount() + 1);
+    }
+
+    public void fight(Area aggressor, Area defender, int troops){
+
+    }
 }

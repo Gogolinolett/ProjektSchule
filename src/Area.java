@@ -10,5 +10,13 @@ public class Area {
         return farbeOwner;
     }
 
+    public void setTroopCount(int troopCount) {
+        this.troopCount = troopCount;
+    }
+
+    public int getTroopCount(){
+        return troopCount;
+    }
+
     //todo
 }
