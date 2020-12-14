@@ -1,6 +1,9 @@
+import java.util.LinkedList;
+
 public class Area {
     private int troopCount;
     private Farben farbeOwner;
+    LinkedList<Area> neighbours = new LinkedList<>();
 
     public Area(Farben farbeOwner){
         this.farbeOwner = farbeOwner;
@@ -18,5 +21,7 @@ public class Area {
         return troopCount;
     }
 
-    //todo
+    public void addNeighbour(Area area){
+        neighbours.add(area);
+    }
 }
