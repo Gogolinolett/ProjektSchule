@@ -7,6 +7,11 @@ public class Area {
 
     public Area(Farben farbeOwner){
         this.farbeOwner = farbeOwner;
+        troopCount = 1;
+    }
+
+    public void setFarbeOwner(Farben farbeOwner) {
+        this.farbeOwner = farbeOwner;
     }
 
     public Farben getFarbeOwner() {
@@ -22,6 +27,12 @@ public class Area {
     }
 
     public void addNeighbour(Area area){
+        if(neighbours.contains(area)){
+            return;
+        }
         neighbours.add(area);
+        area.addNeighbour(this);
+
+
     }
 }
