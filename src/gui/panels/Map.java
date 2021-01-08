@@ -1,6 +1,6 @@
-package gui;
+package gui.panels;
 
-import gui.panels.ImagePanel;
+import gui.GUI;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -9,77 +9,19 @@ import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 
-public class Game implements ComponentListener, WindowStateListener {
+public class Map extends JPanel implements ComponentListener, WindowStateListener {
 
-    private static final int width = 16;
-    private static final int height = 39;
-
-    private static final JFrame frame = new JFrame("");
     private static final JLayeredPane layeredPane = new JLayeredPane();
     private static final JPanel pane = new JPanel();
-    private static final int num = 50;
-    private static final JButton[][] t = new JButton[num][num];
+    private static final JButton[][] t = new JButton[50][50];
 
     private final Image img = ImageIO.read(new File("E:\\!Risiko\\untitled1\\map.png"));
-    private final ImagePanel lime = new ImagePanel(img, this);
+    private final GUI game;
+    private ImagePanel lime;
 
-    public ImagePanel getLime() {
-        return lime;
-    }
-
-    public Game() throws IOException {
-
-        frame.setLayout(null);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000, 1000);
-
-
-        layeredPane.setBounds(0, 0, 1000, 1000);
-
-        //ImagePanel
-        lime.setOpaque(true);
-        lime.setBounds(0, 0, frame.getWidth() - width, frame.getHeight() - height);
-        layeredPane.add(lime, Integer.valueOf(0));
-
-
-        //pane.setBackground(Color.DARK_GRAY);
-
-        pane.setLayout(new GridLayout(num, num, 0, 0));
-
-        for (int r = 0; r < num; r++) {
-            for (int c = 0; c < num; c++) {
-                t[r][c] = new JButton(r + " " + c);
-                t[r][c].addActionListener(new TileListener());
-                pane.add(t[r][c]);
-                t[r][c].setVisible(false);
-                t[r][c].putClientProperty("column", r);
-                t[r][c].putClientProperty("row", c);
-                t[r][c].setVerticalTextPosition(SwingConstants.TOP);
-            }
-        }
-
-        //Buttons
-        pane.setOpaque(false);
-        pane.setBounds(0, 0, frame.getWidth() - width, frame.getHeight() - height);
-        layeredPane.add(pane, Integer.valueOf(1));
-
-
-        frame.addComponentListener(this);
-        frame.addWindowStateListener(this);
-
-        frame.add(layeredPane);
-        countries();
-    }
-
-    public static void main(String[] args) throws IOException {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-
-        } catch (Exception e) {
-            System.err.println("Look and feel not set.");
-        }
-        new Game();
+    public Map(GUI game) throws IOException {
+        this.game = game;
+        initComponents();
     }
 
     public static void countries() {
@@ -241,6 +183,40 @@ public class Game implements ComponentListener, WindowStateListener {
         return (state & Frame.MAXIMIZED_BOTH) == Frame.MAXIMIZED_BOTH;
     }
 
+    private void initComponents() {
+        lime = new ImagePanel(img, game);
+
+        layeredPane.setBounds(0, 0, 750, 550);
+        lime.setOpaque(true);
+        lime.setBounds(0, 0, game.getMap().getWidth(), game.getMap().getHeight());
+        layeredPane.add(lime, Integer.valueOf(0));
+
+        pane.setLayout(new GridLayout(50, 50, 0, 0));
+
+        for (int r = 0; r < 50; r++) {
+            for (int c = 0; c < 50; c++) {
+                t[r][c] = new JButton(r + " " + c);
+                t[r][c].addActionListener(new TileListener());
+                pane.add(t[r][c]);
+                t[r][c].setVisible(false);
+                t[r][c].putClientProperty("column", r);
+                t[r][c].putClientProperty("row", c);
+                t[r][c].setVerticalTextPosition(SwingConstants.TOP);
+            }
+        }
+
+        //Buttons
+        pane.setOpaque(false);
+        pane.setBounds(0, 0, game.getMap().getWidth(), game.getMap().getHeight());
+        layeredPane.add(pane, Integer.valueOf(1));
+
+        game.getFrame().addComponentListener(this);
+        game.getFrame().addWindowStateListener(this);
+
+        add(layeredPane);
+        countries();
+    }
+
     public void enableButtons() {
         t[4][17].setEnabled(true);
         t[6][41].setEnabled(true);
@@ -340,16 +316,16 @@ public class Game implements ComponentListener, WindowStateListener {
         } else if (wasMaximized && !isMaximized) {
             System.out.println("User unmaximized window.");
         }
-        layeredPane.setBounds(0, 0, frame.getWidth(), frame.getHeight());
-        pane.setBounds(0, 0, frame.getWidth() - width, frame.getHeight() - height);
-        lime.setBounds(0, 0, frame.getWidth() - width, frame.getHeight() - height);
+        layeredPane.setBounds(0, 0, game.getMap().getWidth(), game.getMap().getHeight());
+        pane.setBounds(0, 0, game.getMap().getWidth(), game.getMap().getHeight());
+        lime.setBounds(0, 0, game.getMap().getWidth(), game.getMap().getHeight());
     }
 
     @Override
     public void componentResized(ComponentEvent e) {
-        layeredPane.setBounds(0, 0, frame.getWidth(), frame.getHeight());
-        pane.setBounds(0, 0, frame.getWidth() - width, frame.getHeight() - height);
-        lime.setBounds(0, 0, frame.getWidth() - width, frame.getHeight() - height);
+        layeredPane.setBounds(0, 0, game.getMap().getWidth(), game.getMap().getHeight());
+        pane.setBounds(0, 0, game.getMap().getWidth(), game.getMap().getHeight());
+        lime.setBounds(0, 0, game.getMap().getWidth(), game.getMap().getHeight());
     }
 
     @Override
@@ -382,3 +358,4 @@ public class Game implements ComponentListener, WindowStateListener {
         }
     }
 }
+

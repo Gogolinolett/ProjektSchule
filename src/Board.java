@@ -12,9 +12,6 @@ public class Board {
         this.areas = areas;
         this.regions = regions;
 
-        for(int i = 0; i < ;i ++){
-
-        }
     }
 
     public int getOwnedRegionsTroopsAmount(Player player){
