@@ -1,6 +1,6 @@
-package gui.panels;
+package gui;
 
-import gui.GUI;
+import gui.Game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,10 +9,10 @@ import java.awt.*;
 public class ImagePanel extends JPanel {
 
     private final Image img;
-    private final GUI game;
+    private final Game game;
     private Image scaled;
 
-    public ImagePanel(Image img, GUI game) {
+    public ImagePanel(Image img, Game game) {
         this.img = img;
         this.game = game;
     }

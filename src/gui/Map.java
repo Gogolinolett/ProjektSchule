@@ -1,6 +1,4 @@
-package gui.panels;
-
-import gui.GUI;
+package gui;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -16,10 +14,10 @@ public class Map extends JPanel implements ComponentListener, WindowStateListene
     private static final JButton[][] t = new JButton[50][50];
 
     private final Image img = ImageIO.read(new File("E:\\!Risiko\\untitled1\\map.png"));
-    private final GUI game;
+    private final Game game;
     private ImagePanel lime;
 
-    public Map(GUI game) throws IOException {
+    public Map(Game game) throws IOException {
         this.game = game;
         initComponents();
     }

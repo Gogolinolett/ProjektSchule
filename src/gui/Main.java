@@ -11,6 +11,6 @@ public class Main {
         } catch (Exception e) {
             System.err.println("Look and feel not set.");
         }
-        GUI g = new GUI();
+        Game g = new Game();
     }
 }

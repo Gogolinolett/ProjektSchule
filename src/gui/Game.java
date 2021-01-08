@@ -1,20 +1,18 @@
 package gui;
-import gui.panels.First;
-import gui.panels.Map;
+
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
 
-
-public class GUI {
+public class Game {
     private static final JFrame frame = new JFrame();
     private final JPanel map = new JPanel();
     private final First f = new First();
     private final Map map1 = new Map(this);
 
-    public GUI() throws IOException {
+    public Game() throws IOException {
         initComponents();
     }
 
