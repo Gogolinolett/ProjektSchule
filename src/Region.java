@@ -23,5 +23,5 @@ public class Region {
         return bonusTroops;
 
     }
-    //todo
+
 }

@@ -5,11 +5,16 @@ public class Board {
 
     private LinkedList<Region> regions;
     private LinkedList<Area> areas;
+    private LinkedList<Card> cardPile;
 
 
     public Board(LinkedList<Area> areas, LinkedList<Region> regions){
         this.areas = areas;
         this.regions = regions;
+
+        for(int i = 0; i < ;i ++){
+
+        }
     }
 
     public int getOwnedRegionsTroopsAmount(Player player){
@@ -92,10 +97,10 @@ public class Board {
 
     }
 
-    public void moveTroop(Area a, Area b){
-        if(a.getFarbeOwner().equals(b.getFarbeOwner())) {
-            a.setTroopCount(a.getTroopCount() - 1);
-            b.setTroopCount(b.getTroopCount() + 1);
+    public void moveTroop(Area a, Area b, int amount){
+        if(a.getFarbeOwner().equals(b.getFarbeOwner()) && a.getTroopCount() > amount) {
+            a.setTroopCount(a.getTroopCount() - amount);
+            b.setTroopCount(b.getTroopCount() + amount);
         }
     }
 

@@ -1,5 +1,11 @@
 public class Card {
+    int sterne;
 
+    public Card(int sterne){
+        this.sterne = sterne;
+    }
 
-    //todo
+    public int getSterne() {
+        return sterne;
+    }
 }
