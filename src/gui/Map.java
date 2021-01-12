@@ -24,7 +24,6 @@ public class Map implements ComponentListener, WindowStateListener {
     public Map() throws IOException {
 
         frame.setLayout(null);
-        frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 1000);
 
@@ -63,6 +62,7 @@ public class Map implements ComponentListener, WindowStateListener {
         frame.addWindowStateListener(this);
 
         frame.add(layeredPane);
+        frame.setVisible(true);
         countries();
     }
 
@@ -389,6 +389,9 @@ public class Map implements ComponentListener, WindowStateListener {
         public void actionPerformed(ActionEvent e) {
 
             JButton btn = (JButton) e.getSource();
+
+
+
 
             System.out.println("clicked column " + btn.getClientProperty("column")
                     + ", row " + btn.getClientProperty("row"));

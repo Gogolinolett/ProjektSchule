@@ -1,3 +1,5 @@
+package classes;
+
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -36,8 +38,8 @@ public class Board {
         return count;
     }
 
-    public void placeTroop(Area area){
-        area.setTroopCount(area.getTroopCount() + 1);
+    public void placeTroop(Area area, int amount){
+        area.setTroopCount(area.getTroopCount() + amount);
     }
 
     public void fight(Area aggressor, Area defender, int troops){

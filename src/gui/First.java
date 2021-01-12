@@ -4,9 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class First extends JPanel {
+    private int troops;
 
-    public First() {
+    public First(int troopsPlaceble, String Playername) {
         initComponents();
+        troops = troopsPlaceble;
+
     }
 
     private void initComponents() {
@@ -58,7 +61,7 @@ public class First extends JPanel {
 
         //aTroopsSpinner
         JSpinner aTroopsSpinner = new JSpinner();
-        aTroopsSpinner.setModel(new SpinnerNumberModel(0, 0, 69, 1));
+        aTroopsSpinner.setModel(new SpinnerNumberModel(0, 0, tro, 1));
         add(aTroopsSpinner, new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //cButton

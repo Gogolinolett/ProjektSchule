@@ -1,8 +1,10 @@
+package classes;
+
 import java.util.LinkedList;
 
 public class MainClass {
 
-    public static void main(String[] args) {
+    public static void initialize() {
 
         LinkedList<Area> areas = new LinkedList<>();
         LinkedList<Region> regions = new LinkedList<>();

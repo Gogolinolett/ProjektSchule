@@ -1,3 +1,5 @@
+package classes;
+
 public class Player {
 
     private Farben farbe;
