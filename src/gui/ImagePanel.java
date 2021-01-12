@@ -1,7 +1,5 @@
 package gui;
 
-import gui.Game;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -37,6 +35,6 @@ public class ImagePanel extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(scaled, 0, 0, game.getMap().getWidth(), game.getMap().getHeight(), null);
+        g.drawImage(scaled, 0, 0, game.getMapPanel().getWidth(), game.getMapPanel().getHeight(), null);
     }
 }

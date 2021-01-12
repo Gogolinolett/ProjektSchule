@@ -8,9 +8,9 @@ import java.io.IOException;
 
 public class Game {
     private static final JFrame frame = new JFrame();
-    private final JPanel map = new JPanel();
+    private final JPanel mapPanel = new JPanel();
     private final First f = new First();
-    private final Map map1 = new Map(this);
+    private final Map map = new Map();
 
     public Game() throws IOException {
         initComponents();
@@ -20,8 +20,8 @@ public class Game {
         return frame;
     }
 
-    public JPanel getMap() {
-        return map;
+    public JPanel getMapPanel() {
+        return mapPanel;
     }
 
     private void initComponents() {
@@ -44,14 +44,14 @@ public class Game {
 
 
         //imagePanel
-        map.setOpaque(true);
-        map.setLayout(new GridLayout(1, 1, 0, 0));
-        map.add(map1);
+        mapPanel.setOpaque(true);
+        mapPanel.setLayout(new GridLayout(1, 1, 0, 0));
+        mapPanel.add(map);
 
         //FirstPanel
         f.setOpaque(true);
 
-        contentPane.add(map, new GridBagConstraints(0, 0, 11, 7, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+        contentPane.add(mapPanel, new GridBagConstraints(0, 0, 11, 7, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
         contentPane.add(f, new GridBagConstraints(11, 0, 1, 7, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
     }
 }
