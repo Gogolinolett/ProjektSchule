@@ -1,16 +1,40 @@
 package gui;
 
+import classes.Area;
+import classes.Player;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class First extends JPanel {
     private int troops;
+    private String playername;
+    private Area land;
 
-    public First(int troopsPlaceble, String Playername) {
+    public First(Player player) {
         initComponents();
-        troops = troopsPlaceble;
+        troops = player.getTroopsPerTurn();
+        this.playername = player.getPlayername();
 
     }
+
+    public void setTroops(int troops) {
+        this.troops = troops;
+    }
+
+    public void setPlayername(String playername) {
+        this.playername = playername;
+    }
+
+    public void setLandName(Area land) {
+        this.land = land;
+    }
+
+    JLabel aTroops = new JLabel();
+    JSpinner aTroopsSpinner = new JSpinner();
+    JButton cButton = new JButton();
 
     private void initComponents() {
         setOpaque(true);
@@ -40,7 +64,7 @@ public class First extends JPanel {
 
         //sCountryLabel
         JLabel sCountryLabel = new JLabel();
-        sCountryLabel.setText("Ausgewähltes Land:");
+        sCountryLabel.setText("Ausgewähltes Land: " + land.getName());
         add(sCountryLabel, new GridBagConstraints(0, 2, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //sPane
@@ -55,17 +79,16 @@ public class First extends JPanel {
         add(sPane, new GridBagConstraints(0, 3, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //aTroops
-        JLabel aTroops = new JLabel();
-        aTroops.setText("Anzahl der Truppen:");
+        aTroops.setText("Anzahl der Truppen: " + troops);
         add(aTroops, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //aTroopsSpinner
-        JSpinner aTroopsSpinner = new JSpinner();
-        aTroopsSpinner.setModel(new SpinnerNumberModel(0, 0, tro, 1));
+        aTroopsSpinner.setModel(new SpinnerNumberModel(0, 0, troops, 1));
         add(aTroopsSpinner, new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //cButton
-        JButton cButton = new JButton();
+
+        cButton.addActionListener(new TileListener());
         cButton.setText("Bestätigen");
         add(cButton, new GridBagConstraints(0, 5, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
@@ -95,5 +118,25 @@ public class First extends JPanel {
         sPane2.setViewportView(sLogPane);
 
         add(sPane2, new GridBagConstraints(0, 10, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+    }
+
+
+    class TileListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            if(e.getSource() instanceof  JButton){
+                JButton btn = (JButton) e.getSource();
+                if(btn.equals(cButton)){
+                    if(land != null) {
+                        int z = (int) aTroopsSpinner.getValue();
+                        troops = troops - z;
+                        land.addTroops(z);
+                        aTroopsSpinner.setModel(new SpinnerNumberModel(0, 0, troops, 1));
+                        aTroops.setText("Anzahl der Truppen: " + troops);
+                    }
+                }
+            }
+        }
     }
 }

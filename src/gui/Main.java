@@ -2,6 +2,7 @@ package gui;
 
 import classes.Area;
 import classes.Board;
+import classes.Player;
 import classes.Region;
 
 import javax.swing.*;
@@ -11,10 +12,12 @@ import java.util.LinkedList;
 
 public class Main {
 
-    private static final LinkedList<Area> areas = new LinkedList<>();
-    private static final LinkedList<Region> regions = new LinkedList<>();
+    private static LinkedList<Area> areas = new LinkedList<>();
+    private static LinkedList<Region> regions = new LinkedList<>();
+    private static Player[] players;
+    private static int activePlayer;
     private static int stage = 0;
-
+    private static First f;
     public static void main(String[] args) throws IOException {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -43,6 +46,7 @@ public class Main {
 
         stage = stage + 1;
         if (stage > 3) {
+            activePlayer = activePlayer + 1;
             stage = 1;
 
         }
@@ -55,7 +59,7 @@ public class Main {
         frame.setLayout(new GridLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(550, 750);
-        First f = new First();
+        f = new First(players[activePlayer % players.length]);
         f.setOpaque(true);
         frame.add(f);
         frame.setVisible(true);
@@ -67,7 +71,6 @@ public class Main {
     public static void act() {
 
         if (stage == 1) {
-
 
         }
 

@@ -5,11 +5,20 @@ import java.util.LinkedList;
 public class Area {
     private int troopCount;
     private Farben farbeOwner;
+    private String name;
     LinkedList<Area> neighbours = new LinkedList<>();
 
-    public Area(Farben farbeOwner){
-        this.farbeOwner = farbeOwner;
+    public Area(String name){
+        this.name = name;
         troopCount = 1;
+    }
+
+    public void addTroops(int amount){
+        troopCount += amount;
+    }
+
+    public String getName(){
+        return name;
     }
 
     public void setFarbeOwner(Farben farbeOwner) {
