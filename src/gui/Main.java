@@ -11,6 +11,6 @@ public class Main {
         } catch (Exception e) {
             System.err.println("Look and feel not set.");
         }
-        Game g = new Game();
+        Map m = new Map();
     }
 }
