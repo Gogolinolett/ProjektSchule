@@ -18,7 +18,7 @@ public class Map implements ComponentListener, WindowStateListener {
     private static final int num = 50;
     private static final JButton[][] t = new JButton[num][num];
 
-    private final Image img = ImageIO.read(new File("E:\\!Risiko\\untitled1\\map.png"));
+    private final Image img = ImageIO.read(new File("src/resources/map.png"));
     private final ImagePanel lime = new ImagePanel(img);
 
     public Map() throws IOException {
