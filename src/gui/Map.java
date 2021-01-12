@@ -66,16 +66,6 @@ public class Map implements ComponentListener, WindowStateListener {
         countries();
     }
 
-    public static void main(String[] args) throws IOException {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-
-        } catch (Exception e) {
-            System.err.println("Look and feel not set.");
-        }
-        new Map();
-    }
-
     public static void countries() {
         /*
         for (int r = 0; r < num; r++) {
