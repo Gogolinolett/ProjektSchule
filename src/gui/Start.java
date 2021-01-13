@@ -16,7 +16,7 @@ public class Start extends JFrame {
     public Start() throws IOException {
         initComponents();
     }
-    
+
     private void initComponents() {
 
         JPanel vSpacer1 = new JPanel(null);
