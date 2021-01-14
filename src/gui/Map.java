@@ -390,8 +390,7 @@ public class Map implements ComponentListener, WindowStateListener {
 
             JButton btn = (JButton) e.getSource();
 
-
-
+            Main.act(btn.getClientProperty("country"));
 
             System.out.println("clicked column " + btn.getClientProperty("column")
                     + ", row " + btn.getClientProperty("row"));

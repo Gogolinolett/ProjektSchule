@@ -28,7 +28,7 @@ public class First extends JPanel {
         this.playername = playername;
     }
 
-    public void setLandName(Area land) {
+    public void setLand(Area land) {
         this.land = land;
     }
 

@@ -6,7 +6,7 @@ public class Area {
     private int troopCount;
     private Farben farbeOwner;
     private String name;
-    LinkedList<Area> neighbours = new LinkedList<>();
+    private LinkedList<Area> neighbours = new LinkedList<>();
 
     public Area(String name){
         this.name = name;
