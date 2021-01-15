@@ -103,6 +103,7 @@ public class PlayerSelection extends JFrame {
         //remAll
         JButton remAll = new JButton();
         remAll.setText("Alle entfernen");
+        remAll.setAlignmentX(Component.CENTER_ALIGNMENT);
         optPanel.add(remAll);
 
         //pName
@@ -110,6 +111,7 @@ public class PlayerSelection extends JFrame {
         pName.setMaximumSize(new Dimension(101, 23));
         pName.setMinimumSize(new Dimension(101, 23));
         pName.setText("Name");
+        pName.setAlignmentX(Component.CENTER_ALIGNMENT);
         optPanel.add(pName);
 
         //pColor
@@ -118,11 +120,13 @@ public class PlayerSelection extends JFrame {
         pColor.setModel(new DefaultComboBoxModel<>(new String[]{"Blau", "Schwarz", "Grün", "Rosa", "Rot", "Gelb"}));
         pColor.setMaximumSize(new Dimension(101, 23));
         pColor.setMinimumSize(new Dimension(121, 23));
+        pColor.setAlignmentX(Component.CENTER_ALIGNMENT);
         optPanel.add(pColor);
 
         //pAdd
         JButton pAdd = new JButton();
         pAdd.setText("Spieler Hinzufügen");
+        pAdd.setAlignmentX(Component.CENTER_ALIGNMENT);
         optPanel.add(pAdd);
 
         contentPane.add(optPanel, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
