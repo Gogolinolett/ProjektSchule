@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 public class Main {
-
     private static LinkedList<Area> areas = new LinkedList<>();
     private static LinkedList<Region> regions = new LinkedList<>();
     private static Player[] players;
@@ -23,14 +22,12 @@ public class Main {
     private static Map m;
 
     public static void main(String[] args) throws IOException {
-
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
             System.err.println("Look and feel not set.");
         }
         m = new Map();
-
 
         frame.setLayout(new GridLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,7 +40,6 @@ public class Main {
         Board board = new Board(areas, regions);
 
         stage1Gui();
-
     }
 
     public static void setupAreasAndRegions() {
@@ -289,34 +285,28 @@ public class Main {
     }
 
     public static void nextStage() {
-
         stage = stage + 1;
         if (stage > 3) {
             activePlayer = activePlayer + 1;
             stage = 1;
             stage1Gui();
         }
-
     }
 
     public static void stage1Gui() {
-
         frame.getContentPane().removeAll();
         f = new First(players[activePlayer % players.length]);
         f.setOpaque(true);
         frame.add(f);
         frame.revalidate();
-
     }
 
     public static void stage2Gui() {
-
         frame.getContentPane().removeAll();
         s = new Second();
         s.setOpaque(true);
         frame.add(s);
         frame.revalidate();
-
     }
 
     public static void updateGui() {
@@ -324,14 +314,11 @@ public class Main {
         //m.refresh();
     }
 
-
     public static void act(Area area) {
-
         if (stage == 1) {
             f.setLand(area);
             updateGui();
         } else if (stage == 2) {
-
             if (area.getFarbeOwner().equals(players[activePlayer].getFarbe())) {
                 s.setAttackingArea(area);
             } else {
@@ -339,19 +326,14 @@ public class Main {
             }
             updateGui();
         }
-
-
     }
 
     public static Area stringToArea(String name) {
-
         for (Area a : areas) {
             if (a.getName().equalsIgnoreCase(name)) {
                 return a;
             }
         }
-
         return null;
     }
-
 }

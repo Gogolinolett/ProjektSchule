@@ -17,7 +17,6 @@ public class First extends JPanel {
         initComponents();
         troops = player.getTroopsPerTurn();
         this.playername = player.getPlayername();
-
     }
 
     public void setTroops(int troops) {
@@ -45,7 +44,6 @@ public class First extends JPanel {
         ((GridBagLayout) getLayout()).rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         ((GridBagLayout) getLayout()).columnWeights = new double[]{1.0, 1.0, 1.0E-4};
         ((GridBagLayout) getLayout()).rowWeights = new double[]{1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0E-4};
-
 
         //pName
         JLabel pName = new JLabel();
@@ -120,11 +118,9 @@ public class First extends JPanel {
         add(sPane2, new GridBagConstraints(0, 10, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
     }
 
-
     class TileListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
             if(e.getSource() instanceof  JButton){
                 JButton btn = (JButton) e.getSource();
                 if(btn.equals(cButton)){

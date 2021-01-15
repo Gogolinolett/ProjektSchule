@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 public class Map implements ComponentListener, WindowStateListener {
-
     private static final int width = 16;
     private static final int height = 39;
     private static final JFrame frame = new JFrame("");
@@ -54,7 +53,6 @@ public class Map implements ComponentListener, WindowStateListener {
         pane.setOpaque(false);
         pane.setBounds(0, 0, frame.getWidth() - width, frame.getHeight() - height);
         layeredPane.add(pane, Integer.valueOf(1));
-
 
         frame.addComponentListener(this);
         frame.addWindowStateListener(this);
@@ -277,7 +275,6 @@ public class Map implements ComponentListener, WindowStateListener {
     public void windowStateChanged(WindowEvent event) {
         boolean isMaximized = isMaximized(event.getNewState());
         boolean wasMaximized = isMaximized(event.getOldState());
-
         if (isMaximized && !wasMaximized) {
             System.out.println("User maximized window.");
         } else if (wasMaximized && !isMaximized) {
@@ -342,16 +339,10 @@ public class Map implements ComponentListener, WindowStateListener {
     class TileListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
             JButton btn = (JButton) e.getSource();
-
             Main.act(Main.stringToArea((String) btn.getClientProperty("country")));
-
-            System.out.println("clicked column " + btn.getClientProperty("column")
-                    + ", row " + btn.getClientProperty("row"));
-
+            System.out.println("clicked column " + btn.getClientProperty("column") + ", row " + btn.getClientProperty("row"));
             String country = (String) btn.getClientProperty("country");
-
             System.out.println(country);
         }
     }

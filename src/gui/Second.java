@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Second extends JPanel {
-
     private Area attackingArea;
     private Area defendingArea;
 

@@ -18,7 +18,6 @@ public class Start extends JFrame {
     }
 
     private void initComponents() {
-
         JPanel vSpacer1 = new JPanel(null);
         button1 = new JButton();
         JPanel vSpacer2 = new JPanel(null);
