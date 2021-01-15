@@ -2,5 +2,5 @@ package classes;
 
 public enum Farben {
 
-    GELB,ROT,GRÜN,BLAU,GRAU
+    BLAU,SCHWARZ,GRÜN,ROSA,ROT,GELB
 }

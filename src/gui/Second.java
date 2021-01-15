@@ -1,9 +1,14 @@
 package gui;
 
+import classes.Area;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class Second extends JPanel {
+
+    private Area attackingArea;
+    private Area defendingArea;
 
     public Second() {
         initComponents();
@@ -92,5 +97,13 @@ public class Second extends JPanel {
         sPane3.setViewportView(sLogPane);
 
         add(sPane3, new GridBagConstraints(0, 10, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+    }
+
+    public void setAttackingArea(Area attackingArea) {
+        this.attackingArea = attackingArea;
+    }
+
+    public void setDefendingArea(Area defendingArea) {
+        this.defendingArea = defendingArea;
     }
 }

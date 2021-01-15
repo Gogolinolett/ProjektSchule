@@ -18,13 +18,25 @@ public class Main {
     private static int activePlayer;
     private static int stage = 0;
     private static First f;
+    private static Second s;
+    private static JFrame frame = new JFrame();
+    private static Map m;
+
     public static void main(String[] args) throws IOException {
+
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
             System.err.println("Look and feel not set.");
         }
-        Map m = new Map();
+         m = new Map();
+
+
+        frame.setLayout(new GridLayout());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(550, 750);
+        frame.setVisible(true);
+        frame.setAlwaysOnTop(true);
 
         setupAreasAndRegions();
         stage1Gui();
@@ -285,16 +297,27 @@ public class Main {
 
     public static void stage1Gui() {
 
-        JFrame frame = new JFrame();
-        frame.setLayout(new GridLayout());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(550, 750);
+        frame.getContentPane().removeAll();
         f = new First(players[activePlayer % players.length]);
         f.setOpaque(true);
         frame.add(f);
-        frame.setVisible(true);
-        frame.setAlwaysOnTop(true);
+        frame.revalidate();
 
+    }
+
+    public static void stage2Gui(){
+
+        frame.getContentPane().removeAll();
+        s = new Second();
+        s.setOpaque(true);
+        frame.add(s);
+        frame.revalidate();
+
+    }
+
+    public static void updateGui(){
+        frame.revalidate();
+        m.refresh();
     }
 
 
@@ -302,9 +325,29 @@ public class Main {
 
         if (stage == 1) {
             f.setLand(area);
+            updateGui();
+        }else if(stage == 2){
+
+            if(area.getFarbeOwner().equals(players[activePlayer].getFarbe())){
+                s.setAttackingArea(area);
+            }else{
+                s.setDefendingArea(area);
+            }
+            updateGui();
         }
 
 
+    }
+
+    public static Area stringToArea (String name){
+
+        for(Area a : areas){
+            if(a.getName().equalsIgnoreCase(name)){
+                return a;
+            }
+        }
+
+        return null;
     }
 
 }
