@@ -1,5 +1,8 @@
 package gui;
 
+import classes.Area;
+import classes.Farben;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -237,14 +240,38 @@ public class Map implements ComponentListener, WindowStateListener {
         btns.add(t[44][47]);
     }
 
-    private static boolean isMaximized(int state) {
-        return (state & Frame.MAXIMIZED_BOTH) == Frame.MAXIMIZED_BOTH;
+    public void updateMap (LinkedList<Area> areas){
+        for (int i = 0; i < areas.size(); i++) {
+            for (int f = 0; f < btns.size(); f++) {
+                if(areas.get(i).equals(btns.get(f))){
+                    btns.get(f).setText(String.valueOf(areas.get(i).getTroopCount()));
+
+                    if(areas.get(i).getFarbeOwner() == Farben.BLAU){
+                        btns.get(f).setBackground(Color.BLUE);
+                    } else if (areas.get(i).getFarbeOwner() == Farben.SCHWARZ){
+                        btns.get(f).setBackground(Color.BLACK);
+                    }else if (areas.get(i).getFarbeOwner() == Farben.GRÜN){
+                        btns.get(f).setBackground(Color.GREEN);
+                    }else if (areas.get(i).getFarbeOwner() == Farben.ROSA){
+                        btns.get(f).setBackground(Color.PINK);
+                    }else if (areas.get(i).getFarbeOwner() == Farben.ROT){
+                        btns.get(f).setBackground(Color.RED);
+                    }else if (areas.get(i).getFarbeOwner() == Farben.GELB){
+                        btns.get(f).setBackground(Color.YELLOW);
+                    }
+                }
+            }
+        }
     }
 
     public void toggleButtons(boolean x) {
         for (int i = 0; i < btns.size(); i++) {
             btns.get(i).setEnabled(x);
         }
+    }
+
+    private static boolean isMaximized(int state) {
+        return (state & Frame.MAXIMIZED_BOTH) == Frame.MAXIMIZED_BOTH;
     }
 
     public void windowStateChanged(WindowEvent event) {
