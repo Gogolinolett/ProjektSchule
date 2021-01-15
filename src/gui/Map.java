@@ -6,8 +6,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
 
 public class Map implements ComponentListener, WindowStateListener {
+
+    private static LinkedList<JButton> btns = new LinkedList<>();
 
     private static final int width = 16;
     private static final int height = 39;
@@ -67,19 +70,10 @@ public class Map implements ComponentListener, WindowStateListener {
     }
 
     public static void countries() {
-        /*
-        for (int r = 0; r < num; r++) {
-            for (int c = 0; c < num; c++) {
-                if ((r + c) % 2 != 0) {
-                    t[r][c].setVisible(false);
-                }
 
-            }
-        }
-        */
 
         //NordAmerika
-
+        btns.add(t[8][3]);
         t[8][3].setVisible(true);
         t[8][3].putClientProperty("country", "ALASKA");
 
