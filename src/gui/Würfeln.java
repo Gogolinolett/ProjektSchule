@@ -1,29 +1,59 @@
 package gui;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class Würfeln extends JFrame {
-    private JLabel aCountry;
-    private JLabel dCountry;
+
+    private boolean cycle = true;
+
     private JCheckBox aDice1;
     private JCheckBox dDice1;
     private JCheckBox aDice2;
     private JCheckBox dDice2;
     private JCheckBox aDice3;
+
+    private JLabel aDice1L;
+    private JLabel dDice1L;
+    private JLabel aDice2L;
+    private JLabel dDice2L;
+    private JLabel aDice3L;
+
+    private JLabel aCountry;
+    private JLabel dCountry;
     private JButton rollButton;
     private JButton retreatButton;
+    private Container contentPane;
 
-    public Würfeln() {
+    private static Image[] g;
+    private static Image[] z;
+
+    static {
+        try {
+            g = new Image[]{ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b1.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b2.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b3.png")),ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b4.png")),ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b5.png")),ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b6.png")),};
+            z = new Image[]{ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r1.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r2.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r3.png")),ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r4.png")),ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r5.png")),ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r6.png")),};
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        Würfeln w = new Würfeln();
+    }
+
+    public Würfeln() throws InterruptedException {
         initComponents();
     }
 
-    private void initComponents() {
+    private void initComponents() throws InterruptedException {
         setMinimumSize(new Dimension(430, 267));
         setResizable(false);
         setAlwaysOnTop(true);
-        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        Container contentPane = getContentPane();
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        contentPane = getContentPane();
         contentPane.setLayout(new GridBagLayout());
         ((GridBagLayout) contentPane.getLayout()).columnWidths = new int[]{0, 0, 0, 0};
         ((GridBagLayout) contentPane.getLayout()).rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
@@ -42,6 +72,8 @@ public class Würfeln extends JFrame {
         dLabel.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(dLabel, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
+        setLabels();
+
         //aCountry
         aCountry = new JLabel();
         aCountry.setText("Land (Truppen)");
@@ -54,6 +86,84 @@ public class Würfeln extends JFrame {
         dCountry.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(dCountry, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
+
+        //rollButton
+        rollButton = new JButton();
+        rollButton.setText("Würfeln");
+        contentPane.add(rollButton, new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
+
+        //retreatButton
+        retreatButton = new JButton();
+        retreatButton.setText("Rückzug");
+        contentPane.add(retreatButton, new GridBagConstraints(1, 6, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 5), 0, 0));
+        pack();
+        setLocationRelativeTo(getOwner());
+        setVisible(true);
+
+        Thread.sleep(1000);
+        roll();
+    }
+
+    public void cycle(){
+        if(cycle){
+            delLabels();
+            setCheckBox();
+            revalidate();
+            repaint();
+            cycle = false;
+        }else{
+            delBoxes();
+            setLabels();
+            revalidate();
+            repaint();
+            cycle = true;
+        }
+    }
+
+    public void delLabels(){
+        contentPane = getContentPane();
+        contentPane.remove(aDice1L);
+        contentPane.remove(aDice2L);
+        contentPane.remove(aDice3L);
+        contentPane.remove(dDice1L);
+        contentPane.remove(dDice2L);
+    }
+
+    public void delBoxes(){
+        contentPane = getContentPane();
+        contentPane.remove(aDice1);
+        contentPane.remove(aDice2);
+        contentPane.remove(aDice3);
+        contentPane.remove(dDice1);
+        contentPane.remove(dDice2);
+    }
+
+    public void setLabels(){
+        //aDice1
+        aDice1L = new JLabel("");
+        aDice1L.setHorizontalAlignment(SwingConstants.RIGHT);
+        contentPane.add(aDice1L, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
+
+        //aDice2
+        aDice2L = new JLabel("");
+        aDice2L.setHorizontalAlignment(SwingConstants.RIGHT);
+        contentPane.add(aDice2L, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
+
+        //aDice3
+        aDice3L = new JLabel("");
+        aDice3L.setHorizontalAlignment(SwingConstants.RIGHT);
+        contentPane.add(aDice3L, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
+
+        //dDice1
+        dDice1L = new JLabel("");
+        contentPane.add(dDice1L, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
+
+        //dDice2
+        dDice2L = new JLabel("");
+        contentPane.add(dDice2L, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
+    }
+
+    public void setCheckBox(){
         //aDice1
         aDice1 = new JCheckBox();
         aDice1.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -76,19 +186,27 @@ public class Würfeln extends JFrame {
         //dDice2
         dDice2 = new JCheckBox();
         contentPane.add(dDice2, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
+    }
 
-        //rollButton
-        rollButton = new JButton();
-        rollButton.setText("Würfeln");
-        contentPane.add(rollButton, new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
+    public ImageIcon rollAttack(){
+        int num = (int)(Math.random() * ((6 - 1) + 1));
+        ImageIcon icon = new ImageIcon(g[num]);
+        Image i = icon.getImage();
+        Image f = i.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        return new ImageIcon(f);
+    }
 
-        //retreatButton
-        retreatButton = new JButton();
-        retreatButton.setText("Rückzug");
-        contentPane.add(retreatButton, new GridBagConstraints(1, 6, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 5), 0, 0));
-
-        pack();
-        setLocationRelativeTo(getOwner());
-        setVisible(true);
+    public ImageIcon rollDef(){
+        int num = (int)(Math.random() * ((6 - 1) + 1));
+        ImageIcon icon = new ImageIcon(z[num]);
+        return icon;
+    }
+    public void roll() throws InterruptedException {
+        for (int i = 0; i < 10; i++) {
+            aDice1L.setIcon(rollAttack());
+            aDice2L.setIcon(rollAttack());
+            aDice3L.setIcon(rollAttack());
+            Thread.sleep(200);
+        }
     }
 }
