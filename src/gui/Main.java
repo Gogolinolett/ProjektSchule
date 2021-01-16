@@ -350,4 +350,8 @@ public class Main {
         return null;
     }
 
+    public static void errorMessage(String message,String windowname){
+        JOptionPane.showMessageDialog(null, message, windowname, JOptionPane.WARNING_MESSAGE);
+    }
+
 }
