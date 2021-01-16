@@ -4,6 +4,8 @@ import classes.Area;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Second extends JPanel {
     private Area attackingArea;
@@ -96,6 +98,16 @@ public class Second extends JPanel {
         sPane3.setViewportView(sLogPane);
 
         add(sPane3, new GridBagConstraints(0, 10, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+    }
+
+    class TileListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(e.getSource() instanceof  JButton){
+                JButton btn = (JButton) e.getSource();
+
+            }
+        }
     }
 
     public void setAttackingArea(Area attackingArea) {

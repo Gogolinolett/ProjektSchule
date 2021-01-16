@@ -322,7 +322,6 @@ public class Main {
 
     public static void updateGui() {
         frame.revalidate();
-        m.refresh();
     }
 
 
