@@ -2,6 +2,8 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Third extends JPanel {
     public Third() {
@@ -99,4 +101,15 @@ public class Third extends JPanel {
 
         add(sPane3, new GridBagConstraints(0, 11, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
     }
+
+    class TileListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(e.getSource() instanceof  JButton){
+                JButton btn = (JButton) e.getSource();
+
+            }
+        }
+    }
+
 }
