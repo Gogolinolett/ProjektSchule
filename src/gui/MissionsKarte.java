@@ -37,7 +37,6 @@ public class MissionsKarte extends JFrame {
     }
 
     private class ImagePanel extends JPanel {
-
         private final Image img;
         private Image scaled;
 

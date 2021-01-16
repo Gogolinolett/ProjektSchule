@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PlayerSelection extends JFrame {
-
     public PlayerSelection() {
         initComponents();
     }
@@ -94,7 +93,6 @@ public class PlayerSelection extends JFrame {
         players.add(delSix, new GridBagConstraints(3, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         contentPane.add(players, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 14, 0), 0, 0));
-
 
         //optPanel
         JPanel optPanel = new JPanel();

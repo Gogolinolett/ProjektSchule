@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Start extends JFrame {
-    private final Image img = ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\other\\Risiko_Logo.png"));
+    private final Image img = ImageIO.read(new File("src\\resources\\other\\Risiko_Logo.png"));
     private JButton button1;
     private JButton button2;
 
@@ -18,7 +18,6 @@ public class Start extends JFrame {
     }
 
     private void initComponents() {
-
         JPanel vSpacer1 = new JPanel(null);
         button1 = new JButton();
         JPanel vSpacer2 = new JPanel(null);

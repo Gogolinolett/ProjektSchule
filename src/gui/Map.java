@@ -1,5 +1,8 @@
 package gui;
 
+import classes.Area;
+import classes.Farben;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -9,27 +12,21 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 public class Map implements ComponentListener, WindowStateListener {
-
-    private static LinkedList<JButton> btns = new LinkedList<>();
-
     private static final int width = 16;
     private static final int height = 39;
-
     private static final JFrame frame = new JFrame("");
     private static final JLayeredPane layeredPane = new JLayeredPane();
     private static final JPanel pane = new JPanel();
     private static final int num = 50;
     private static final JButton[][] t = new JButton[num][num];
-
-    private final Image img = ImageIO.read(new File("src/resources/map.png"));
+    private static final LinkedList<JButton> btns = new LinkedList<>();
+    private final Image img = ImageIO.read(new File("src\\resources\\other\\map.png"));
     private final ImagePanel lime = new ImagePanel(img);
 
     public Map() throws IOException {
-
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 1000);
-
 
         layeredPane.setBounds(0, 0, 1000, 1000);
 
@@ -37,9 +34,6 @@ public class Map implements ComponentListener, WindowStateListener {
         lime.setOpaque(true);
         lime.setBounds(0, 0, frame.getWidth() - width, frame.getHeight() - height);
         layeredPane.add(lime, Integer.valueOf(0));
-
-
-        //pane.setBackground(Color.DARK_GRAY);
 
         pane.setLayout(new GridLayout(num, num, 0, 0));
 
@@ -60,7 +54,6 @@ public class Map implements ComponentListener, WindowStateListener {
         pane.setBounds(0, 0, frame.getWidth() - width, frame.getHeight() - height);
         layeredPane.add(pane, Integer.valueOf(1));
 
-
         frame.addComponentListener(this);
         frame.addWindowStateListener(this);
 
@@ -70,249 +63,218 @@ public class Map implements ComponentListener, WindowStateListener {
     }
 
     public static void countries() {
-
-
         //NordAmerika
-        btns.add(t[8][3]);
         t[8][3].setVisible(true);
         t[8][3].putClientProperty("country", "ALASKA");
+        btns.add(t[8][3]);
 
         t[12][7].setVisible(true);
         t[12][7].putClientProperty("country", "ALBERTA");
+        btns.add(t[12][7]);
 
         t[8][8].setVisible(true);
         t[8][8].putClientProperty("country", "NORDWESTTERRITORIUM");
+        btns.add(t[8][8]);
 
         t[4][17].setVisible(true);
         t[4][17].putClientProperty("country", "GRÖNLAND");
+        btns.add(t[4][17]);
 
-        t[14][11].setVisible(true);
+        t[4][17].setVisible(true);
         t[14][11].putClientProperty("country", "ONTARIO");
+        btns.add(t[4][17]);
 
         t[14][14].setVisible(true);
         t[14][14].putClientProperty("country", "OSTKANADA");
+        btns.add(t[14][14]);
 
         t[18][7].setVisible(true);
         t[18][7].putClientProperty("country", "WESTSTAATEN");
+        btns.add(t[18][7]);
 
         t[20][11].setVisible(true);
         t[20][11].putClientProperty("country", "OSTSTAATEN");
+        btns.add(t[20][11]);
 
         t[24][8].setVisible(true);
         t[24][8].putClientProperty("country", "MITTELAMERIKA");
+        btns.add(t[24][8]);
 
         //SüdAmerika
-
         t[30][11].setVisible(true);
         t[30][11].putClientProperty("country", "VENEZUELA");
+        btns.add(t[30][11]);
 
         t[34][15].setVisible(true);
         t[34][15].putClientProperty("country", "BRASILIEN");
+        btns.add(t[34][15]);
 
         t[36][13].setVisible(true);
         t[36][13].putClientProperty("country", "PERU");
+        btns.add(t[36][13]);
 
         t[41][13].setVisible(true);
         t[41][13].putClientProperty("country", "ARGENTINIEN");
-
+        btns.add(t[41][13]);
 
         //Europa
-
         t[8][21].setVisible(true);
         t[8][21].putClientProperty("country", "ISLAND");
+        btns.add(t[8][21]);
 
         t[17][20].setVisible(true);
         t[17][20].putClientProperty("country", "GROSSBRITANNIEN");
+        btns.add(t[17][20]);
 
         t[24][21].setVisible(true);
         t[24][21].putClientProperty("country", "WESTEUROPA");
+        btns.add(t[24][21]);
 
         t[9][26].setVisible(true);
         t[9][26].putClientProperty("country", "SKANDINAVIEN");
+        btns.add(t[9][26]);
 
         t[18][25].setVisible(true);
         t[18][25].putClientProperty("country", "NORDEUROPA");
+        btns.add(t[18][25]);
 
         t[22][25].setVisible(true);
         t[22][25].putClientProperty("country", "SÜDEUROPA");
+        btns.add(t[22][25]);
 
         t[12][30].setVisible(true);
         t[12][30].putClientProperty("country", "RUSSLAND");
-
+        btns.add(t[12][30]);
 
         //Afrika
-
         t[30][27].setVisible(true);
         t[30][27].putClientProperty("country", "ÄGYPTEN");
+        btns.add(t[30][27]);
 
         t[32][23].setVisible(true);
         t[32][23].putClientProperty("country", "NORDAFRIKA");
+        btns.add(t[32][23]);
 
         t[35][29].setVisible(true);
         t[35][29].putClientProperty("country", "OSTAFRIKA");
+        btns.add(t[35][29]);
 
         t[39][27].setVisible(true);
         t[39][27].putClientProperty("country", "ZENTRALAFRIKA");
+        btns.add(t[39][27]);
 
         t[44][27].setVisible(true);
         t[44][27].putClientProperty("country", "SÜDAFRIKA");
+        btns.add(t[44][27]);
 
         t[48][31].setVisible(true);
         t[48][31].putClientProperty("country", "MADAGASKAR");
-
+        btns.add(t[48][31]);
 
         //Asien
-
         t[26][31].setVisible(true);
         t[26][31].putClientProperty("country", "MITTLEREROSTEN");
+        btns.add(t[26][31]);
 
         t[20][34].setVisible(true);
         t[20][34].putClientProperty("country", "AFGHANISTAN");
+        btns.add(t[20][34]);
 
         t[13][35].setVisible(true);
         t[13][35].putClientProperty("country", "URAL");
+        btns.add(t[13][35]);
 
         t[8][38].setVisible(true);
         t[8][38].putClientProperty("country", "SIBIRIEN");
+        btns.add(t[8][38]);
 
         t[6][41].setVisible(true);
         t[6][41].putClientProperty("country", "JAKUTIEN");
+        btns.add(t[6][41]);
 
         t[14][40].setVisible(true);
         t[14][40].putClientProperty("country", "IRKUTSK");
+        btns.add(t[14][40]);
 
         t[18][41].setVisible(true);
         t[18][41].putClientProperty("country", "MONGOLEI");
+        btns.add(t[18][41]);
 
         t[24][40].setVisible(true);
         t[24][40].putClientProperty("country", "CHINA");
+        btns.add(t[24][40]);
 
         t[27][37].setVisible(true);
         t[27][37].putClientProperty("country", "INDIEN");
+        btns.add(t[27][37]);
 
         t[29][40].setVisible(true);
         t[29][40].putClientProperty("country", "SÜDOSTASIEN");
+        btns.add(t[29][40]);
 
         t[6][46].setVisible(true);
         t[6][46].putClientProperty("country", "KAMTSCHATKA");
+        btns.add(t[6][46]);
 
         t[19][47].setVisible(true);
         t[19][47].putClientProperty("country", "JAPAN");
+        btns.add(t[19][47]);
 
         //Australien
-
         t[39][41].setVisible(true);
         t[39][41].putClientProperty("country", "INDONESIEN");
+        btns.add(t[39][41]);
 
         t[36][46].setVisible(true);
         t[36][46].putClientProperty("country", "NEUGUINEA");
+        btns.add(t[36][46]);
 
         t[46][43].setVisible(true);
         t[46][43].putClientProperty("country", "WESTAUSTRALIEN");
+        btns.add(t[46][43]);
 
         t[44][47].setVisible(true);
         t[44][47].putClientProperty("country", "OSTAUSTRALIEN");
+        btns.add(t[44][47]);
+    }
 
+    public void updateMap (LinkedList<Area> areas){
+        for (int i = 0; i < areas.size(); i++) {
+            for (int f = 0; f < btns.size(); f++) {
+                if(areas.get(i).equals(btns.get(f))){
+                    btns.get(f).setText(String.valueOf(areas.get(i).getTroopCount()));
+
+                    if(areas.get(i).getFarbeOwner() == Farben.BLAU){
+                        btns.get(f).setBackground(Color.BLUE);
+                    } else if (areas.get(i).getFarbeOwner() == Farben.SCHWARZ){
+                        btns.get(f).setBackground(Color.BLACK);
+                    }else if (areas.get(i).getFarbeOwner() == Farben.GRÜN){
+                        btns.get(f).setBackground(Color.GREEN);
+                    }else if (areas.get(i).getFarbeOwner() == Farben.ROSA){
+                        btns.get(f).setBackground(Color.PINK);
+                    }else if (areas.get(i).getFarbeOwner() == Farben.ROT){
+                        btns.get(f).setBackground(Color.RED);
+                    }else if (areas.get(i).getFarbeOwner() == Farben.GELB){
+                        btns.get(f).setBackground(Color.YELLOW);
+                    }
+                }
+            }
+        }
+    }
+
+    public void toggleButtons(boolean x) {
+        for (int i = 0; i < btns.size(); i++) {
+            btns.get(i).setEnabled(x);
+        }
     }
 
     private static boolean isMaximized(int state) {
         return (state & Frame.MAXIMIZED_BOTH) == Frame.MAXIMIZED_BOTH;
     }
 
-    public void enableButtons() {
-        t[4][17].setEnabled(true);
-        t[6][41].setEnabled(true);
-        t[6][46].setEnabled(true);
-        t[8][21].setEnabled(true);
-        t[8][38].setEnabled(true);
-        t[8][3].setEnabled(true);
-        t[8][8].setEnabled(true);
-        t[9][26].setEnabled(true);
-        t[12][7].setEnabled(true);
-        t[12][30].setEnabled(true);
-        t[13][35].setEnabled(true);
-        t[14][11].setEnabled(true);
-        t[14][14].setEnabled(true);
-        t[14][40].setEnabled(true);
-        t[17][20].setEnabled(true);
-        t[18][25].setEnabled(true);
-        t[18][41].setEnabled(true);
-        t[18][7].setEnabled(true);
-        t[19][47].setEnabled(true);
-        t[20][11].setEnabled(true);
-        t[20][34].setEnabled(true);
-        t[22][25].setEnabled(true);
-        t[24][21].setEnabled(true);
-        t[24][40].setEnabled(true);
-        t[24][8].setEnabled(true);
-        t[26][31].setEnabled(true);
-        t[27][37].setEnabled(true);
-        t[29][40].setEnabled(true);
-        t[30][11].setEnabled(true);
-        t[30][27].setEnabled(true);
-        t[32][23].setEnabled(true);
-        t[34][15].setEnabled(true);
-        t[35][29].setEnabled(true);
-        t[36][13].setEnabled(true);
-        t[36][46].setEnabled(true);
-        t[39][27].setEnabled(true);
-        t[39][41].setEnabled(true);
-        t[41][13].setEnabled(true);
-        t[44][27].setEnabled(true);
-        t[44][47].setEnabled(true);
-        t[46][43].setEnabled(true);
-        t[48][31].setEnabled(true);
-    }
-
-    public void disableButtons() {
-        t[4][17].setEnabled(false);
-        t[6][41].setEnabled(false);
-        t[6][46].setEnabled(false);
-        t[8][21].setEnabled(false);
-        t[8][38].setEnabled(false);
-        t[8][3].setEnabled(false);
-        t[8][8].setEnabled(false);
-        t[9][26].setEnabled(false);
-        t[12][7].setEnabled(false);
-        t[12][30].setEnabled(false);
-        t[13][35].setEnabled(false);
-        t[14][11].setEnabled(false);
-        t[14][14].setEnabled(false);
-        t[14][40].setEnabled(false);
-        t[17][20].setEnabled(false);
-        t[18][25].setEnabled(false);
-        t[18][41].setEnabled(false);
-        t[18][7].setEnabled(false);
-        t[19][47].setEnabled(false);
-        t[20][11].setEnabled(false);
-        t[20][34].setEnabled(false);
-        t[22][25].setEnabled(false);
-        t[24][21].setEnabled(false);
-        t[24][40].setEnabled(false);
-        t[24][8].setEnabled(false);
-        t[26][31].setEnabled(false);
-        t[27][37].setEnabled(false);
-        t[29][40].setEnabled(false);
-        t[30][11].setEnabled(false);
-        t[30][27].setEnabled(false);
-        t[32][23].setEnabled(false);
-        t[34][15].setEnabled(false);
-        t[35][29].setEnabled(false);
-        t[36][13].setEnabled(false);
-        t[36][46].setEnabled(false);
-        t[39][27].setEnabled(false);
-        t[39][41].setEnabled(false);
-        t[41][13].setEnabled(false);
-        t[44][27].setEnabled(false);
-        t[44][47].setEnabled(false);
-        t[46][43].setEnabled(false);
-        t[48][31].setEnabled(false);
-    }
-
     public void windowStateChanged(WindowEvent event) {
         boolean isMaximized = isMaximized(event.getNewState());
         boolean wasMaximized = isMaximized(event.getOldState());
-
         if (isMaximized && !wasMaximized) {
             System.out.println("User maximized window.");
         } else if (wasMaximized && !isMaximized) {
@@ -332,21 +294,17 @@ public class Map implements ComponentListener, WindowStateListener {
 
     @Override
     public void componentMoved(ComponentEvent e) {
-
     }
 
     @Override
     public void componentShown(ComponentEvent e) {
-
     }
 
     @Override
     public void componentHidden(ComponentEvent e) {
-
     }
 
     class ImagePanel extends JPanel {
-
         private final Image img;
         private Image scaled;
 
@@ -381,16 +339,10 @@ public class Map implements ComponentListener, WindowStateListener {
     class TileListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
             JButton btn = (JButton) e.getSource();
-
             Main.act(Main.stringToArea((String) btn.getClientProperty("country")));
-
-            System.out.println("clicked column " + btn.getClientProperty("column")
-                    + ", row " + btn.getClientProperty("row"));
-
+            System.out.println("clicked column " + btn.getClientProperty("column") + ", row " + btn.getClientProperty("row"));
             String country = (String) btn.getClientProperty("country");
-
             System.out.println(country);
         }
     }

@@ -43,7 +43,5 @@ public class Area {
         }
         neighbours.add(area);
         area.addNeighbour(this);
-
-
     }
 }
