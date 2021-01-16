@@ -33,15 +33,11 @@ public class Würfeln extends JFrame {
 
     static {
         try {
-            g = new Image[]{ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b1.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b2.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b3.png")),ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b4.png")),ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b5.png")),ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b6.png")),};
-            z = new Image[]{ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r1.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r2.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r3.png")),ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r4.png")),ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r5.png")),ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r6.png")),};
+            g = new Image[]{ImageIO.read(new File("src\\resources\\würfel\\b1.png")), ImageIO.read(new File("src\\resources\\würfel\\b2.png")), ImageIO.read(new File("src\\resources\\würfel\\b3.png")),ImageIO.read(new File("src\\resources\\würfel\\b4.png")),ImageIO.read(new File("src\\resources\\würfel\\b5.png")),ImageIO.read(new File("src\\resources\\würfel\\b6.png"))};
+            z = new Image[]{ImageIO.read(new File("src\\resources\\würfel\\r1.png")), ImageIO.read(new File("src\\resources\\würfel\\r2.png")), ImageIO.read(new File("src\\resources\\würfel\\r3.png")),ImageIO.read(new File("src\\resources\\würfel\\r4.png")),ImageIO.read(new File("src\\resources\\würfel\\r5.png")),ImageIO.read(new File("src\\resources\\würfel\\r6.png"))};
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        Würfeln w = new Würfeln();
     }
 
     public Würfeln() throws InterruptedException {
