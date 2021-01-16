@@ -29,7 +29,7 @@ public class Main {
         } catch (Exception e) {
             System.err.println("Look and feel not set.");
         }
-         m = new Map();
+        m = new Map();
 
 
         frame.setLayout(new GridLayout());
@@ -77,7 +77,7 @@ public class Main {
         Area Grönland = new Area("GRÖNLAND");
         areas.add(Grönland);
         z.add(Grönland);
-        Region nordamerika = new Region(z,5);
+        Region nordamerika = new Region(z, 5);
         regions.add(nordamerika);
         //SüdAmerika
         z = new LinkedList<>();
@@ -93,7 +93,7 @@ public class Main {
         Area Argentinien = new Area("ARGENTINIEN");
         areas.add(Argentinien);
         z.add(Argentinien);
-        Region südamerika = new Region(z,2);
+        Region südamerika = new Region(z, 2);
         regions.add(südamerika);
         //Europa
         z = new LinkedList<>();
@@ -118,7 +118,7 @@ public class Main {
         Area SüdEuropa = new Area("SÜDEUROPA");
         areas.add(SüdEuropa);
         z.add(SüdEuropa);
-        Region Europa = new Region(z,5);
+        Region Europa = new Region(z, 5);
         regions.add(Europa);
         //Afrika
         z = new LinkedList<>();
@@ -140,7 +140,7 @@ public class Main {
         Area Madagaskar = new Area("MADAGASKAR");
         areas.add(Madagaskar);
         z.add(Madagaskar);
-        Region Afrika = new Region(z,3);
+        Region Afrika = new Region(z, 3);
         regions.add(Afrika);
         //Australien
         z = new LinkedList<>();
@@ -156,7 +156,7 @@ public class Main {
         Area WestAustralien = new Area("WESTAUSTRALIEN");
         areas.add(WestAustralien);
         z.add(WestAustralien);
-        Region Australien = new Region(z,2);
+        Region Australien = new Region(z, 2);
         regions.add(Australien);
         //Asien
         z = new LinkedList<>();
@@ -196,7 +196,7 @@ public class Main {
         Area Kamtschatka = new Area("KAMTSCHATKA");
         areas.add(Kamtschatka);
         z.add(Kamtschatka);
-        Region Asien = new Region(z,7);
+        Region Asien = new Region(z, 7);
         regions.add(Asien);
 
         Alaska.addNeighbour(NordwestTerritorium);
@@ -295,6 +295,11 @@ public class Main {
 
     }
 
+    public static void startGame() {
+        JFrame frame = new JFrame();
+        Start s = new Start();
+    }
+
     public static void stage1Gui() {
 
         frame.getContentPane().removeAll();
@@ -305,7 +310,7 @@ public class Main {
 
     }
 
-    public static void stage2Gui(){
+    public static void stage2Gui() {
 
         frame.getContentPane().removeAll();
         s = new Second();
@@ -315,7 +320,7 @@ public class Main {
 
     }
 
-    public static void updateGui(){
+    public static void updateGui() {
         frame.revalidate();
         m.refresh();
     }
@@ -326,11 +331,11 @@ public class Main {
         if (stage == 1) {
             f.setLand(area);
             updateGui();
-        }else if(stage == 2){
+        } else if (stage == 2) {
 
-            if(area.getFarbeOwner().equals(players[activePlayer].getFarbe())){
+            if (area.getFarbeOwner().equals(players[activePlayer].getFarbe())) {
                 s.setAttackingArea(area);
-            }else{
+            } else {
                 s.setDefendingArea(area);
             }
             updateGui();
@@ -339,10 +344,10 @@ public class Main {
 
     }
 
-    public static Area stringToArea (String name){
+    public static Area stringToArea(String name) {
 
-        for(Area a : areas){
-            if(a.getName().equalsIgnoreCase(name)){
+        for (Area a : areas) {
+            if (a.getName().equalsIgnoreCase(name)) {
                 return a;
             }
         }
@@ -350,7 +355,7 @@ public class Main {
         return null;
     }
 
-    public static void errorMessage(String message,String windowname){
+    public static void errorMessage(String message, String windowname) {
         JOptionPane.showMessageDialog(null, message, windowname, JOptionPane.WARNING_MESSAGE);
     }
 
