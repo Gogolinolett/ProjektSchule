@@ -5,43 +5,48 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Comparator;
+import java.util.LinkedList;
 
 public class Würfeln extends JFrame {
-
-    private boolean cycle = true;
-
-    private JCheckBox aDice1;
-    private JCheckBox dDice1;
-    private JCheckBox aDice2;
-    private JCheckBox dDice2;
-    private JCheckBox aDice3;
-
-    private JLabel aDice1L;
-    private JLabel dDice1L;
-    private JLabel aDice2L;
-    private JLabel dDice2L;
-    private JLabel aDice3L;
-
-    private JLabel aCountry;
-    private JLabel dCountry;
-    private JButton rollButton;
-    private JButton retreatButton;
-    private Container contentPane;
 
     private static Image[] g;
     private static Image[] z;
 
     static {
         try {
-            g = new Image[]{ImageIO.read(new File("src\\resources\\würfel\\b1.png")), ImageIO.read(new File("src\\resources\\würfel\\b2.png")), ImageIO.read(new File("src\\resources\\würfel\\b3.png")),ImageIO.read(new File("src\\resources\\würfel\\b4.png")),ImageIO.read(new File("src\\resources\\würfel\\b5.png")),ImageIO.read(new File("src\\resources\\würfel\\b6.png"))};
-            z = new Image[]{ImageIO.read(new File("src\\resources\\würfel\\r1.png")), ImageIO.read(new File("src\\resources\\würfel\\r2.png")), ImageIO.read(new File("src\\resources\\würfel\\r3.png")),ImageIO.read(new File("src\\resources\\würfel\\r4.png")),ImageIO.read(new File("src\\resources\\würfel\\r5.png")),ImageIO.read(new File("src\\resources\\würfel\\r6.png"))};
+            g = new Image[]{ImageIO.read(new File("src\\resources\\würfel\\b1.png")), ImageIO.read(new File("src\\resources\\würfel\\b2.png")), ImageIO.read(new File("src\\resources\\würfel\\b3.png")), ImageIO.read(new File("src\\resources\\würfel\\b4.png")), ImageIO.read(new File("src\\resources\\würfel\\b5.png")), ImageIO.read(new File("src\\resources\\würfel\\b6.png"))};
+            z = new Image[]{ImageIO.read(new File("src\\resources\\würfel\\r1.png")), ImageIO.read(new File("src\\resources\\würfel\\r2.png")), ImageIO.read(new File("src\\resources\\würfel\\r3.png")), ImageIO.read(new File("src\\resources\\würfel\\r4.png")), ImageIO.read(new File("src\\resources\\würfel\\r5.png")), ImageIO.read(new File("src\\resources\\würfel\\r6.png"))};
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    private boolean cycle = true;
+    private JCheckBox aDice1;
+    private JCheckBox dDice1;
+    private JCheckBox aDice2;
+    private JCheckBox dDice2;
+    private JCheckBox aDice3;
+    private JLabel aDice1L;
+    private JLabel dDice1L;
+    private JLabel aDice2L;
+    private JLabel dDice2L;
+    private JLabel aDice3L;
+    private JLabel aCountry;
+    private JLabel dCountry;
+    private JButton rollButton;
+    private JButton retreatButton;
+    private Container contentPane;
+    private LinkedList<Integer> aDiceList;
+    private LinkedList<Integer> dDiceList;
+
     public Würfeln() throws InterruptedException {
         initComponents();
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        Würfeln w = new Würfeln();
     }
 
     private void initComponents() throws InterruptedException {
@@ -100,14 +105,14 @@ public class Würfeln extends JFrame {
         roll();
     }
 
-    public void cycle(){
-        if(cycle){
+    public void cycle() {
+        if (cycle) {
             delLabels();
             setCheckBox();
             revalidate();
             repaint();
             cycle = false;
-        }else{
+        } else {
             delBoxes();
             setLabels();
             revalidate();
@@ -116,7 +121,7 @@ public class Würfeln extends JFrame {
         }
     }
 
-    public void delLabels(){
+    public void delLabels() {
         contentPane = getContentPane();
         contentPane.remove(aDice1L);
         contentPane.remove(aDice2L);
@@ -125,7 +130,7 @@ public class Würfeln extends JFrame {
         contentPane.remove(dDice2L);
     }
 
-    public void delBoxes(){
+    public void delBoxes() {
         contentPane = getContentPane();
         contentPane.remove(aDice1);
         contentPane.remove(aDice2);
@@ -134,7 +139,7 @@ public class Würfeln extends JFrame {
         contentPane.remove(dDice2);
     }
 
-    public void setLabels(){
+    public void setLabels() {
         //aDice1
         aDice1L = new JLabel("");
         aDice1L.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -159,7 +164,7 @@ public class Würfeln extends JFrame {
         contentPane.add(dDice2L, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
     }
 
-    public void setCheckBox(){
+    public void setCheckBox() {
         //aDice1
         aDice1 = new JCheckBox();
         aDice1.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -184,25 +189,67 @@ public class Würfeln extends JFrame {
         contentPane.add(dDice2, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
     }
 
-    public ImageIcon rollAttack(){
-        int num = (int)(Math.random() * ((6 - 1) + 1));
+    public ImageIcon rollAttack() {
+        int num = (int) (Math.random() * ((6 - 1) + 1));
         ImageIcon icon = new ImageIcon(g[num]);
         Image i = icon.getImage();
         Image f = i.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         return new ImageIcon(f);
     }
 
-    public ImageIcon rollDef(){
-        int num = (int)(Math.random() * ((6 - 1) + 1));
+    public ImageIcon rollDef() {
+        int num = (int) (Math.random() * ((6 - 1) + 1));
         ImageIcon icon = new ImageIcon(z[num]);
-        return icon;
+        Image i = icon.getImage();
+        Image f = i.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        return new ImageIcon(f);
     }
+
     public void roll() throws InterruptedException {
         for (int i = 0; i < 10; i++) {
-            aDice1L.setIcon(rollAttack());
-            aDice2L.setIcon(rollAttack());
-            aDice3L.setIcon(rollAttack());
+            if (aDiceList.size() == 1) {
+                aDice1L.setIcon(rollAttack());
+            } else if (aDiceList.size() == 2) {
+                aDice1L.setIcon(rollAttack());
+                aDice2L.setIcon(rollAttack());
+            } else if (aDiceList.size() == 3) {
+                aDice1L.setIcon(rollAttack());
+                aDice2L.setIcon(rollAttack());
+                aDice3L.setIcon(rollAttack());
+            }
+
+            if (dDiceList.size() == 1) {
+                dDice1L.setIcon(rollDef());
+            } else if (dDiceList.size() == 2) {
+                dDice1L.setIcon(rollDef());
+                dDice2L.setIcon(rollDef());
+            }
             Thread.sleep(200);
+        }
+
+        aDiceList.sort(Comparator.naturalOrder());
+        dDiceList.sort(Comparator.naturalOrder());
+
+        while (aDiceList != null && !aDiceList.isEmpty()) {
+            //1, 2
+            if (aDiceList.size() == 1) {
+                aDice1L.setIcon(new ImageIcon(g[aDiceList.get(0)]));
+            } else if (aDiceList.size() == 2) {
+                aDice1L.setIcon(new ImageIcon(g[aDiceList.get(0)]));
+                aDice2L.setIcon(new ImageIcon(g[aDiceList.get(1)]));
+            } else if (aDiceList.size() == 3) {
+                aDice1L.setIcon(new ImageIcon(g[aDiceList.get(0)]));
+                aDice2L.setIcon(new ImageIcon(g[aDiceList.get(1)]));
+                aDice3L.setIcon(new ImageIcon(g[aDiceList.get(2)]));
+            }
+        }
+        while (dDiceList != null && !dDiceList.isEmpty()) {
+            if (dDiceList.size() == 1) {
+                dDice1L.setIcon(new ImageIcon(z[dDiceList.get(0)]));
+            } else if (dDiceList.size() == 2) {
+                dDice1L.setIcon(new ImageIcon(z[dDiceList.get(0)]));
+                dDice2L.setIcon(new ImageIcon(z[dDiceList.get(1)]));
+            }
         }
     }
 }
