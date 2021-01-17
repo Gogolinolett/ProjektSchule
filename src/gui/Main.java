@@ -31,6 +31,17 @@ public class Main {
         }
         m = new Map();
 
+        JFrame frame2 = new JFrame();
+        try {
+            Start s = new Start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        s.setOpaque(true);
+        frame2.add(s);
+
+
+
 
         frame.setLayout(new GridLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -295,9 +306,8 @@ public class Main {
 
     }
 
-    public static void startGame() {
-        JFrame frame = new JFrame();
-        Start s = new Start();
+    public static void startGame() throws IOException {
+        
     }
 
     public static void stage1Gui() {

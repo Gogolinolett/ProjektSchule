@@ -67,7 +67,11 @@ public class Start extends JFrame {
         public void actionPerformed(ActionEvent e) {
             JButton btn = (JButton) e.getSource();
             if (btn == button1) {
-
+                try {
+                    Main.startGame();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
             } else if (btn == button2) {
                 if (Desktop.isDesktopSupported()) {
                     try {
