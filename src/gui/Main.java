@@ -295,7 +295,7 @@ public class Main {
 
     }
 
-    public static void startGame() {
+    public static void startGame() throws IOException {
         JFrame frame = new JFrame();
         Start s = new Start();
     }
