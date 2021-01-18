@@ -65,14 +65,13 @@ public class Board {
         area.setTroopCount(area.getTroopCount() + amount);
     }
 
-    public void fight(Area aggressor, Area defender, int troops){
+    public void fight(Area aggressor, Area defender, int troops, LinkedList<Integer> angreiferErgebniss, LinkedList<Integer> verteiderEgebniss){
         if(troops + 1 > aggressor.getTroopCount()){
             return;
         }
 
         Random rndm = new Random();
-        LinkedList<Integer> angreiferErgebniss = new LinkedList<>();
-        LinkedList<Integer> verteiderEgebniss = new LinkedList<>();
+
 
         for(int i = 0; i < troops && i  < 3; i ++){
             int num = (int) (Math.random() * 6  + 1);
