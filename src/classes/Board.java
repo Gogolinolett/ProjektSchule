@@ -1,5 +1,6 @@
 package classes;
 
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -70,46 +71,34 @@ public class Board {
         }
 
         Random rndm = new Random();
-        int[] angreiferErgebniss = {0,0};
-        int[] verteiderEgebniss = new int[defender.getTroopCount()];
+        LinkedList<Integer> angreiferErgebniss = new LinkedList<>();
+        LinkedList<Integer> verteiderEgebniss = new LinkedList<>();
 
-        for (int i = 0; i < troops && i < 3; i++) {
-            int z = rndm.nextInt(6);
-            if(z > angreiferErgebniss[0] && angreiferErgebniss[0] < angreiferErgebniss[1]){
-                angreiferErgebniss[0] = z;
-            }else if(z > angreiferErgebniss[1]){
-                angreiferErgebniss[1] = z;
-            }
+        for(int i = 0; i < troops && i  < 3; i ++){
+            int num = (int) (Math.random() * 6  + 1);
+            angreiferErgebniss.add(num);
         }
 
-        for (int i = 0; i < defender.getTroopCount() && i < 2; i++) {
-            verteiderEgebniss[i] = rndm.nextInt(6);
+        for(int i = 0; i < troops && i  < 2; i ++){
+            int num = (int) (Math.random() * 6  + 1);
+            verteiderEgebniss.add(num);
         }
 
-        if(angreiferErgebniss[0] < angreiferErgebniss[1]){
-            int z = angreiferErgebniss[0];
-            angreiferErgebniss[0] = angreiferErgebniss[1];
-            angreiferErgebniss[1] = z;
-        }
+        angreiferErgebniss.sort(Comparator.naturalOrder());
+        verteiderEgebniss.sort(Comparator.naturalOrder());
 
-        if (defender.getTroopCount() > 2) {
-            if(verteiderEgebniss[0] < verteiderEgebniss[1]){
-                int z = verteiderEgebniss[0];
-                verteiderEgebniss[0] = verteiderEgebniss[1];
-                verteiderEgebniss[1] = z;
-            }
-            if(angreiferErgebniss[1] > verteiderEgebniss[1]){
-                defender.setTroopCount(defender.getTroopCount() - 1);
-            }else{
-                aggressor.setTroopCount(aggressor.getTroopCount() - 1);
-            }
-        }
-
-        if(angreiferErgebniss[0] > verteiderEgebniss[0]){
-            defender.setTroopCount(defender.getTroopCount() - 1);
+        if(angreiferErgebniss.get(0) > verteiderEgebniss.get(0)){
+            defender.setTroopCount(defender.getTroopCount());
         }else{
-            aggressor.setTroopCount(aggressor.getTroopCount() - 1);
+            aggressor.setTroopCount(aggressor.getTroopCount());
         }
+
+        if(angreiferErgebniss.get(1) > verteiderEgebniss.get(1)){
+            defender.setTroopCount(defender.getTroopCount());
+        }else{
+            aggressor.setTroopCount(aggressor.getTroopCount());
+        }
+
     }
 
     public void moveTroop(Area a, Area b, int amount){
