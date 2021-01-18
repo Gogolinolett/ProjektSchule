@@ -2,9 +2,11 @@ package gui;
 
 import classes.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Random;
@@ -42,14 +44,27 @@ public class Main {
 
 
     }
-    public static void setUpWinConCards(){
-        WinningConditions winningConditions = new WinningConditions(null,null, Color.BLACK , 0, img);
+    public static void setUpWinConCards() throws IOException {
+        WinningConditions mk_18_2 = new WinningConditions(null, null, null, 3, ImageIO.read(new File("src\\resources\\miss_karte\\MK_18_2.png")));
+        WinningConditions mk_24 = new WinningConditions(null, null, null, 2, ImageIO.read(new File("src\\resources\\miss_karte\\MK_24.png")));
+        WinningConditions mk_af_as = new WinningConditions(regions.get(3), regions.get(5), null, 1, ImageIO.read(new File("src\\resources\\miss_karte\\MK_af&as.png")));
+        WinningConditions mk_as_sa = new WinningConditions(regions.get(5), regions.get(1), null, 1, ImageIO.read(new File("src\\resources\\miss_karte\\MK_as&sa.png")));
+        WinningConditions mk_bl = new WinningConditions(null,null, Color.BLUE , 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_bl.png")));
+        WinningConditions mk_bla = new WinningConditions(null,null, Color.BLACK , 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_bla.png")));
+        WinningConditions mk_eu_oc_3 = new WinningConditions(regions.get(2), regions.get(4), null, 4, ImageIO.read(new File("src\\resources\\miss_karte\\MK_eu&oc&3.png")));
+        WinningConditions mk_eu_sa_3 = new WinningConditions(regions.get(2), regions.get(1), null, 4, ImageIO.read(new File("src\\resources\\miss_karte\\MK_eu&sa&3.png")));
+        WinningConditions mk_gr = new WinningConditions(null,null, Color.GREEN , 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_gr.png")));
+        WinningConditions mk_na_af = new WinningConditions(regions.get(0), regions.get(3), null, 1, ImageIO.read(new File("src\\resources\\miss_karte\\MK_na&af.png")));
+        WinningConditions mk_na_oc = new WinningConditions(regions.get(0), regions.get(4), null, 1, ImageIO.read(new File("src\\resources\\miss_karte\\MK_na&oc.png")));
+        WinningConditions mk_pi = new WinningConditions(null,null, Color.PINK , 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_pi.png")));
+        WinningConditions mk_re = new WinningConditions(null,null, Color.RED , 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_re.png")));
+        WinningConditions mk_ye = new WinningConditions(null,null, Color.YELLOW , 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_ye.png")));
     }
 
     public static void setupAreasAndRegions() {
-//NordAmerika
-        LinkedList<Area> z = new LinkedList<>();
 
+        //NordAmerika
+        LinkedList<Area> z = new LinkedList<>();
         Area Alberta = new Area("ALBERTA");
         areas.add(Alberta);
         z.add(Alberta);
@@ -79,6 +94,8 @@ public class Main {
         z.add(Grönland);
         Region nordamerika = new Region(z, 5);
         regions.add(nordamerika);
+
+
         //SüdAmerika
         z = new LinkedList<>();
         Area Venezuela = new Area("VENEZUELA");
@@ -95,6 +112,8 @@ public class Main {
         z.add(Argentinien);
         Region südamerika = new Region(z, 2);
         regions.add(südamerika);
+
+
         //Europa
         z = new LinkedList<>();
         Area Island = new Area("ISLAND");
@@ -120,6 +139,8 @@ public class Main {
         z.add(SüdEuropa);
         Region Europa = new Region(z, 5);
         regions.add(Europa);
+
+
         //Afrika
         z = new LinkedList<>();
         Area Ägypten = new Area("ÄGYPTEN");
@@ -142,6 +163,8 @@ public class Main {
         z.add(Madagaskar);
         Region Afrika = new Region(z, 3);
         regions.add(Afrika);
+
+
         //Australien
         z = new LinkedList<>();
         Area OstAustralien = new Area("OSTAUSTRALIEN");
@@ -158,6 +181,8 @@ public class Main {
         z.add(WestAustralien);
         Region Australien = new Region(z, 2);
         regions.add(Australien);
+
+
         //Asien
         z = new LinkedList<>();
         Area MittlererOsten = new Area("MITTLEREROSTEN");
