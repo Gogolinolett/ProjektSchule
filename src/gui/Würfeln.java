@@ -114,6 +114,8 @@ public class Würfeln extends JFrame {
 
     public void cycle() {
         if (cycle) {
+            aCountry.setText(aggressor.getName() + " (" + aggressor.getTroopCount()+")");
+            dCountry.setText(defender.getName() + " (" + defender.getTroopCount()+")");
             delLabels();
             setCheckBox();
             revalidate();
@@ -286,6 +288,8 @@ public class Würfeln extends JFrame {
                     try {
                         cycle();
                         roll();
+                        aCountry.setText(aggressor.getName() + " (" + aggressor.getTroopCount()+")");
+                        dCountry.setText(defender.getName() + " (" + defender.getTroopCount()+")");
                     } catch (InterruptedException interruptedException) {
                         interruptedException.printStackTrace();
                     }
