@@ -45,22 +45,22 @@ public class MoveTroops extends JFrame {
         contentPane.add(sPane2, new GridBagConstraints(2, 0, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 10, 0), 0, 0));
 
         //panel1
-        JPanel panel1 = new JPanel();
-        panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
         //comboBox1
-        JComboBox comboBox = new JComboBox();
-        comboBox.setAlignmentX(Component.CENTER_ALIGNMENT);
-        comboBox.setMaximumSize(new Dimension(121, 23));
-        panel1.add(comboBox);
+        JSpinner spinner = new JSpinner();
+        spinner.setAlignmentX(Component.CENTER_ALIGNMENT);
+        spinner.setMaximumSize(new Dimension(121, 23));
+        panel.add(spinner);
 
         //cButton
         JButton cButton = new JButton();
         cButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         cButton.setText("confirm");
-        panel1.add(cButton);
+        panel.add(cButton);
 
-        contentPane.add(panel1, new GridBagConstraints(0, 2, 4, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+        contentPane.add(panel, new GridBagConstraints(0, 2, 4, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
         pack();
         setLocationRelativeTo(getOwner());
         setVisible(true);
