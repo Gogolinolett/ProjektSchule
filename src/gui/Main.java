@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.Random;
 
 public class Main {
 
@@ -306,6 +307,21 @@ public class Main {
         frame.setSize(550, 750);
         frame.setVisible(true);
         frame.setAlwaysOnTop(true);
+
+
+        int size = areas.size();
+        LinkedList<Area> zwischen = new LinkedList<>();
+        for(Area a : areas ){
+            zwischen.add(a);
+        }
+
+        for(int i = 0; i < size; i ++){
+            Random random = new Random();
+            zwischen.get(random.nextInt(zwischen.size() - 1)).setFarbeOwner(playerss.get(i % playerss.size()).getFarbe());
+
+
+        }
+        updateGui();
         stage1Gui();
     }
 
@@ -330,6 +346,7 @@ public class Main {
     }
 
     public static void updateGui() {
+        m.updateMap(areas);
         frame.revalidate();
     }
 

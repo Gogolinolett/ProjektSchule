@@ -62,7 +62,7 @@ public class First extends JPanel {
 
         //sCountryLabel
         JLabel sCountryLabel = new JLabel();
-        sCountryLabel.setText("Ausgewähltes Land: " + land.getName());
+        sCountryLabel.setText("Ausgewähltes Land: ");
         add(sCountryLabel, new GridBagConstraints(0, 2, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //sPane
