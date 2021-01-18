@@ -8,6 +8,8 @@ public class MoveTroops extends JFrame {
         initComponents();
     }
 
+    JButton cButton;
+
     private void initComponents() {
         setMinimumSize(new Dimension(430, 267));
         setResizable(false);
@@ -55,10 +57,15 @@ public class MoveTroops extends JFrame {
         panel.add(spinner);
 
         //cButton
-        JButton cButton = new JButton();
+        cButton = new JButton();
         cButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+<<<<<<< HEAD
         cButton.setText("confirm");
         panel.add(cButton);
+=======
+        cButton.setText("Bestätigen");
+        panel1.add(cButton);
+>>>>>>> 8dcda1d3bf3b1525546f66e8e50df3656d0190df
 
         contentPane.add(panel, new GridBagConstraints(0, 2, 4, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
         pack();
