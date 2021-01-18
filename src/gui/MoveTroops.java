@@ -7,7 +7,7 @@ public class MoveTroops extends JFrame {
     public MoveTroops() {
         initComponents();
     }
-
+    
     JButton cButton;
 
     private void initComponents() {
@@ -50,7 +50,7 @@ public class MoveTroops extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        //comboBox1
+        //spinner
         JSpinner spinner = new JSpinner();
         spinner.setAlignmentX(Component.CENTER_ALIGNMENT);
         spinner.setMaximumSize(new Dimension(121, 23));
@@ -59,13 +59,9 @@ public class MoveTroops extends JFrame {
         //cButton
         cButton = new JButton();
         cButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-<<<<<<< HEAD
-        cButton.setText("confirm");
-        panel.add(cButton);
-=======
+
         cButton.setText("Bestätigen");
-        panel1.add(cButton);
->>>>>>> 8dcda1d3bf3b1525546f66e8e50df3656d0190df
+        panel.add(cButton);
 
         contentPane.add(panel, new GridBagConstraints(0, 2, 4, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
         pack();
