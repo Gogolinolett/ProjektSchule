@@ -274,6 +274,8 @@ public class Würfeln extends JFrame {
             if(e.getSource() instanceof  JButton){
                 JButton btn = (JButton) e.getSource();
                 if(btn.equals(rollButton)){
+                    aDiceList = new LinkedList<>();
+                    dDiceList = new LinkedList<>();
                     int count = 0;
                     if(aDice1.isSelected()){
                         count++;

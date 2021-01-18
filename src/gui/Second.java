@@ -13,6 +13,7 @@ public class Second extends JPanel {
 
     JEditorPane sDefendCountryPane;
     JEditorPane sAttackCountryPane;
+    JButton cButton;
 
     public Second() {
         initComponents();
@@ -71,8 +72,9 @@ public class Second extends JPanel {
         add(sPane2, new GridBagConstraints(0, 4, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //cButton
-        JButton cButton = new JButton();
+        cButton = new JButton();
         cButton.setText("Bestätigen");
+        cButton.addActionListener(new TileListener());
         add(cButton, new GridBagConstraints(0, 5, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //mKarte
@@ -87,6 +89,7 @@ public class Second extends JPanel {
 
         //nStage
         JButton nStage = new JButton();
+        nStage.addActionListener(new TileListener());
         nStage.setText("Nächster Schritt");
         add(nStage, new GridBagConstraints(0, 9, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
@@ -108,6 +111,18 @@ public class Second extends JPanel {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() instanceof  JButton){
                 JButton btn = (JButton) e.getSource();
+
+                if(btn.equals(cButton)){
+                    if (attackingArea != null && defendingArea != null){
+                        if(attackingArea.getTroopCount() > 1){
+                            try {
+                                Würfeln würfeln = new Würfeln(attackingArea, defendingArea);
+                            } catch (InterruptedException interruptedException) {
+                                interruptedException.printStackTrace();
+                            }
+                        }
+                    }
+                }
 
             }
         }

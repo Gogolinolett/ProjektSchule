@@ -61,6 +61,6 @@ public class WinningConditions {
     }
 
     public boolean twoOne(LinkedList<Region> regions, Player player){
-
+        return false;
     }
 }

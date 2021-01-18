@@ -373,7 +373,7 @@ public class Main {
             updateGui();
         } else if (stage == 2) {
 
-            if (area.getFarbeOwner().equals(players.get(activePlayer))) {
+            if (area.getFarbeOwner().equals(players.get(activePlayer).getFarbe())) {
                 s.setAttackingArea(area);
             } else {
                 s.setDefendingArea(area);
