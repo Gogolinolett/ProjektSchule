@@ -1,6 +1,7 @@
 package gui;
 
 import classes.Area;
+import classes.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,13 +11,15 @@ import java.awt.event.ActionListener;
 public class Second extends JPanel {
     private Area attackingArea;
     private Area defendingArea;
+    private Player player;
 
     JEditorPane sDefendCountryPane;
     JEditorPane sAttackCountryPane;
     JButton cButton;
     JButton nStage;
 
-    public Second() {
+    public Second(Player player) {
+        this.player = player;
         initComponents();
     }
 
@@ -32,7 +35,7 @@ public class Second extends JPanel {
 
         //pName
         JLabel pName = new JLabel();
-        pName.setText("[Spieler Name]\u00b4s Zug");
+        pName.setText(player.getPlayername() +"s Zug");
         add(pName, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //cStage
@@ -133,6 +136,7 @@ public class Second extends JPanel {
 
     public void setAttackingArea(Area attackingArea) {
         sAttackCountryPane.setText("Land:" + attackingArea.getName() +" \nTruppen Anzahl: " + attackingArea.getTroopCount());
+        sAttackCountryPane.setForeground((attackingArea.getFarbeOwner()));
         this.attackingArea = attackingArea;
     }
 

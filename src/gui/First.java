@@ -36,6 +36,7 @@ public class First extends JPanel {
 
     public void setLand(Area land) {
         sCountryPane.setText("Land: " + land.getName()  + " \nTruppen Anzahl: " + land.getTroopCount());
+        sCountryPane.setForeground(land.getFarbeOwner());
         this.land = land;
     }
 

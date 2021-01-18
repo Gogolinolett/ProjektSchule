@@ -107,9 +107,11 @@ public class Board {
     }
 
     public void moveTroop(Area a, Area b, int amount){
+        System.out.println("moving");
         if(a.getFarbeOwner().equals(b.getFarbeOwner()) && a.getTroopCount() > amount) {
             a.setTroopCount(a.getTroopCount() - amount);
             b.setTroopCount(b.getTroopCount() + amount);
+            System.out.println("succes");
         }
         Main.updateGui();
     }

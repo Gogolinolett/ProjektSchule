@@ -18,9 +18,14 @@ public class Third extends JPanel {
     JSpinner aTroopsSpinner;
     JLabel sOriginCountry;
     JLabel sDestinationCountry;
+    JButton nStage;
 
     public void setArea(Area area){
-        origin = destination;
+        if(destination == null){
+            origin = area;
+        }else {
+            origin = destination;
+        }
         destination = area;
         sOriginCountry.setText("Ausgewähltes  Ziel Land: " + origin.getName());
         sDestinationCountry.setText("Ausgewähltes Ursprungsland: " + destination.getName());
@@ -99,6 +104,7 @@ public class Third extends JPanel {
 
         //cButton
         cButton = new JButton();
+        cButton.addActionListener(new TileListener());
         cButton.setText("Bestätigen");
         add(cButton, new GridBagConstraints(0, 6, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
@@ -113,7 +119,8 @@ public class Third extends JPanel {
         add(aKarte, new GridBagConstraints(1, 8, 1, 2, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //nStage
-        JButton nStage = new JButton();
+        nStage = new JButton();
+        nStage.addActionListener(new TileListener());
         nStage.setText("Zug Beenden");
         add(nStage, new GridBagConstraints(0, 10, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
@@ -137,9 +144,11 @@ public class Third extends JPanel {
                 JButton btn = (JButton) e.getSource();
 
                 if(btn.equals(cButton) && origin != null){
-                    if(origin.getTroopCount() > (int) aTroopsSpinner.getValue()){
+                    if(origin.getTroopCount() > (int) aTroopsSpinner.getValue() && origin.isNeighbour(destination)){
                         Main.getBoard().moveTroop(origin, destination,(int) aTroopsSpinner.getValue());
                     }
+                }else if(nStage.equals(btn)){
+                    Main.nextStage();
                 }
 
             }

@@ -289,6 +289,9 @@ public class Main {
         stage = stage + 1;
         if (stage > 3) {
             activePlayer = activePlayer + 1;
+            if(activePlayer >= players.size()) {
+                activePlayer = 0;
+            }
             stage = 1;
             stage1Gui();
         }else if(stage == 2){
@@ -345,7 +348,7 @@ public class Main {
     public static void stage2Gui() {
 
         frame.getContentPane().removeAll();
-        s = new Second();
+        s = new Second(players.get(activePlayer));
         s.setOpaque(true);
         frame.add(s);
         frame.revalidate();
