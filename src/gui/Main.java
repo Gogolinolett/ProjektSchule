@@ -26,6 +26,7 @@ public class Main {
     private static PlayerSelection playerSelection;
     private static Start start;
     private static Board board;
+    private static LinkedList<WinningConditions> winConCards
 
     public static void main(String[] args) throws IOException {
 
@@ -45,20 +46,37 @@ public class Main {
 
     }
     public static void setUpWinConCards() throws IOException {
+        winConCards = new LinkedList<>();
+
         WinningConditions mk_18_2 = new WinningConditions(null, null, null, 3, ImageIO.read(new File("src\\resources\\miss_karte\\MK_18_2.png")));
+        winConCards.add(mk_18_2);
         WinningConditions mk_24 = new WinningConditions(null, null, null, 2, ImageIO.read(new File("src\\resources\\miss_karte\\MK_24.png")));
+        winConCards.add(mk_24);
         WinningConditions mk_af_as = new WinningConditions(regions.get(3), regions.get(5), null, 1, ImageIO.read(new File("src\\resources\\miss_karte\\MK_af&as.png")));
+        winConCards.add(mk_af_as);
         WinningConditions mk_as_sa = new WinningConditions(regions.get(5), regions.get(1), null, 1, ImageIO.read(new File("src\\resources\\miss_karte\\MK_as&sa.png")));
+        winConCards.add(mk_as_sa);
         WinningConditions mk_bl = new WinningConditions(null,null, Color.BLUE , 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_bl.png")));
+        winConCards.add(mk_bl);
         WinningConditions mk_bla = new WinningConditions(null,null, Color.BLACK , 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_bla.png")));
+        winConCards.add(mk_bla);
         WinningConditions mk_eu_oc_3 = new WinningConditions(regions.get(2), regions.get(4), null, 4, ImageIO.read(new File("src\\resources\\miss_karte\\MK_eu&oc&3.png")));
+        winConCards.add(mk_eu_oc_3);
         WinningConditions mk_eu_sa_3 = new WinningConditions(regions.get(2), regions.get(1), null, 4, ImageIO.read(new File("src\\resources\\miss_karte\\MK_eu&sa&3.png")));
+        winConCards.add(mk_eu_sa_3);
         WinningConditions mk_gr = new WinningConditions(null,null, Color.GREEN , 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_gr.png")));
+        winConCards.add(mk_gr);
         WinningConditions mk_na_af = new WinningConditions(regions.get(0), regions.get(3), null, 1, ImageIO.read(new File("src\\resources\\miss_karte\\MK_na&af.png")));
+        winConCards.add(mk_na_af);
         WinningConditions mk_na_oc = new WinningConditions(regions.get(0), regions.get(4), null, 1, ImageIO.read(new File("src\\resources\\miss_karte\\MK_na&oc.png")));
+        winConCards.add(mk_na_oc);
         WinningConditions mk_pi = new WinningConditions(null,null, Color.PINK , 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_pi.png")));
+        winConCards.add(mk_pi);
         WinningConditions mk_re = new WinningConditions(null,null, Color.RED , 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_re.png")));
+        winConCards.add(mk_re);
         WinningConditions mk_ye = new WinningConditions(null,null, Color.YELLOW , 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_ye.png")));
+        winConCards.add(mk_ye);
+
     }
 
     public static void setupAreasAndRegions() {
@@ -339,6 +357,22 @@ public class Main {
         frame.setSize(550, 750);
         frame.setVisible(true);
         frame.setAlwaysOnTop(true);
+
+        for(WinningConditions winningConditions : winConCards){
+            for(Player p : playerss){
+                if (!winningConditions.getColor().equals(p.getFarbe())){
+
+                    
+                }
+            }
+
+        }
+
+        for(Player p : playerss){
+
+            int rand = (int)(Math.random() * (winConCards.size()  + 1));
+
+        }
 
         m.setVisible(true);
 

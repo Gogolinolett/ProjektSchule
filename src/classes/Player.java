@@ -6,6 +6,7 @@ public class Player {
     private final Color farbe;
     private Board board;
     private String playername;
+    private WinningConditions winningConditions;
 
     public Player(Color farbe, Board board, String playername){
         this.farbe = farbe;
@@ -28,5 +29,13 @@ public class Player {
 
     public Color getFarbe() {
         return farbe;
+    }
+
+    public WinningConditions getWinningConditions() {
+        return winningConditions;
+    }
+
+    public void setWinningConditions(WinningConditions winningConditions) {
+        this.winningConditions = winningConditions;
     }
 }
