@@ -18,7 +18,7 @@ public class Main {
     private static LinkedList<Region> regions = new LinkedList<>();
     private static LinkedList<Player> players;
     private static int activePlayer = 0;
-    private static int stage = 0;
+    private static int stage = 1;
     private static First f;
     private static Second s;
     private static JFrame frame = new JFrame();
@@ -290,6 +290,8 @@ public class Main {
             activePlayer = activePlayer + 1;
             stage = 1;
             stage1Gui();
+        }else if(stage == 2){
+            stage2Gui();
         }
 
     }

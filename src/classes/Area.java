@@ -1,5 +1,7 @@
 package classes;
 
+import gui.Main;
+
 import java.awt.*;
 import java.util.LinkedList;
 
@@ -16,6 +18,7 @@ public class Area {
 
     public void addTroops(int amount){
         troopCount += amount;
+        Main.updateGui();
     }
 
     public String getName(){

@@ -11,6 +11,9 @@ public class Second extends JPanel {
     private Area attackingArea;
     private Area defendingArea;
 
+    JEditorPane sDefendCountryPane;
+    JEditorPane sAttackCountryPane;
+
     public Second() {
         initComponents();
     }
@@ -44,8 +47,8 @@ public class Second extends JPanel {
         JScrollPane sPane = new JScrollPane();
 
         //sAttackCountryPane
-        JEditorPane sAttackCountryPane = new JEditorPane();
-        sAttackCountryPane.setText("Land: \nBesitzer: \nTruppen Anzahl");
+        sAttackCountryPane = new JEditorPane();
+        sAttackCountryPane.setText("Land:  \nTruppen Anzahl");
         sAttackCountryPane.setEditable(false);
         sPane.setViewportView(sAttackCountryPane);
 
@@ -60,8 +63,8 @@ public class Second extends JPanel {
         JScrollPane sPane2 = new JScrollPane();
 
         //sDefendCountryPane
-        JEditorPane sDefendCountryPane = new JEditorPane();
-        sDefendCountryPane.setText("Land: \nBesitzer: \nTruppen Anzahl");
+        sDefendCountryPane = new JEditorPane();
+        sDefendCountryPane.setText("Land:  \nTruppen Anzahl");
         sDefendCountryPane.setEditable(false);
         sPane2.setViewportView(sDefendCountryPane);
 
@@ -111,10 +114,13 @@ public class Second extends JPanel {
     }
 
     public void setAttackingArea(Area attackingArea) {
+        sAttackCountryPane.setText("Land:" + attackingArea.getName() +" \nTruppen Anzahl: " + attackingArea.getTroopCount());
         this.attackingArea = attackingArea;
     }
 
     public void setDefendingArea(Area defendingArea) {
+        sDefendCountryPane.setText("Land:" + defendingArea.getName() +" \nTruppen Anzahl: " + defendingArea.getTroopCount());
+        sDefendCountryPane.setForeground(defendingArea.getFarbeOwner());
         this.defendingArea = defendingArea;
     }
 }

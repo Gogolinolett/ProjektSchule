@@ -13,14 +13,17 @@ public class First extends JPanel {
     private String playername;
     private Area land;
     private Player player;
+    private JEditorPane sCountryPane;
+    private JButton nStage;
 
     private JLabel pName;
 
     public First(Player player) {
-        initComponents();
+
         troops = player.getTroopsPerTurn();
         this.playername = player.getPlayername();
         this.player = player;
+        initComponents();
     }
 
     public void setTroops(int troops) {
@@ -32,6 +35,7 @@ public class First extends JPanel {
     }
 
     public void setLand(Area land) {
+        sCountryPane.setText("Land: " + land.getName() + "\nBesitzer: " + land.getFarbeOwner() + " \nTruppen Anzahl: " + land.getTroopCount());
         this.land = land;
     }
 
@@ -51,7 +55,8 @@ public class First extends JPanel {
 
         //pName
         pName = new JLabel();
-        pName.setText(" players turn");
+        pName.setText(playername + " players turn.");
+        pName.setForeground(player.getFarbe());
         add(pName, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //cStage
@@ -73,7 +78,7 @@ public class First extends JPanel {
         JScrollPane sPane = new JScrollPane();
 
         //sCountryPane
-        JEditorPane sCountryPane = new JEditorPane();
+        sCountryPane = new JEditorPane();
         sCountryPane.setText("Land: \nBesitzer: \nTruppen Anzahl");
         sCountryPane.setEditable(false);
         sPane.setViewportView(sCountryPane);
@@ -105,7 +110,8 @@ public class First extends JPanel {
         add(aKarte, new GridBagConstraints(1, 7, 1, 2, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //nStage
-        JButton nStage = new JButton();
+        nStage = new JButton();
+        nStage.addActionListener(new TileListener());
         nStage.setText("Nächster Schritt");
         add(nStage, new GridBagConstraints(0, 9, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
@@ -122,7 +128,6 @@ public class First extends JPanel {
         add(sPane2, new GridBagConstraints(0, 10, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
 
-        
     }
 
 
@@ -134,13 +139,16 @@ public class First extends JPanel {
             if(e.getSource() instanceof  JButton){
                 JButton btn = (JButton) e.getSource();
                 if(btn.equals(cButton)){
-                    if(land != null) {
+                    if(land != null && land.getFarbeOwner().equals(player.getFarbe())) {
                         int z = (int) aTroopsSpinner.getValue();
                         troops = troops - z;
                         land.addTroops(z);
                         aTroopsSpinner.setModel(new SpinnerNumberModel(0, 0, troops, 1));
                         aTroops.setText("Anzahl der Truppen: " + troops);
                     }
+                }else if(btn.equals(nStage)&& troops == 0){
+                    System.out.println("next stage");
+                    Main.nextStage();
                 }
             }
         }
