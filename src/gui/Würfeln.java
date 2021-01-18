@@ -178,12 +178,14 @@ public class Würfeln extends JFrame {
         //dDice1
         dDice1 = new JCheckBox();
         dDice1.setEnabled(false);
+        dDice1.setSelected(true);
         contentPane.add(dDice1, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
         if (defender.getTroopCount() != 1) {
             //dDice2
             dDice2 = new JCheckBox();
             dDice2.setEnabled(false);
+            dDice2.setSelected(true);
             contentPane.add(dDice2, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
         }
     }
@@ -195,11 +197,14 @@ public class Würfeln extends JFrame {
 
         for (int i = 0; i < 10; i++) {
             if (count == 1) {
+                System.out.println(1);
                 aDice1L.setIcon(rollAttack());
             } else if (count == 2) {
+                System.out.println(2);
                 aDice1L.setIcon(rollAttack());
                 aDice2L.setIcon(rollAttack());
             } else if (count == 3) {
+                System.out.println(3);
                 aDice1L.setIcon(rollAttack());
                 aDice2L.setIcon(rollAttack());
                 aDice3L.setIcon(rollAttack());
@@ -214,6 +219,8 @@ public class Würfeln extends JFrame {
             Thread.sleep(200);
         }
 
+
+        Board.fight(aggressor, defender, count, aDiceList, dDiceList);
         if (count == 1) {
             aDice1L.setIcon(aroll(0));
         } else if (count == 2) {
@@ -284,11 +291,7 @@ public class Würfeln extends JFrame {
                     if (aDice3.isSelected()) {
                         count++;
                     }
-                    Board.fight(aggressor, defender, count, aDiceList, dDiceList);
-                    System.out.println(aDiceList);
-                    System.out.println(dDiceList);
                     try {
-                        System.out.println("count:" + count);
                         roll(count);
                         aCountry.setText(aggressor.getName() + " (" + aggressor.getTroopCount() + ")");
                         dCountry.setText(defender.getName() + " (" + defender.getTroopCount() + ")");
