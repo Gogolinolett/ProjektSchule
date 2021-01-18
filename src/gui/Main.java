@@ -300,13 +300,15 @@ public class Main {
         playerSelection = new PlayerSelection();
     }
 
-    public static void startGame(){
+    public static void startGame(LinkedList<Player> players){
+        this.players = players;
         playerSelection.setVisible(false);
         frame.setLayout(new GridLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(550, 750);
         frame.setVisible(true);
         frame.setAlwaysOnTop(true);
+        stage1Gui();
     }
 
     public static void stage1Gui() {
