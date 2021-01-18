@@ -11,6 +11,7 @@ import java.util.LinkedList;
 
 public class PlayerSelection extends JFrame {
 
+    private JButton Fertig;
     JButton remAll;
     JButton pAdd;
     int pCounter  = 0;
@@ -151,6 +152,13 @@ public class PlayerSelection extends JFrame {
         pAdd.setText("Spieler Hinzufügen");
         pAdd.setAlignmentX(Component.CENTER_ALIGNMENT);
         optPanel.add(pAdd);
+
+        //fertigButton
+        Fertig = new JButton();
+        Fertig.setText("Fertig");
+        Fertig.addActionListener(new TileListener());
+        Fertig.setAlignmentX(Component.CENTER_ALIGNMENT);
+        optPanel.add(Fertig);
 
         contentPane.add(optPanel, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
         pack();
