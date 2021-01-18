@@ -8,6 +8,8 @@ public class MoveTroops extends JFrame {
         initComponents();
     }
 
+    JButton cButton;
+
     private void initComponents() {
         setMinimumSize(new Dimension(430, 267));
         setResizable(false);
@@ -55,9 +57,9 @@ public class MoveTroops extends JFrame {
         panel1.add(comboBox);
 
         //cButton
-        JButton cButton = new JButton();
+        cButton = new JButton();
         cButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        cButton.setText("confirm");
+        cButton.setText("Bestätigen");
         panel1.add(cButton);
 
         contentPane.add(panel1, new GridBagConstraints(0, 2, 4, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
