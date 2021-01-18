@@ -1,10 +1,11 @@
 package classes;
 
+import java.awt.*;
 import java.util.LinkedList;
 
 public class Area {
     private int troopCount;
-    private Farben farbeOwner;
+    private Color farbeOwner;
     private String name;
     private LinkedList<Area> neighbours = new LinkedList<>();
 
@@ -21,11 +22,11 @@ public class Area {
         return name;
     }
 
-    public void setFarbeOwner(Farben farbeOwner) {
+    public void setFarbeOwner(Color farbeOwner) {
         this.farbeOwner = farbeOwner;
     }
 
-    public Farben getFarbeOwner() {
+    public Color getFarbeOwner() {
         return farbeOwner;
     }
 

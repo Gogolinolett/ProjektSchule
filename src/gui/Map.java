@@ -1,7 +1,6 @@
 package gui;
 
 import classes.Area;
-import classes.Farben;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -244,17 +243,17 @@ public class Map implements ComponentListener, WindowStateListener {
                 if(areas.get(i).equals(btns.get(f))){
                     btns.get(f).setText(String.valueOf(areas.get(i).getTroopCount()));
 
-                    if(areas.get(i).getFarbeOwner() == Farben.BLAU){
+                    if(areas.get(i).getFarbeOwner() == Color.BLUE){
                         btns.get(f).setBackground(Color.BLUE);
-                    } else if (areas.get(i).getFarbeOwner() == Farben.SCHWARZ){
+                    } else if (areas.get(i).getFarbeOwner() == Color.BLACK){
                         btns.get(f).setBackground(Color.BLACK);
-                    }else if (areas.get(i).getFarbeOwner() == Farben.GRÜN){
+                    }else if (areas.get(i).getFarbeOwner() == Color.GREEN){
                         btns.get(f).setBackground(Color.GREEN);
-                    }else if (areas.get(i).getFarbeOwner() == Farben.ROSA){
+                    }else if (areas.get(i).getFarbeOwner() == Color.PINK){
                         btns.get(f).setBackground(Color.PINK);
-                    }else if (areas.get(i).getFarbeOwner() == Farben.ROT){
+                    }else if (areas.get(i).getFarbeOwner() == Color.RED){
                         btns.get(f).setBackground(Color.RED);
-                    }else if (areas.get(i).getFarbeOwner() == Farben.GELB){
+                    }else if (areas.get(i).getFarbeOwner() == Color.YELLOW){
                         btns.get(f).setBackground(Color.YELLOW);
                     }
                 }

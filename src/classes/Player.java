@@ -1,11 +1,13 @@
 package classes;
 
+import java.awt.*;
+
 public class Player {
-    private Farben farbe;
+    private final Color farbe;
     private Board board;
     private String playername;
 
-    public Player(Farben farbe, Board board, String playername){
+    public Player(Color farbe, Board board, String playername){
         this.farbe = farbe;
         this.board = board;
         this.playername = playername;
@@ -22,7 +24,7 @@ public class Player {
         return troops;
     }
 
-    public Farben getFarbe() {
+    public Color getFarbe() {
         return farbe;
     }
 }

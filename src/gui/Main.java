@@ -15,7 +15,7 @@ public class Main {
 
     private static LinkedList<Area> areas = new LinkedList<>();
     private static LinkedList<Region> regions = new LinkedList<>();
-    private static Player[] players;
+    private static LinkedList<Player> players;
     private static int activePlayer;
     private static int stage = 0;
     private static First f;
@@ -39,10 +39,8 @@ public class Main {
          start = new Start();
 
         setupAreasAndRegions();
-        stage1Gui();
         board = new Board(areas, regions);
 
-        stage1Gui();
 
     }
 
@@ -300,8 +298,8 @@ public class Main {
         playerSelection = new PlayerSelection();
     }
 
-    public static void startGame(LinkedList<Player> players){
-        this.players = players;
+    public static void startGame(LinkedList<Player> playerss){
+        players = playerss;
         playerSelection.setVisible(false);
         frame.setLayout(new GridLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -314,7 +312,7 @@ public class Main {
     public static void stage1Gui() {
 
         frame.getContentPane().removeAll();
-        f = new First(players[activePlayer % players.length]);
+        f = new First(players.get(activePlayer));
         f.setOpaque(true);
         frame.add(f);
         frame.revalidate();
@@ -343,7 +341,7 @@ public class Main {
             updateGui();
         } else if (stage == 2) {
 
-            if (area.getFarbeOwner().equals(players[activePlayer].getFarbe())) {
+            if (area.getFarbeOwner().equals(players.get(activePlayer))) {
                 s.setAttackingArea(area);
             } else {
                 s.setDefendingArea(area);
