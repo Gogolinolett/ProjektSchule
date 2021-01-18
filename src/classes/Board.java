@@ -1,6 +1,7 @@
 package classes;
 
 import gui.Main;
+import gui.MoveTroops;
 
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -72,8 +73,6 @@ public class Board {
             return;
         }
 
-        Random rndm = new Random();
-
 
         for(int i = 0; i < troops && i  < 3; i ++){
             int num = (int) (Math.random() * 6  + 1);
@@ -87,20 +86,25 @@ public class Board {
 
         angreiferErgebniss.sort(Comparator.naturalOrder());
         verteiderEgebniss.sort(Comparator.naturalOrder());
+        int zz = 0;
 
         if(angreiferErgebniss.get(0) > verteiderEgebniss.get(0)){
             defender.setTroopCount(defender.getTroopCount() - 1);
         }else{
             aggressor.setTroopCount(aggressor.getTroopCount() - 1);
+            zz ++;
         }
 
         if(angreiferErgebniss.get(1) > verteiderEgebniss.get(1)){
             defender.setTroopCount(defender.getTroopCount() - 1);
         }else{
             aggressor.setTroopCount(aggressor.getTroopCount() - 1);
+            zz ++;
         }
         if(defender.getTroopCount() < 1){
-            //todo movemnet gui
+
+            MoveTroops moveTroops  = new MoveTroops(aggressor, defender, troops -zz);
+
         }
 
         Main.updateGui();

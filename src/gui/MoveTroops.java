@@ -11,10 +11,12 @@ public class MoveTroops extends JFrame {
 
     Area a1;
     Area a2;
+    int troops;
 
-    public MoveTroops(Area a1, Area a2) {
+    public MoveTroops(Area a1, Area a2, int attacking) {
         this.a1 = a1;
         this.a2 = a2;
+        troops = attacking;
         initComponents();
     }
     
@@ -86,7 +88,7 @@ public class MoveTroops extends JFrame {
         public void actionPerformed(ActionEvent e) {
             JButton btn = (JButton) e.getSource();
             if(btn.equals(cButton)){
-                if((int)spinner.getValue() < a1.getTroopCount()){
+                if(troops < (int)spinner.getValue() && (int)spinner.getValue() < a1.getTroopCount()){
                     Main.getBoard().moveTroop(a1, a2, (int) spinner.getValue());
                     setVisible(false);
                 }
