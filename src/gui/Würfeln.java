@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.Comparator;
 import java.util.LinkedList;
 
 public class Würfeln extends JFrame {
@@ -20,14 +19,14 @@ public class Würfeln extends JFrame {
 
     static {
         try {
-            g = new Image[]{ImageIO.read(new File("src\\resources\\würfel\\b1.png")), ImageIO.read(new File("src\\resources\\würfel\\b2.png")), ImageIO.read(new File("src\\resources\\würfel\\b3.png")), ImageIO.read(new File("src\\resources\\würfel\\b4.png")), ImageIO.read(new File("src\\resources\\würfel\\b5.png")), ImageIO.read(new File("src\\resources\\würfel\\b6.png"))};
-            z = new Image[]{ImageIO.read(new File("src\\resources\\würfel\\r1.png")), ImageIO.read(new File("src\\resources\\würfel\\r2.png")), ImageIO.read(new File("src\\resources\\würfel\\r3.png")), ImageIO.read(new File("src\\resources\\würfel\\r4.png")), ImageIO.read(new File("src\\resources\\würfel\\r5.png")), ImageIO.read(new File("src\\resources\\würfel\\r6.png"))};
+            g = new Image[]{ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b1.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b2.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b3.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b4.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b5.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b6.png")),};
+            z = new Image[]{ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r1.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r2.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r3.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r4.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r5.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r6.png")),};
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private boolean cycle = false;
+
     private JCheckBox aDice1;
     private JCheckBox dDice1;
     private JCheckBox aDice2;
@@ -45,8 +44,8 @@ public class Würfeln extends JFrame {
     private Container contentPane;
     private LinkedList<Integer> aDiceList;
     private LinkedList<Integer> dDiceList;
-    private Area aggressor;
-    private Area defender;
+    private final Area aggressor;
+    private final Area defender;
 
     public Würfeln(Area aggressor, Area defender) throws InterruptedException {
         this.aggressor = aggressor;
@@ -82,13 +81,13 @@ public class Würfeln extends JFrame {
 
         //aCountry
         aCountry = new JLabel();
-        aCountry.setText(aggressor.getName() + " (" + aggressor.getTroopCount()+")");
+        aCountry.setText(aggressor.getName() + " (" + aggressor.getTroopCount() + ")");
         aCountry.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(aCountry, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
         //dCountry
         dCountry = new JLabel();
-        dCountry.setText(defender.getName() + " (" + defender.getTroopCount()+")");
+        dCountry.setText(defender.getName() + " (" + defender.getTroopCount() + ")");
         dCountry.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(dCountry, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
@@ -108,26 +107,7 @@ public class Würfeln extends JFrame {
         setLocationRelativeTo(getOwner());
         setVisible(true);
 
-        Thread.sleep(1000);
-        roll();
-    }
 
-    public void cycle() {
-        if (cycle) {
-            aCountry.setText(aggressor.getName() + " (" + aggressor.getTroopCount()+")");
-            dCountry.setText(defender.getName() + " (" + defender.getTroopCount()+")");
-            delLabels();
-            setCheckBox();
-            revalidate();
-            repaint();
-            cycle = false;
-        } else {
-            delBoxes();
-            setLabels();
-            revalidate();
-            repaint();
-            cycle = true;
-        }
     }
 
     public void delLabels() {
@@ -136,7 +116,9 @@ public class Würfeln extends JFrame {
         contentPane.remove(aDice2L);
         contentPane.remove(aDice3L);
         contentPane.remove(dDice1L);
-        contentPane.remove(dDice2L);
+        if (defender.getTroopCount() != 1) {
+            contentPane.remove(dDice2L);
+        }
     }
 
     public void delBoxes() {
@@ -145,7 +127,9 @@ public class Würfeln extends JFrame {
         contentPane.remove(aDice2);
         contentPane.remove(aDice3);
         contentPane.remove(dDice1);
-        contentPane.remove(dDice2);
+        if (defender.getTroopCount() != 1) {
+            contentPane.remove(dDice2);
+        }
     }
 
     public void setLabels() {
@@ -168,9 +152,11 @@ public class Würfeln extends JFrame {
         dDice1L = new JLabel("");
         contentPane.add(dDice1L, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
-        //dDice2
-        dDice2L = new JLabel("");
-        contentPane.add(dDice2L, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
+        if (defender.getTroopCount() != 1) {
+            //dDice2
+            dDice2L = new JLabel("");
+            contentPane.add(dDice2L, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
+        }
     }
 
     public void setCheckBox() {
@@ -194,7 +180,7 @@ public class Würfeln extends JFrame {
         dDice1.setEnabled(false);
         contentPane.add(dDice1, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
-        if(defender.getTroopCount()>1) {
+        if (defender.getTroopCount() != 1) {
             //dDice2
             dDice2 = new JCheckBox();
             dDice2.setEnabled(false);
@@ -202,8 +188,56 @@ public class Würfeln extends JFrame {
         }
     }
 
-    public ImageIcon rollAttack() {
-        int num = (int) (Math.random() * ((6 - 1) + 1));
+
+    public void roll(int count) throws InterruptedException {
+        delBoxes();
+        setLabels();
+
+        for (int i = 0; i < 10; i++) {
+            if (count == 1) {
+                aDice1L.setIcon(rollAttack());
+            } else if (count == 2) {
+                aDice1L.setIcon(rollAttack());
+                aDice2L.setIcon(rollAttack());
+            } else if (count == 3) {
+                aDice1L.setIcon(rollAttack());
+                aDice2L.setIcon(rollAttack());
+                aDice3L.setIcon(rollAttack());
+            }
+
+            if (defender.getTroopCount() == 1) {
+                dDice1L.setIcon(rollDef());
+            } else {
+                dDice1L.setIcon(rollDef());
+                dDice2L.setIcon(rollDef());
+            }
+            Thread.sleep(200);
+        }
+
+        if (count == 1) {
+            aDice1L.setIcon(aroll(0));
+        } else if (count == 2) {
+            aDice1L.setIcon(aroll(0));
+            aDice2L.setIcon(aroll(1));
+        } else if (count == 3) {
+            aDice1L.setIcon(aroll(0));
+            aDice2L.setIcon(aroll(1));
+            aDice3L.setIcon(aroll(2));
+        }
+
+
+        if (defender.getTroopCount() == 1) {
+            dDice1L.setIcon(droll(0));
+        } else {
+            dDice1L.setIcon(droll(0));
+            dDice2L.setIcon(droll(1));
+        }
+
+        Thread.sleep(3000);
+    }
+
+    public ImageIcon rollAttack(){
+        int num = (int)(Math.random() * ((6 - 1) + 1));
         ImageIcon icon = new ImageIcon(g[num]);
         Image i = icon.getImage();
         Image f = i.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
@@ -218,86 +252,50 @@ public class Würfeln extends JFrame {
         return new ImageIcon(f);
     }
 
-    public void roll() throws InterruptedException {
-        for (int i = 0; i < 10; i++) {
-            if (aDiceList.size() == 1) {
-                aDice1L.setIcon(rollAttack());
-            } else if (aDiceList.size() == 2) {
-                aDice1L.setIcon(rollAttack());
-                aDice2L.setIcon(rollAttack());
-            } else if (aDiceList.size() == 3) {
-                aDice1L.setIcon(rollAttack());
-                aDice2L.setIcon(rollAttack());
-                aDice3L.setIcon(rollAttack());
-            }
+    public ImageIcon aroll(int num) {
+        ImageIcon icon = new ImageIcon(g[aDiceList.get(num) - 1]);
+        Image i = icon.getImage();
+        Image f = i.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        return new ImageIcon(f);
+    }
 
-            if (dDiceList.size() == 1) {
-                dDice1L.setIcon(rollDef());
-            } else if (dDiceList.size() == 2) {
-                dDice1L.setIcon(rollDef());
-                dDice2L.setIcon(rollDef());
-            }
-            Thread.sleep(200);
-        }
-
-        aDiceList.sort(Comparator.naturalOrder());
-        dDiceList.sort(Comparator.naturalOrder());
-
-        while (aDiceList != null && !aDiceList.isEmpty()) {
-            //1, 2
-            if (aDiceList.size() == 1) {
-                aDice1L.setIcon(new ImageIcon(g[aDiceList.get(0)]));
-            } else if (aDiceList.size() == 2) {
-                aDice1L.setIcon(new ImageIcon(g[aDiceList.get(0)]));
-                aDice2L.setIcon(new ImageIcon(g[aDiceList.get(1)]));
-            } else if (aDiceList.size() == 3) {
-                aDice1L.setIcon(new ImageIcon(g[aDiceList.get(0)]));
-                aDice2L.setIcon(new ImageIcon(g[aDiceList.get(1)]));
-                aDice3L.setIcon(new ImageIcon(g[aDiceList.get(2)]));
-            }
-
-        }
-
-        while (dDiceList != null && !dDiceList.isEmpty()) {
-            if (dDiceList.size() == 1) {
-                dDice1L.setIcon(new ImageIcon(z[dDiceList.get(0)]));
-            } else if (dDiceList.size() == 2) {
-                dDice1L.setIcon(new ImageIcon(z[dDiceList.get(0)]));
-                dDice2L.setIcon(new ImageIcon(z[dDiceList.get(1)]));
-            }
-        }
-        Thread.sleep(1000);
-        cycle();
+    public ImageIcon droll(int num) {
+        ImageIcon icon = new ImageIcon(z[aDiceList.get(num) - 1]);
+        Image i = icon.getImage();
+        Image f = i.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        return new ImageIcon(f);
     }
 
     class TileListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(e.getSource() instanceof  JButton){
+            if (e.getSource() instanceof JButton) {
                 JButton btn = (JButton) e.getSource();
-                if(btn.equals(rollButton)){
+                if (btn.equals(rollButton)) {
                     aDiceList = new LinkedList<>();
                     dDiceList = new LinkedList<>();
                     int count = 0;
-                    if(aDice1.isSelected()){
+                    if (aDice1.isSelected()) {
                         count++;
                     }
-                    if(aDice2.isSelected()){
+                    if (aDice2.isSelected()) {
                         count++;
                     }
-                    if(aDice3.isSelected()){
+                    if (aDice3.isSelected()) {
                         count++;
                     }
                     Board.fight(aggressor, defender, count, aDiceList, dDiceList);
+                    System.out.println(aDiceList);
+                    System.out.println(dDiceList);
                     try {
-                        cycle();
-                        roll();
-                        aCountry.setText(aggressor.getName() + " (" + aggressor.getTroopCount()+")");
-                        dCountry.setText(defender.getName() + " (" + defender.getTroopCount()+")");
+                        System.out.println("count:" + count);
+                        roll(count);
+                        aCountry.setText(aggressor.getName() + " (" + aggressor.getTroopCount() + ")");
+                        dCountry.setText(defender.getName() + " (" + defender.getTroopCount() + ")");
                     } catch (InterruptedException interruptedException) {
                         interruptedException.printStackTrace();
                     }
-                } else if(btn.equals(retreatButton)){
+                } else if (btn.equals(retreatButton)) {
 
                 }
             }
