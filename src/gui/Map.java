@@ -57,7 +57,6 @@ public class Map implements ComponentListener, WindowStateListener {
         frame.addWindowStateListener(this);
 
         frame.add(layeredPane);
-        frame.setVisible(true);
         countries();
     }
 
@@ -240,7 +239,7 @@ public class Map implements ComponentListener, WindowStateListener {
     public void updateMap (LinkedList<Area> areas){
         for (int i = 0; i < areas.size(); i++) {
             for (int f = 0; f < btns.size(); f++) {
-                if(areas.get(i).equals(btns.get(f))){
+                if(areas.get(i).equals(Main.stringToArea((String) btns.get(f).getClientProperty("country")))){
                     btns.get(f).setText(String.valueOf(areas.get(i).getTroopCount()));
 
                     if(areas.get(i).getFarbeOwner() == Color.BLUE){
@@ -344,5 +343,9 @@ public class Map implements ComponentListener, WindowStateListener {
             String country = (String) btn.getClientProperty("country");
             System.out.println(country);
         }
+    }
+
+    public void setVisible(boolean b){
+        frame.setVisible(b);
     }
 }

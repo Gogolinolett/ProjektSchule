@@ -20,7 +20,9 @@ public class Player {
     public int getTroopsPerTurn() {
         int troops = 0;
         troops = board.getOwnedRegionsTroopsAmount(this);
-        troops += 3 + (board.getOwnedAreasAmount(this));
+        System.out.println(troops);
+        troops += (board.getOwnedAreasAmount(this));
+        System.out.println(troops);
         return troops;
     }
 

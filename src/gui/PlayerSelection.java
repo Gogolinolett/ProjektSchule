@@ -47,7 +47,6 @@ public class PlayerSelection extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
-        setAlwaysOnTop(true);
 
         Container contentPane = getContentPane();
         contentPane.setLayout(new GridBagLayout());

@@ -17,7 +17,7 @@ public class Main {
     private static LinkedList<Area> areas = new LinkedList<>();
     private static LinkedList<Region> regions = new LinkedList<>();
     private static LinkedList<Player> players;
-    private static int activePlayer;
+    private static int activePlayer = 0;
     private static int stage = 0;
     private static First f;
     private static Second s;
@@ -35,7 +35,7 @@ public class Main {
             System.err.println("Look and feel not set.");
         }
         m = new Map();
-
+        m.setVisible(false);
 
          start = new Start();
 
@@ -308,6 +308,7 @@ public class Main {
         frame.setVisible(true);
         frame.setAlwaysOnTop(true);
 
+        m.setVisible(true);
 
         int size = areas.size();
         LinkedList<Area> zwischen = new LinkedList<>();
@@ -316,9 +317,10 @@ public class Main {
         }
 
         for(int i = 0; i < size; i ++){
-            Random random = new Random();
-            zwischen.get(random.nextInt(zwischen.size() - 1)).setFarbeOwner(playerss.get(i % playerss.size()).getFarbe());
+            int num = (int) (Math.random() * ((zwischen.size() - 1) + 0));
 
+            zwischen.get(num).setFarbeOwner(playerss.get(i % playerss.size()).getFarbe());
+            zwischen.remove(num);
 
         }
         updateGui();

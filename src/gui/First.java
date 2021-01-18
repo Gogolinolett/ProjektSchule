@@ -12,11 +12,15 @@ public class First extends JPanel {
     private int troops;
     private String playername;
     private Area land;
+    private Player player;
+
+    private JLabel pName;
 
     public First(Player player) {
         initComponents();
         troops = player.getTroopsPerTurn();
         this.playername = player.getPlayername();
+        this.player = player;
     }
 
     public void setTroops(int troops) {
@@ -46,8 +50,8 @@ public class First extends JPanel {
         ((GridBagLayout) getLayout()).rowWeights = new double[]{1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0E-4};
 
         //pName
-        JLabel pName = new JLabel();
-        pName.setText("[Spieler Name]\u00b4s Zug");
+        pName = new JLabel();
+        pName.setText(" players turn");
         add(pName, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //cStage
@@ -57,7 +61,7 @@ public class First extends JPanel {
 
         //rTroops
         JLabel rTroops = new JLabel();
-        rTroops.setText("Anzahl der zu plazierenden Truppen []");
+        rTroops.setText("Anzahl der zu plazierenden Truppen " );
         add(rTroops, new GridBagConstraints(0, 1, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //sCountryLabel
@@ -116,11 +120,17 @@ public class First extends JPanel {
         sPane2.setViewportView(sLogPane);
 
         add(sPane2, new GridBagConstraints(0, 10, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+
+
+        
     }
+
+
 
     class TileListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+
             if(e.getSource() instanceof  JButton){
                 JButton btn = (JButton) e.getSource();
                 if(btn.equals(cButton)){

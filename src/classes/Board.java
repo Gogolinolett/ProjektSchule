@@ -14,13 +14,26 @@ public class Board {
     }
 
     public int getOwnedRegionsTroopsAmount(Player player){
-        int ownedRegions = 0;
-        for(int i = 0; i < areas.size(); i ++){
-            if(areas.get(i).getFarbeOwner().equals(player.getFarbe())){
-                ownedRegions ++;
+        int troops = 0;
+        boolean z = true;
+        for(Region r : regions){
+            z  = true;
+            for(Area a : r.getAreas()){
+
+                if(!a.getFarbeOwner().equals(player.getFarbe())){
+                    z = false;
+                }
+
             }
+
+            if(z == true){
+                troops += r.getTroops();
+            }
+
         }
-        return ownedRegions;
+        return troops;
+
+
     }
 
     public int getOwnedAreasAmount(Player player) {
@@ -30,7 +43,21 @@ public class Board {
                 count ++;
             }
         }
-        return count;
+
+        if(count < 9){
+            return 3;
+        }
+
+        if(count < 36){
+            return  count  / 3;
+        }
+
+        if(count < 40){
+            return 12;
+        }
+
+        return 13;
+
     }
 
     public void placeTroop(Area area, int amount){

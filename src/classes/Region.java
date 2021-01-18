@@ -19,4 +19,12 @@ public class Region {
         }
         return bonusTroops;
     }
+
+    public LinkedList<Area> getAreas(){
+        return areas;
+    }
+
+    public int getTroops() {
+        return bonusTroops;
+    }
 }
