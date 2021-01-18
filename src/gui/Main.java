@@ -354,7 +354,7 @@ public class Main {
 
     public static void stage3Gui(){
         frame.getContentPane().removeAll();
-        t = new Third();
+        t = new Third(players.get(activePlayer));
         t.setOpaque(true);
         frame.add(t);
         frame.revalidate();
@@ -380,6 +380,9 @@ public class Main {
             }
             updateGui();
         }else if(stage == 3){
+            if(players.get(activePlayer).getFarbe().equals(area.getFarbeOwner())){
+                t.setArea(area);
+            }
 
         }
 

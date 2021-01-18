@@ -48,4 +48,13 @@ public class Area {
         neighbours.add(area);
         area.addNeighbour(this);
     }
+
+    public boolean isNeighbour(Area area){
+        for(Area a : neighbours){
+            if(a.equals(area)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

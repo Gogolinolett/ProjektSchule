@@ -255,7 +255,9 @@ public class Würfeln extends JFrame {
                 aDice2L.setIcon(new ImageIcon(g[aDiceList.get(1)]));
                 aDice3L.setIcon(new ImageIcon(g[aDiceList.get(2)]));
             }
+
         }
+
         while (dDiceList != null && !dDiceList.isEmpty()) {
             if (dDiceList.size() == 1) {
                 dDice1L.setIcon(new ImageIcon(z[dDiceList.get(0)]));
