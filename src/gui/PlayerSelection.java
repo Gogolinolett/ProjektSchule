@@ -1,9 +1,32 @@
 package gui;
 
+import classes.Farben;
+import classes.Player;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 public class PlayerSelection extends JFrame {
+
+    JButton remAll;
+    JButton pAdd;
+    int pCounter  = 0;
+    JComboBox<String> pColor;
+    JTextField pName;
+    LinkedList<Player> players = new LinkedList<>();
+
+    JLabel label1;
+    JLabel label2;
+    JLabel label3;
+    JLabel label4;
+    JLabel label5;
+    JLabel label6;
+
+    JLabel[] labels = {label1, label2, label3, label4, label5, label6};
+
     public PlayerSelection() {
         initComponents();
     }
@@ -32,7 +55,7 @@ public class PlayerSelection extends JFrame {
         ((GridBagLayout) players.getLayout()).rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0E-4};
 
         //label1
-        JLabel label1 = new JLabel();
+        label1 = new JLabel();
         label1.setText("text");
         players.add(label1, new GridBagConstraints(0, 0, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
@@ -99,13 +122,14 @@ public class PlayerSelection extends JFrame {
         optPanel.setLayout(new BoxLayout(optPanel, BoxLayout.Y_AXIS));
 
         //remAll
-        JButton remAll = new JButton();
+        remAll = new JButton();
+        remAll.addActionListener(new TileListener());
         remAll.setText("Alle entfernen");
         remAll.setAlignmentX(Component.CENTER_ALIGNMENT);
         optPanel.add(remAll);
 
         //pName
-        JTextField pName = new JTextField();
+        pName = new JTextField();
         pName.setMaximumSize(new Dimension(101, 23));
         pName.setMinimumSize(new Dimension(101, 23));
         pName.setText("Name");
@@ -113,7 +137,7 @@ public class PlayerSelection extends JFrame {
         optPanel.add(pName);
 
         //pColor
-        JComboBox<String> pColor = new JComboBox<>();
+        pColor = new JComboBox<>();
         pColor.setMaximumRowCount(6);
         pColor.setModel(new DefaultComboBoxModel<>(new String[]{"Blau", "Schwarz", "Grün", "Rosa", "Rot", "Gelb"}));
         pColor.setMaximumSize(new Dimension(101, 23));
@@ -122,7 +146,8 @@ public class PlayerSelection extends JFrame {
         optPanel.add(pColor);
 
         //pAdd
-        JButton pAdd = new JButton();
+        pAdd = new JButton();
+        pAdd.addActionListener(new TileListener());
         pAdd.setText("Spieler Hinzufügen");
         pAdd.setAlignmentX(Component.CENTER_ALIGNMENT);
         optPanel.add(pAdd);
@@ -130,5 +155,56 @@ public class PlayerSelection extends JFrame {
         contentPane.add(optPanel, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
         pack();
         setLocationRelativeTo(getOwner());
+
     }
+
+    class TileListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource().equals(pAdd)) {
+                if (pCounter < 6) {
+
+                    for (Player p : players){
+                        if (stringToColor((String) pColor.getSelectedItem()).equals(p.getFarbe())) {
+                            Main.errorMessage("Diese Farbe ist vergeben", "Bitte andere Farbe wählen!!!");
+                            return;
+                        }else
+                        if(p.getPlayername().equalsIgnoreCase(pName.getText())){
+                            Main.errorMessage("Dieser Spielernamen ist schon vergeben","ERRRORORROROR");
+                            return;
+                        }
+
+                    }
+                    Player player = new Player(stringToColor((String) pColor.getSelectedItem()), Main.getBoard(), pName.getText());
+                    players.add(player);
+                    pCounter ++;
+                }
+            } else if (e.getSource().equals(remAll)) {
+                pCounter = 0;
+                players = new LinkedList<>();
+                for(JLabel label : labels){
+                    label.setText("No player");
+                }
+            }
+
+        }
+    }
+
+
+    private Farben stringToColor(String s){
+
+        if(s.equalsIgnoreCase("Gelb")){
+            return Farben.GELB;
+        }else if(s.equalsIgnoreCase("Rot")){
+            return Farben.ROT;
+        }else if(s.equalsIgnoreCase("Rosa")){
+            return Farben.ROSA;
+        }else if(s.equalsIgnoreCase("Grün")){
+            return Farben.GRÜN;
+        }else if(s.equalsIgnoreCase("Schwarz")){
+            return Farben.SCHWARZ;
+        }
+        return Farben.BLAU;
+    }
+
 }

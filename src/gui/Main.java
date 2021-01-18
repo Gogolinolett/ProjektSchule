@@ -7,6 +7,7 @@ import classes.Region;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.LinkedList;
 
@@ -21,6 +22,9 @@ public class Main {
     private static Second s;
     private static JFrame frame = new JFrame();
     private static Map m;
+    private static PlayerSelection playerSelection;
+    private static Start start;
+    private static Board board;
 
     public static void main(String[] args) throws IOException {
 
@@ -31,27 +35,12 @@ public class Main {
         }
         m = new Map();
 
-        JFrame frame2 = new JFrame();
-        try {
-            Start s = new Start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        s.setOpaque(true);
-        frame2.add(s);
 
-
-
-
-        frame.setLayout(new GridLayout());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(550, 750);
-        frame.setVisible(true);
-        frame.setAlwaysOnTop(true);
+         start = new Start();
 
         setupAreasAndRegions();
         stage1Gui();
-        Board board = new Board(areas, regions);
+        board = new Board(areas, regions);
 
         stage1Gui();
 
@@ -306,8 +295,18 @@ public class Main {
 
     }
 
-    public static void startGame() throws IOException {
-        
+    public static void startPlayerSelection() throws IOException {
+        start.setVisible(false);
+        playerSelection = new PlayerSelection();
+    }
+
+    public static void startGame(){
+        playerSelection.setVisible(false);
+        frame.setLayout(new GridLayout());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(550, 750);
+        frame.setVisible(true);
+        frame.setAlwaysOnTop(true);
     }
 
     public static void stage1Gui() {
@@ -368,4 +367,7 @@ public class Main {
         JOptionPane.showMessageDialog(null, message, windowname, JOptionPane.WARNING_MESSAGE);
     }
 
+    public static Board getBoard() {
+        return board;
+    }
 }

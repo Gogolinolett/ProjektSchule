@@ -68,7 +68,7 @@ public class Start extends JFrame {
             JButton btn = (JButton) e.getSource();
             if (btn == button1) {
                 try {
-                    Main.startGame();
+                    Main.startPlayerSelection();
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
