@@ -1,12 +1,39 @@
 package gui;
 
+import classes.Area;
+import classes.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Third extends JPanel {
-    public Third() {
+
+    private  Player player;
+    JButton cButton;
+    Area origin;
+    Area destination;
+    JLabel aTroops;
+    JSpinner aTroopsSpinner;
+    JLabel sOriginCountry;
+    JLabel sDestinationCountry;
+
+    public void setArea(Area area){
+        origin = destination;
+        destination = area;
+        sOriginCountry.setText("Ausgewähltes  Ziel Land: " + origin.getName());
+        sDestinationCountry.setText("Ausgewähltes Ursprungsland: " + destination.getName());
+        if(origin.getTroopCount() == 1){
+            aTroopsSpinner.setModel(new SpinnerNumberModel(1, 1,  1, 1));
+        }else {
+            aTroopsSpinner.setModel(new SpinnerNumberModel(1, 1, origin.getTroopCount() - 1, 1));
+        }
+    }
+
+    public Third(Player player) {
+
+        this.player = player;
         initComponents();
     }
 
@@ -22,7 +49,8 @@ public class Third extends JPanel {
 
         //pName
         JLabel pName = new JLabel();
-        pName.setText("[Spieler Name]\u00b4s Zug");
+        pName.setText(player.getPlayername() + "s Zug");
+        pName.setForeground(player.getFarbe());
         add(pName, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //cStage
@@ -31,7 +59,7 @@ public class Third extends JPanel {
         add(cStage, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.VERTICAL, new Insets(0, 0, 0, 0), 0, 0));
 
         //sOriginCountry
-        JLabel sOriginCountry = new JLabel();
+        sOriginCountry = new JLabel();
         sOriginCountry.setText("Ausgewähltes  Ursprungs Land:");
         add(sOriginCountry, new GridBagConstraints(0, 1, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
@@ -47,7 +75,7 @@ public class Third extends JPanel {
         add(sPane, new GridBagConstraints(0, 2, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //sDestinationCountry
-        JLabel sDestinationCountry = new JLabel();
+        sDestinationCountry = new JLabel();
         sDestinationCountry.setText("Ausgewähltes  Ziel Land:");
         add(sDestinationCountry, new GridBagConstraints(0, 3, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
@@ -63,14 +91,14 @@ public class Third extends JPanel {
         add(sPane2, new GridBagConstraints(0, 4, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //aTroops
-        JLabel aTroops = new JLabel();
-        JSpinner aTroopsSpinner = new JSpinner();
+        aTroops = new JLabel();
+        aTroopsSpinner = new JSpinner();
         aTroops.setText("Anzahl der Truppen:");
         add(aTroops, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
         add(aTroopsSpinner, new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //cButton
-        JButton cButton = new JButton();
+        cButton = new JButton();
         cButton.setText("Bestätigen");
         add(cButton, new GridBagConstraints(0, 6, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
@@ -107,6 +135,12 @@ public class Third extends JPanel {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() instanceof  JButton){
                 JButton btn = (JButton) e.getSource();
+
+                if(btn.equals(cButton) && origin != null){
+                    if(origin.getTroopCount() > (int) aTroopsSpinner.getValue()){
+                        Main.getBoard().moveTroop(origin, destination,(int) aTroopsSpinner.getValue());
+                    }
+                }
 
             }
         }

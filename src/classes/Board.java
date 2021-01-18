@@ -1,5 +1,7 @@
 package classes;
 
+import gui.Main;
+
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Random;
@@ -87,17 +89,21 @@ public class Board {
         verteiderEgebniss.sort(Comparator.naturalOrder());
 
         if(angreiferErgebniss.get(0) > verteiderEgebniss.get(0)){
-            defender.setTroopCount(defender.getTroopCount());
+            defender.setTroopCount(defender.getTroopCount() - 1);
         }else{
-            aggressor.setTroopCount(aggressor.getTroopCount());
+            aggressor.setTroopCount(aggressor.getTroopCount() - 1);
         }
 
         if(angreiferErgebniss.get(1) > verteiderEgebniss.get(1)){
-            defender.setTroopCount(defender.getTroopCount());
+            defender.setTroopCount(defender.getTroopCount() - 1);
         }else{
-            aggressor.setTroopCount(aggressor.getTroopCount());
+            aggressor.setTroopCount(aggressor.getTroopCount() - 1);
+        }
+        if(defender.getTroopCount() < 1){
+            //todo movemnet gui
         }
 
+        Main.updateGui();
     }
 
     public void moveTroop(Area a, Area b, int amount){
@@ -105,5 +111,6 @@ public class Board {
             a.setTroopCount(a.getTroopCount() - amount);
             b.setTroopCount(b.getTroopCount() + amount);
         }
+        Main.updateGui();
     }
 }
