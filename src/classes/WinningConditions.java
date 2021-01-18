@@ -11,15 +11,18 @@ public class WinningConditions {
     private Region region2;
     private Color color;
     private int wincon;
+    private Image img;
 
+    public Color getColor() {
+        return color;
+    }
 
-
-
-    public WinningConditions(Region region1, Region region2, Color color, int wincon){
+    public WinningConditions(Region region1, Region region2, Color color, int wincon, Image img){
         this.region1 = region1;
         this.region2 = region2;
         this.color = color;
         this.wincon = wincon;
+        this.img = img;
 
     }
 

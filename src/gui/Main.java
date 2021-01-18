@@ -1,9 +1,6 @@
 package gui;
 
-import classes.Area;
-import classes.Board;
-import classes.Player;
-import classes.Region;
+import classes.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,6 +41,9 @@ public class Main {
         board = new Board(areas, regions);
 
 
+    }
+    public static void setUpWinConCards(){
+        WinningConditions winningConditions = new WinningConditions(null,null, Color.BLACK , 0, img);
     }
 
     public static void setupAreasAndRegions() {
