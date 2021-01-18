@@ -79,9 +79,9 @@ public class Map implements ComponentListener, WindowStateListener {
         t[4][17].putClientProperty("country", "GRÖNLAND");
         btns.add(t[4][17]);
 
-        t[4][17].setVisible(true);
+        t[14][11].setVisible(true);
         t[14][11].putClientProperty("country", "ONTARIO");
-        btns.add(t[4][17]);
+        btns.add(t[14][11]);
 
         t[14][14].setVisible(true);
         t[14][14].putClientProperty("country", "OSTKANADA");
