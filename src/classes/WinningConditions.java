@@ -59,4 +59,8 @@ public class WinningConditions {
         }
         return count <= 18;
     }
+
+    public boolean twoOne(LinkedList<Region> regions, Player player){
+
+    }
 }

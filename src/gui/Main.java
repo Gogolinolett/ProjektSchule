@@ -21,6 +21,7 @@ public class Main {
     private static int stage = 1;
     private static First f;
     private static Second s;
+    private static Third t;
     private static JFrame frame = new JFrame();
     private static Map m;
     private static PlayerSelection playerSelection;
@@ -292,6 +293,8 @@ public class Main {
             stage1Gui();
         }else if(stage == 2){
             stage2Gui();
+        }else {
+            stage3Gui();
         }
 
     }
@@ -349,6 +352,14 @@ public class Main {
 
     }
 
+    public static void stage3Gui(){
+        frame.getContentPane().removeAll();
+        t = new Third();
+        t.setOpaque(true);
+        frame.add(t);
+        frame.revalidate();
+    }
+
     public static void updateGui() {
         m.updateMap(areas);
         frame.revalidate();
@@ -368,6 +379,8 @@ public class Main {
                 s.setDefendingArea(area);
             }
             updateGui();
+        }else if(stage == 3){
+
         }
 
 
