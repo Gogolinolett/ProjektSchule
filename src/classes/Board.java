@@ -65,7 +65,7 @@ public class Board {
         area.setTroopCount(area.getTroopCount() + amount);
     }
 
-    public void fight(Area aggressor, Area defender, int troops, LinkedList<Integer> angreiferErgebniss, LinkedList<Integer> verteiderEgebniss){
+    public static void fight(Area aggressor, Area defender, int troops, LinkedList<Integer> angreiferErgebniss, LinkedList<Integer> verteiderEgebniss){
         if(troops + 1 > aggressor.getTroopCount()){
             return;
         }

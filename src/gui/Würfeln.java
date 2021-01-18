@@ -1,8 +1,13 @@
 package gui;
 
+import classes.Area;
+import classes.Board;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.Comparator;
@@ -22,7 +27,7 @@ public class Würfeln extends JFrame {
         }
     }
 
-    private boolean cycle = true;
+    private boolean cycle = false;
     private JCheckBox aDice1;
     private JCheckBox dDice1;
     private JCheckBox aDice2;
@@ -40,13 +45,13 @@ public class Würfeln extends JFrame {
     private Container contentPane;
     private LinkedList<Integer> aDiceList;
     private LinkedList<Integer> dDiceList;
+    private Area aggressor;
+    private Area defender;
 
-    public Würfeln() throws InterruptedException {
+    public Würfeln(Area aggressor, Area defender) throws InterruptedException {
+        this.aggressor = aggressor;
+        this.defender = defender;
         initComponents();
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        Würfeln w = new Würfeln();
     }
 
     private void initComponents() throws InterruptedException {
@@ -77,13 +82,13 @@ public class Würfeln extends JFrame {
 
         //aCountry
         aCountry = new JLabel();
-        aCountry.setText("Land (Truppen)");
+        aCountry.setText(aggressor.getName() + " (" + aggressor.getTroopCount()+")");
         aCountry.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(aCountry, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
         //dCountry
         dCountry = new JLabel();
-        dCountry.setText("Land (Truppen)");
+        dCountry.setText(defender.getName() + " (" + defender.getTroopCount()+")");
         dCountry.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(dCountry, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
@@ -91,11 +96,13 @@ public class Würfeln extends JFrame {
         //rollButton
         rollButton = new JButton();
         rollButton.setText("Würfeln");
+        rollButton.addActionListener(new TileListener());
         contentPane.add(rollButton, new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
         //retreatButton
         retreatButton = new JButton();
         retreatButton.setText("Rückzug");
+        retreatButton.addActionListener(new TileListener());
         contentPane.add(retreatButton, new GridBagConstraints(1, 6, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 5), 0, 0));
         pack();
         setLocationRelativeTo(getOwner());
@@ -107,6 +114,8 @@ public class Würfeln extends JFrame {
 
     public void cycle() {
         if (cycle) {
+            aCountry.setText(aggressor.getName() + " (" + aggressor.getTroopCount()+")");
+            dCountry.setText(defender.getName() + " (" + defender.getTroopCount()+")");
             delLabels();
             setCheckBox();
             revalidate();
@@ -182,11 +191,15 @@ public class Würfeln extends JFrame {
 
         //dDice1
         dDice1 = new JCheckBox();
+        dDice1.setEnabled(false);
         contentPane.add(dDice1, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
-        //dDice2
-        dDice2 = new JCheckBox();
-        contentPane.add(dDice2, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
+        if(defender.getTroopCount()>1) {
+            //dDice2
+            dDice2 = new JCheckBox();
+            dDice2.setEnabled(false);
+            contentPane.add(dDice2, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
+        }
     }
 
     public ImageIcon rollAttack() {
@@ -249,6 +262,40 @@ public class Würfeln extends JFrame {
             } else if (dDiceList.size() == 2) {
                 dDice1L.setIcon(new ImageIcon(z[dDiceList.get(0)]));
                 dDice2L.setIcon(new ImageIcon(z[dDiceList.get(1)]));
+            }
+        }
+        Thread.sleep(1000);
+        cycle();
+    }
+
+    class TileListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(e.getSource() instanceof  JButton){
+                JButton btn = (JButton) e.getSource();
+                if(btn.equals(rollButton)){
+                    int count = 0;
+                    if(aDice1.isSelected()){
+                        count++;
+                    }
+                    if(aDice2.isSelected()){
+                        count++;
+                    }
+                    if(aDice3.isSelected()){
+                        count++;
+                    }
+                    Board.fight(aggressor, defender, count, aDiceList, dDiceList);
+                    try {
+                        cycle();
+                        roll();
+                        aCountry.setText(aggressor.getName() + " (" + aggressor.getTroopCount()+")");
+                        dCountry.setText(defender.getName() + " (" + defender.getTroopCount()+")");
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }
+                } else if(btn.equals(retreatButton)){
+
+                }
             }
         }
     }
