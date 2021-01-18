@@ -1,14 +1,25 @@
 package gui;
 
+import classes.Area;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class MoveTroops extends JFrame {
-    public MoveTroops() {
+
+    Area a1;
+    Area a2;
+
+    public MoveTroops(Area a1, Area a2) {
+        this.a1 = a1;
+        this.a2 = a2;
         initComponents();
     }
     
     JButton cButton;
+    JSpinner spinner;
 
     private void initComponents() {
         setMinimumSize(new Dimension(430, 267));
@@ -51,13 +62,14 @@ public class MoveTroops extends JFrame {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
         //spinner
-        JSpinner spinner = new JSpinner();
+        spinner = new JSpinner();
         spinner.setAlignmentX(Component.CENTER_ALIGNMENT);
         spinner.setMaximumSize(new Dimension(121, 23));
         panel.add(spinner);
 
         //cButton
         cButton = new JButton();
+        cButton.addActionListener(new TileListener());
         cButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         cButton.setText("Bestätigen");
@@ -67,5 +79,18 @@ public class MoveTroops extends JFrame {
         pack();
         setLocationRelativeTo(getOwner());
         setVisible(true);
+    }
+
+    class TileListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JButton btn = (JButton) e.getSource();
+            if(btn.equals(cButton)){
+                if((int)spinner.getValue() < a1.getTroopCount()){
+                    Main.getBoard().moveTroop(a1, a2, (int) spinner.getValue());
+                    setVisible(false);
+                }
+            }
+        }
     }
 }
