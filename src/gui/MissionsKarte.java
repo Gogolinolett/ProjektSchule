@@ -7,11 +7,13 @@ import java.io.IOException;
 
 public class MissionsKarte extends JFrame {
 
-    private final Image img = ImageIO.read(new File(""));
+    private Image img;
 
-    private final ImagePanel imgPanel = new ImagePanel(img);
+    private ImagePanel imgPanel;
 
-    public MissionsKarte() throws IOException {
+    public MissionsKarte(Image img) throws IOException {
+        this.img = img;
+        imgPanel = new ImagePanel(img);
         initComponents();
     }
 
