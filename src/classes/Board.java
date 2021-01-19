@@ -73,7 +73,7 @@ public class Board {
 
     public static boolean fight(Area aggressor, Area defender, int troops, LinkedList<Integer> angreiferErgebniss, LinkedList<Integer> verteiderEgebniss, Würfeln würfeln){
 
-        if(troops + 1 > aggressor.getTroopCount()){
+        if(troops + 1 >= aggressor.getTroopCount()){
             return false;
         }
 
@@ -83,7 +83,7 @@ public class Board {
             angreiferErgebniss.add(num);
         }
 
-        for(int i = 0; i < troops && i  < 2; i ++){
+        for(int i = 0; i < defender.getTroopCount() && i  < 2; i ++){
             int num = (int) (Math.random() * 6  + 1);
             verteiderEgebniss.add(num);
         }
@@ -98,7 +98,7 @@ public class Board {
             aggressor.setTroopCount(aggressor.getTroopCount() - 1);
             zz ++;
         }
-        if(defender.getTroopCount() > 0 && troops > 1) {
+        if(defender.getTroopCount() > 1 && troops > 1) {
             if (angreiferErgebniss.get(1) > verteiderEgebniss.get(1)) {
                 defender.setTroopCount(defender.getTroopCount() - 1);
             } else {

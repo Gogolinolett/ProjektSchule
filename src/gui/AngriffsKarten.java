@@ -70,7 +70,7 @@ public class AngriffsKarten extends JFrame {
         confirmButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         contentPane.add(confirmButton);
 
-        
+
 
         pack();
         setLocationRelativeTo(getOwner());
