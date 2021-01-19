@@ -31,7 +31,7 @@ public class Stage_3 extends JPanel {
         sOriginCountry.setText("Ausgewähltes  Ziel Land: " + origin.getName());
         sDestinationCountry.setText("Ausgewähltes Ursprungsland: " + destination.getName());
         if(origin.getTroopCount() == 1){
-            aTroopsSpinner.setModel(new SpinnerNumberModel(1, 1,  1, 1));
+            aTroopsSpinner.setModel(new SpinnerNumberModel(0, 0,  0, 1));
         }else {
             aTroopsSpinner.setModel(new SpinnerNumberModel(1, 1, origin.getTroopCount() - 1, 1));
         }
@@ -100,6 +100,7 @@ public class Stage_3 extends JPanel {
         aTroops = new JLabel();
         aTroopsSpinner = new JSpinner();
         aTroops.setText("Anzahl der Truppen:");
+        aTroopsSpinner.setModel(new SpinnerNumberModel(0, 0,  0, 1));
         add(aTroops, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
         add(aTroopsSpinner, new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
