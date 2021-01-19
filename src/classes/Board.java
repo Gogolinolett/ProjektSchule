@@ -2,6 +2,7 @@ package classes;
 
 import gui.Main;
 import gui.MoveTroops;
+import gui.Würfeln;
 
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -68,7 +69,7 @@ public class Board {
         area.setTroopCount(area.getTroopCount() + amount);
     }
 
-    public static void fight(Area aggressor, Area defender, int troops, LinkedList<Integer> angreiferErgebniss, LinkedList<Integer> verteiderEgebniss){
+    public static void fight(Area aggressor, Area defender, int troops, LinkedList<Integer> angreiferErgebniss, LinkedList<Integer> verteiderEgebniss, Würfeln aThis){
         if(troops + 1 > aggressor.getTroopCount()){
             return;
         }

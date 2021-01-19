@@ -29,6 +29,14 @@ private JCheckBox aDice1;
     private final Area aggressor;
     private final Area defender;
     private int acount;
+    private Results r;
+
+    public Würfeln(Area aggressor, Area defender, Results r) throws InterruptedException, IOException {
+        r.dispose();
+        this.aggressor = aggressor;
+        this.defender = defender;
+        initComponents();
+    }
 
     public Würfeln(Area aggressor, Area defender) throws InterruptedException, IOException {
         this.aggressor = aggressor;
@@ -121,13 +129,12 @@ private JCheckBox aDice1;
             dDice2.setSelected(true);
             contentPane.add(dDice2, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
         }
+
     }
 
-
-
-
-
-
+    public Würfeln getThis(){
+        return this;
+    }
 
     class TileListener implements ActionListener {
         @Override
@@ -148,11 +155,11 @@ private JCheckBox aDice1;
                         acount++;
                     }
                     int dcount = defender.getTroopCount();
-                    Board.fight(aggressor, defender, acount, aDiceList, dDiceList);
+                    boolean b = Board.fight(aggressor, defender, acount, aDiceList, dDiceList, getThis());
 
                     Results r = null;
                     try {
-                        r = new Results(acount, dcount, aDiceList, dDiceList);
+                        r = new Results(acount, dcount, aDiceList, dDiceList, getThis(), aggressor, defender, b);
                         aCountry.setText(aggressor.getName() + " (" + aggressor.getTroopCount() + ")");
                         dCountry.setText(defender.getName() + " (" + defender.getTroopCount() + ")");
                     } catch (InterruptedException | IOException interruptedException) {

@@ -125,7 +125,7 @@ public class Stage_2 extends JPanel {
                         if(attackingArea.getTroopCount() > 1 && attackingArea.isNeighbour(defendingArea)){
                             try {
                                 Würfeln würfeln = new Würfeln(attackingArea, defendingArea);
-                            } catch (InterruptedException interruptedException) {
+                            } catch (InterruptedException | IOException interruptedException) {
                                 interruptedException.printStackTrace();
                             }
                         }
