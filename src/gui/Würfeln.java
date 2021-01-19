@@ -161,12 +161,8 @@ private JCheckBox aDice1;
                     }
 
                     boolean b = false;
-                    try {
-                        b = Board.fight(aggressor, defender, acount, aDiceList, dDiceList, getThis());
-                    } catch (Throwable throwable) {
-                        return;
-
-                    }
+                    b = Board.fight(aggressor, defender, acount, aDiceList, dDiceList, getThis());
+                    
 
                     Results r = null;
                     try {
@@ -184,5 +180,5 @@ private JCheckBox aDice1;
         }
     }
 
- 
+
 }
