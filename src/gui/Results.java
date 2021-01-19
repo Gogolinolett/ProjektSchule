@@ -1,5 +1,7 @@
 package gui;
 
+import classes.Area;
+
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +21,10 @@ public class Results extends JFrame {
     private int dCount;
     private LinkedList<Integer> aDiceList;
     private LinkedList<Integer> dDiceList;
+    private  Würfeln w;
+    private Area aggressor;
+    private Area defender;
+    private Boolean b;
 
     private static Image[] g;
     private static Image[] z;
@@ -32,20 +38,15 @@ public class Results extends JFrame {
         }
     }
 
-    public static void main(String[] args) throws InterruptedException, IOException {
-        Results r = new Results();
-    }
-
-    public Results(int aCount, int dCount, LinkedList<Integer> aDiceList, LinkedList<Integer> dDiceList) throws InterruptedException, IOException {
+    public Results(int aCount, int dCount, LinkedList<Integer> aDiceList, LinkedList<Integer> dDiceList, Würfeln w, Area aggresor, Area defender, Boolean b) throws InterruptedException, IOException {
         this.aCount = aCount;
         this.dCount = dCount;
         this.aDiceList = aDiceList;
         this.dDiceList = dDiceList;
-        initComponents();
-    }
-
-    public Results() throws InterruptedException, IOException {
-        test();
+        this.w = w;
+        this.aggressor = aggresor;
+        this.defender = defender;
+        this.b = b;
         initComponents();
     }
 
@@ -115,8 +116,15 @@ public class Results extends JFrame {
         pack();
         setLocationRelativeTo(getOwner());
         setVisible(true);
-        //animation();
+        w.dispose();
+        animation();
         roll();
+        Thread.sleep(3000);
+
+        if(!b){
+            new Würfeln(aggressor, defender, this);
+        }
+
     }
 
     public void animation() throws InterruptedException {
