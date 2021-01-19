@@ -88,6 +88,7 @@ public class MoveTroops extends JFrame {
         public void actionPerformed(ActionEvent e) {
             JButton btn = (JButton) e.getSource();
             if(btn.equals(cButton)){
+                a2.setFarbeOwner(a1.getFarbeOwner());
                 if(troops < (int)spinner.getValue() && (int)spinner.getValue() < a1.getTroopCount()){
                     Main.getBoard().moveTroop(a1, a2, (int) spinner.getValue());
                     setVisible(false);

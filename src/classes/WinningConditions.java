@@ -13,15 +13,7 @@ public class WinningConditions {
     private int wincon;
     private Image img;
 
-    public Image getImg() {
-        return img;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public WinningConditions(Region region1, Region region2, Color color, int wincon, Image img){
+    public WinningConditions(Region region1, Region region2, Color color, int wincon, Image img) {
         this.region1 = region1;
         this.region2 = region2;
         this.color = color;
@@ -30,25 +22,30 @@ public class WinningConditions {
 
     }
 
+    public Image getImg() {
+        return img;
+    }
 
+    public Color getColor() {
+        return color;
+    }
 
+    public boolean istGewonnen(LinkedList<Area> areas, LinkedList<Region> regions, Player player) {
 
-    public boolean istGewonnen(LinkedList<Area> areas,LinkedList<Region>regions, Player player){
-
-        if(wincon == 0){
-            return mkColor(areas,player,color);
+        if (wincon == 0) {
+            return mkColor(areas, player, color);
         }
-        if(wincon == 1){
+        if (wincon == 1) {
             return twoRegions(regions, region1, region2, player);
         }
-        if(wincon == 2){
+        if (wincon == 2) {
             return twentyFour(areas, player);
         }
-        if(wincon == 3){
+        if (wincon == 3) {
             return eighteenTwo(areas, player);
         }
-        if(wincon == 4){
-            return twoOne(regions,player,region1,region2);
+        if (wincon == 4) {
+            return twoOne(regions, player, region1, region2);
         }
         Main.errorMessage("No win con found", "ERRRJHUP");
         return false;
@@ -63,7 +60,7 @@ public class WinningConditions {
                     count++;
                 }
             }
-            return count <= 24;
+            return count >= 24;
         }
 
         for (int i = 0; i < areas.size(); i++) {
@@ -74,21 +71,23 @@ public class WinningConditions {
         return true;
     }
 
-    public boolean twoRegions(LinkedList<Region> regions, Region one, Region two, Player player) {
-        LinkedList<Area> areas1 = one.getAreas();
-        LinkedList<Area> areas2 = two.getAreas();
+    public boolean twoRegions(LinkedList<Region> r, Region r1, Region r2, Player player) {
 
-        for (int i = 0; i < areas1.size(); i++) {
-            if (!areas1.get(i).getFarbeOwner().equals(player.getFarbe())) {
+
+        for (Area a : r1.getAreas()) {
+            if (!a.getFarbeOwner().equals(player)) {
                 return false;
             }
         }
-        for (int i = 0; i < areas2.size(); i++) {
-            if (!areas2.get(i).getFarbeOwner().equals(player.getFarbe())) {
+
+
+        for (Area a : r2.getAreas()) {
+            if (!a.getFarbeOwner().equals(player)) {
                 return false;
             }
         }
         return true;
+
     }
 
     public boolean twentyFour(LinkedList<Area> areas, Player player) {
@@ -98,7 +97,7 @@ public class WinningConditions {
                 count++;
             }
         }
-        return count <= 24;
+        return count >= 24;
     }
 
     public boolean eighteenTwo(LinkedList<Area> areas, Player player) {
@@ -108,34 +107,34 @@ public class WinningConditions {
                 count++;
             }
         }
-        return count <= 18;
+        return count >= 18;
     }
 
-    public boolean twoOne(LinkedList<Region> regions, Player player, Region r1, Region r2){
+    public boolean twoOne(LinkedList<Region> regions, Player player, Region r1, Region r2) {
         boolean z = true;
         boolean z2 = false;
-        for(Region r : regions){
+        for (Region r : regions) {
             z = true;
-            if(r.equals(r1)){
-                for(Area a : r.getAreas()){
-                    if(!a.getFarbeOwner().equals(player)){
+            if (r.equals(r1)) {
+                for (Area a : r.getAreas()) {
+                    if (!a.getFarbeOwner().equals(player)) {
                         return false;
                     }
                 }
-            }else if(r.equals(r2)){
-                for(Area a : r.getAreas()){
-                    if(!a.getFarbeOwner().equals(player)){
+            } else if (r.equals(r2)) {
+                for (Area a : r.getAreas()) {
+                    if (!a.getFarbeOwner().equals(player)) {
                         return false;
                     }
                 }
-            }else{
-                for(Area a : r.getAreas()){
-                    if(!a.getFarbeOwner().equals(player)){
+            } else {
+                for (Area a : r.getAreas()) {
+                    if (!a.getFarbeOwner().equals(player)) {
                         z = false;
                     }
                 }
 
-                if(z == true){
+                if (z == true) {
                     z2 = true;
                 }
             }
