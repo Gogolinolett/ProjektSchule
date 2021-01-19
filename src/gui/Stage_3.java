@@ -55,7 +55,7 @@ public class Stage_3 extends JPanel {
 
         //pName
         JLabel pName = new JLabel();
-        pName.setText(player.getPlayername() + "s Zug");
+        pName.setText(player.getPlayername() + "\u00b4s Turn");
         pName.setForeground(player.getFarbe());
         add(pName, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
