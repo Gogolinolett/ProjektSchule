@@ -333,6 +333,12 @@ public class Main {
 
     public static void nextStage() {
 
+        if(players.get(activePlayer).isHatErobert()){
+            players.get(activePlayer).drawn();
+
+            players.get(activePlayer).setHatErobert(false);
+        }
+
         if(players.get(activePlayer).getWinningConditions().istGewonnen(areas,regions,players.get(activePlayer))){
             wonMessage("Spieler: " + players.get(activePlayer).getPlayername() + " hat gewonnen!", "Vorbei");
             return;

@@ -73,7 +73,7 @@ public class Board {
 
 
     public static boolean fight(Area aggressor, Area defender, int troops, LinkedList<Integer> angreiferErgebniss, LinkedList<Integer> verteiderEgebniss, Würfeln würfeln) throws Throwable {
-        
+
 
 
         for(int i = 0; i < troops && i  < 3; i ++){

@@ -9,7 +9,15 @@ public class Player {
     private String playername;
     private int sterne = 0;
     private WinningConditions winningConditions;
+    private boolean hatErobert;
 
+    public boolean isHatErobert() {
+        return hatErobert;
+    }
+
+    public void setHatErobert(boolean hatErobert) {
+        this.hatErobert = hatErobert;
+    }
 
     public Player(Color farbe, Board board, String playername){
         this.farbe = farbe;
