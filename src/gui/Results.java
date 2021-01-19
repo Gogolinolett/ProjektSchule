@@ -3,10 +3,13 @@ package gui;
 import classes.Area;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.concurrent.TimeUnit;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -117,9 +120,11 @@ public class Results extends JFrame {
         setLocationRelativeTo(getOwner());
         setVisible(true);
         w.dispose();
-        animation();
+
         roll();
-        Thread.sleep(3000);
+        t.setInitialDelay(0);
+        t.start();
+        t.stop();
 
         if(!b){
             new Würfeln(aggressor, defender, this);
@@ -140,18 +145,17 @@ public class Results extends JFrame {
                 a2.setIcon(rollAttack());
                 a3.setIcon(rollAttack());
             }
-
             if (dCount == 1) {
                 d1.setIcon(rollDef());
             } else {
                 d1.setIcon(rollDef());
                 d2.setIcon(rollDef());
             }
-            Thread.sleep(200);
         }
     }
 
     public void roll() throws InterruptedException {
+
         aDiceList.sort(Comparator.reverseOrder());
         dDiceList.sort(Comparator.reverseOrder());
         System.out.println(aDiceList);
@@ -202,4 +206,17 @@ public class Results extends JFrame {
         Image f = i.getScaledInstance(40, 40, Image.SCALE_SMOOTH);
         return new ImageIcon(f);
     }
+
+    Timer t = new Timer(0, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                animation();
+                roll();
+            } catch (InterruptedException interruptedException) {
+                interruptedException.printStackTrace();
+            }
+        }
+    });
+
 }

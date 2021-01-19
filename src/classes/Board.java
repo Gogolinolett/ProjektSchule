@@ -70,11 +70,9 @@ public class Board {
         area.setTroopCount(area.getTroopCount() + amount);
     }
 
-<<<<<<< Updated upstream
-    public static void fight(Area aggressor, Area defender, int troops, LinkedList<Integer> angreiferErgebniss, LinkedList<Integer> verteiderEgebniss, Würfeln aThis){
-=======
+
     public static boolean fight(Area aggressor, Area defender, int troops, LinkedList<Integer> angreiferErgebniss, LinkedList<Integer> verteiderEgebniss, Würfeln würfeln){
->>>>>>> Stashed changes
+
         if(troops + 1 > aggressor.getTroopCount()){
             return false;
         }
