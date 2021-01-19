@@ -47,7 +47,7 @@ public class Würfeln extends JFrame {
     private LinkedList<Integer> dDiceList;
     private final Area aggressor;
     private final Area defender;
-    private int count;
+    private int acount;
 
     public Würfeln(Area aggressor, Area defender) throws InterruptedException {
         this.aggressor = aggressor;
@@ -110,55 +110,6 @@ public class Würfeln extends JFrame {
         setVisible(true);
     }
 
-    public void delLabels(int count) {
-        contentPane = getContentPane();
-        contentPane.remove(aDice1L);
-        contentPane.remove(aDice2L);
-        contentPane.remove(aDice3L);
-        contentPane.remove(dDice1L);
-        if (count != 1) {
-            contentPane.remove(dDice2L);
-        }
-    }
-
-    public void delBoxes() {
-        contentPane = getContentPane();
-        contentPane.remove(aDice1);
-        contentPane.remove(aDice2);
-        contentPane.remove(aDice3);
-        contentPane.remove(dDice1);
-        if (defender.getTroopCount() != 1) {
-            contentPane.remove(dDice2);
-        }
-    }
-
-    public void setLabels() {
-        //aDice1
-        aDice1L = new JLabel("");
-        aDice1L.setHorizontalAlignment(SwingConstants.RIGHT);
-        contentPane.add(aDice1L, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
-
-        //aDice2
-        aDice2L = new JLabel("");
-        aDice2L.setHorizontalAlignment(SwingConstants.RIGHT);
-        contentPane.add(aDice2L, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
-
-        //aDice3
-        aDice3L = new JLabel("");
-        aDice3L.setHorizontalAlignment(SwingConstants.RIGHT);
-        contentPane.add(aDice3L, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
-
-        //dDice1
-        dDice1L = new JLabel("");
-        contentPane.add(dDice1L, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
-
-        if (defender.getTroopCount() != 1) {
-            //dDice2
-            dDice2L = new JLabel("");
-            contentPane.add(dDice2L, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
-        }
-    }
-
     public void setCheckBox() {
         //aDice1
         aDice1 = new JCheckBox();
@@ -190,112 +141,11 @@ public class Würfeln extends JFrame {
         }
     }
 
-    public void animation(int count) throws InterruptedException {
-        aDice1.setVisible(false);
-        aDice2.setVisible(false);
-        aDice3.setVisible(false);
-        //delBoxes();
-        aDice1L = new JLabel("a");
-        aDice1L.setHorizontalAlignment(SwingConstants.RIGHT);
-        contentPane.add(aDice1L, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
-        //aDice2
-        aDice2L = new JLabel("a");
-        aDice2L.setHorizontalAlignment(SwingConstants.RIGHT);
-        contentPane.add(aDice2L, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
-        //aDice3
-        aDice3L = new JLabel("a");
-        aDice3L.setHorizontalAlignment(SwingConstants.RIGHT);
-        contentPane.add(aDice3L, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
-        //dDice1
-        dDice1L = new JLabel("d");
-        contentPane.add(dDice1L, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
-        if (defender.getTroopCount() != 1) {
-            //dDice2
-            dDice2L = new JLabel("d");
-            contentPane.add(dDice2L, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
-        }
-        //setLabels();
-        for (int i = 0; i<15; i++) {
-            if (count == 1) {
-                aDice1L.setIcon(rollAttack());
-            } else if (count == 2) {
-                aDice1L.setIcon(rollAttack());
-                aDice2L.setIcon(rollAttack());
-            } else if (count == 3) {
-                aDice1L.setIcon(rollAttack());
-                aDice2L.setIcon(rollAttack());
-                aDice3L.setIcon(rollAttack());
-            }
 
-            if (defender.getTroopCount() == 1) {
-                dDice1L.setIcon(rollDef());
-            } else {
-                dDice1L.setIcon(rollDef());
-                dDice2L.setIcon(rollDef());
-            }
-            Thread.sleep(200);
-        }
-    }
-
-    public void roll(int count) throws InterruptedException {
-        int defDice = defender.getTroopCount();
-        Board.fight(aggressor, defender, count, aDiceList, dDiceList);
-
-        aDiceList.sort(Comparator.reverseOrder());
-        dDiceList.sort(Comparator.reverseOrder());
-        System.out.println(aDiceList);
-        System.out.println(dDiceList);
-        if (count == 1) {
-            aDice1L.setIcon(aroll(0));
-        } else if (count == 2) {
-            aDice1L.setIcon(aroll(0));
-            aDice2L.setIcon(aroll(1));
-        } else if (count == 3) {
-            aDice1L.setIcon(aroll(0));
-            aDice2L.setIcon(aroll(1));
-            aDice3L.setIcon(aroll(2));
-        }
-
-        System.out.println(defDice);
-        dDice1L.setIcon(droll(0));
-        if (defDice != 1) {
-            dDice2L.setIcon(droll(1));
-        }
-    }
-
-    public ImageIcon rollAttack(){
-        int num = (int)(Math.random() * ((6 - 1) + 1));
-        ImageIcon icon = new ImageIcon(g[num]);
-        Image i = icon.getImage();
-        Image f = i.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-        return new ImageIcon(f);
-    }
-
-    public ImageIcon rollDef() {
-        int num = (int) (Math.random() * ((6 - 1) + 1));
-        ImageIcon icon = new ImageIcon(z[num]);
-        Image i = icon.getImage();
-        Image f = i.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-        return new ImageIcon(f);
-    }
-
-    public ImageIcon aroll(int num) {
-        ImageIcon icon = new ImageIcon(g[aDiceList.get(num) - 1]);
-        Image i = icon.getImage();
-        Image f = i.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-        return new ImageIcon(f);
-    }
-
-    public ImageIcon droll(int num) {
-        ImageIcon icon = new ImageIcon(z[aDiceList.get(num) - 1]);
-        Image i = icon.getImage();
-        Image f = i.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-        return new ImageIcon(f);
-    }
 
     class TileListener implements ActionListener {
         @Override
@@ -305,33 +155,30 @@ public class Würfeln extends JFrame {
                 if (btn.equals(rollButton)) {
                     aDiceList = new LinkedList<>();
                     dDiceList = new LinkedList<>();
-                    count = 0;
+                    acount = 0;
                     if (aDice1.isSelected()) {
-                        count++;
+                        acount++;
                     }
                     if (aDice2.isSelected()) {
-                        count++;
+                        acount++;
                     }
                     if (aDice3.isSelected()) {
-                        count++;
+                        acount++;
                     }
-
-
+                    int dcount = defender.getTroopCount();
+                    Board.fight(aggressor, defender, acount, aDiceList, dDiceList);
                     try {
-                        delBoxes();
-                        setLabels();
-                        roll(count);
-                        aCountry.setText(aggressor.getName() + " (" + aggressor.getTroopCount() + ")");
-                        dCountry.setText(defender.getName() + " (" + defender.getTroopCount() + ")");
+                        Results r = new Results(acount, dcount, aDiceList, dDiceList);
                     } catch (InterruptedException interruptedException) {
                         interruptedException.printStackTrace();
                     }
+                    aCountry.setText(aggressor.getName() + " (" + aggressor.getTroopCount() + ")");
+                    dCountry.setText(defender.getName() + " (" + defender.getTroopCount() + ")");
+
 
                 } else if (btn.equals(retreatButton)) {
 
                 }
-                //delLabels(count);
-                //setCheckBox();
             }
         }
     }
