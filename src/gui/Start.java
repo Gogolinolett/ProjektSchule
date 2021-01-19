@@ -75,7 +75,7 @@ public class Start extends JFrame {
             } else if (btn == button2) {
                 if (Desktop.isDesktopSupported()) {
                     try {
-                        File myFile = new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\rules.pdf");
+                        File myFile = new File("src\\resources\\rules.pdf");
                         Desktop.getDesktop().open(myFile);
                     } catch (IOException ex) {
                         // no application registered for PDFs
