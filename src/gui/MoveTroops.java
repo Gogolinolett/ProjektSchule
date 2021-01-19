@@ -8,7 +8,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class MoveTroops extends JFrame {
-
+    private JEditorPane sOriginCountryPane;
+    private JEditorPane sDestinationCountryPane;
     Area a1;
     Area a2;
     int troops;
@@ -39,7 +40,7 @@ public class MoveTroops extends JFrame {
         sPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         //sOriginCountryPane
-        JEditorPane sOriginCountryPane = new JEditorPane();
+        sOriginCountryPane = new JEditorPane();
         sOriginCountryPane.setText("Territory: \nOwner: \nTroops");
         sOriginCountryPane.setEditable(false);
         sPane.setViewportView(sOriginCountryPane);
@@ -52,7 +53,7 @@ public class MoveTroops extends JFrame {
         sPane2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         //sDestinationCountryPane
-        JEditorPane sDestinationCountryPane = new JEditorPane();
+        sDestinationCountryPane = new JEditorPane();
         sDestinationCountryPane.setText("Territory: \nOwner: \nTroops");
         sDestinationCountryPane.setEditable(false);
         sPane2.setViewportView(sDestinationCountryPane);
@@ -83,10 +84,27 @@ public class MoveTroops extends JFrame {
         setVisible(true);
     }
 
+    public void setAttackingArea(Area attackingArea) {
+        sOriginCountryPane.setText("Land:" + attackingArea.getName() +" \nTruppen Anzahl: " + attackingArea.getTroopCount());
+        sDestinationCountryPane.setForeground((attackingArea.getFarbeOwner()));
+        this.attackingArea = attackingArea;
+    }
+
+    public void setDefendingArea(Area defendingArea) {
+        sDefendCountryPane.setText("Land:" + defendingArea.getName() +" \nTruppen Anzahl: " + defendingArea.getTroopCount());
+        sDefendCountryPane.setForeground(defendingArea.getFarbeOwner());
+        this.defendingArea = defendingArea;
+    }
+
     class TileListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             JButton btn = (JButton) e.getSource();
+            if (a1.getFarbeOwner().equals(players.get(activePlayer).getFarbe())) {
+                s.setAttackingArea(a1);
+            } else {
+                s.setDefendingArea(a2);
+            }
             if(btn.equals(cButton)){
                 a2.setFarbeOwner(a1.getFarbeOwner());
                 if(troops <= (int)spinner.getValue() && (int)spinner.getValue() < a1.getTroopCount()){
