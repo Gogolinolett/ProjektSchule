@@ -104,8 +104,5 @@ public class AngriffsKarten extends JFrame {
 
             }
         }
-
     }
-
-
 }
