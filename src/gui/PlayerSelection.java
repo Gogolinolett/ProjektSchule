@@ -65,32 +65,32 @@ public class PlayerSelection extends JFrame {
 
         //label1
         label1 = new JLabel();
-        label1.setText("text");
+        label1.setText("Kein Spieler");
         players.add(label1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
         //label2
         label2 = new JLabel();
-        label2.setText("text");
+        label2.setText("Kein Spieler");
         players.add(label2, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
         //label3
         label3 = new JLabel();
-        label3.setText("text");
+        label3.setText("Kein Spieler");
         players.add(label3, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
         //label4
         label4 = new JLabel();
-        label4.setText("text");
+        label4.setText("Kein Spieler");
         players.add(label4, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
         //label5
         label5 = new JLabel();
-        label5.setText("text");
+        label5.setText("Kein Spieler");
         players.add(label5, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
         //label6
         label6 = new JLabel();
-        label6.setText("text");
+        label6.setText("Kein Spieler");
         players.add(label6, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         contentPane.add(players, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 14, 0), 0, 0));
