@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.LinkedList;
 
 public class Würfeln extends JFrame {
@@ -46,6 +47,7 @@ public class Würfeln extends JFrame {
     private LinkedList<Integer> dDiceList;
     private final Area aggressor;
     private final Area defender;
+    private int count;
 
     public Würfeln(Area aggressor, Area defender) throws InterruptedException {
         this.aggressor = aggressor;
@@ -106,17 +108,15 @@ public class Würfeln extends JFrame {
         pack();
         setLocationRelativeTo(getOwner());
         setVisible(true);
-
-
     }
 
-    public void delLabels() {
+    public void delLabels(int count) {
         contentPane = getContentPane();
         contentPane.remove(aDice1L);
         contentPane.remove(aDice2L);
         contentPane.remove(aDice3L);
         contentPane.remove(dDice1L);
-        if (defender.getTroopCount() != 1) {
+        if (count != 1) {
             contentPane.remove(dDice2L);
         }
     }
@@ -178,22 +178,48 @@ public class Würfeln extends JFrame {
         //dDice1
         dDice1 = new JCheckBox();
         dDice1.setEnabled(false);
+        dDice1.setSelected(true);
         contentPane.add(dDice1, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
         if (defender.getTroopCount() != 1) {
             //dDice2
             dDice2 = new JCheckBox();
             dDice2.setEnabled(false);
+            dDice2.setSelected(true);
             contentPane.add(dDice2, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
         }
     }
 
+    public void animation(int count) throws InterruptedException {
+        aDice1.setVisible(false);
+        aDice2.setVisible(false);
+        aDice3.setVisible(false);
+        //delBoxes();
+        aDice1L = new JLabel("a");
+        aDice1L.setHorizontalAlignment(SwingConstants.RIGHT);
+        contentPane.add(aDice1L, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
-    public void roll(int count) throws InterruptedException {
-        delBoxes();
-        setLabels();
+        //aDice2
+        aDice2L = new JLabel("a");
+        aDice2L.setHorizontalAlignment(SwingConstants.RIGHT);
+        contentPane.add(aDice2L, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
-        for (int i = 0; i < 10; i++) {
+        //aDice3
+        aDice3L = new JLabel("a");
+        aDice3L.setHorizontalAlignment(SwingConstants.RIGHT);
+        contentPane.add(aDice3L, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
+
+        //dDice1
+        dDice1L = new JLabel("d");
+        contentPane.add(dDice1L, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
+
+        if (defender.getTroopCount() != 1) {
+            //dDice2
+            dDice2L = new JLabel("d");
+            contentPane.add(dDice2L, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
+        }
+        //setLabels();
+        for (int i = 0; i<15; i++) {
             if (count == 1) {
                 aDice1L.setIcon(rollAttack());
             } else if (count == 2) {
@@ -213,7 +239,16 @@ public class Würfeln extends JFrame {
             }
             Thread.sleep(200);
         }
+    }
 
+    public void roll(int count) throws InterruptedException {
+        int defDice = defender.getTroopCount();
+        Board.fight(aggressor, defender, count, aDiceList, dDiceList);
+
+        aDiceList.sort(Comparator.reverseOrder());
+        dDiceList.sort(Comparator.reverseOrder());
+        System.out.println(aDiceList);
+        System.out.println(dDiceList);
         if (count == 1) {
             aDice1L.setIcon(aroll(0));
         } else if (count == 2) {
@@ -225,15 +260,11 @@ public class Würfeln extends JFrame {
             aDice3L.setIcon(aroll(2));
         }
 
-
-        if (defender.getTroopCount() == 1) {
-            dDice1L.setIcon(droll(0));
-        } else {
-            dDice1L.setIcon(droll(0));
+        System.out.println(defDice);
+        dDice1L.setIcon(droll(0));
+        if (defDice != 1) {
             dDice2L.setIcon(droll(1));
         }
-
-        Thread.sleep(3000);
     }
 
     public ImageIcon rollAttack(){
@@ -274,7 +305,7 @@ public class Würfeln extends JFrame {
                 if (btn.equals(rollButton)) {
                     aDiceList = new LinkedList<>();
                     dDiceList = new LinkedList<>();
-                    int count = 0;
+                    count = 0;
                     if (aDice1.isSelected()) {
                         count++;
                     }
@@ -284,20 +315,23 @@ public class Würfeln extends JFrame {
                     if (aDice3.isSelected()) {
                         count++;
                     }
-                    Board.fight(aggressor, defender, count, aDiceList, dDiceList);
-                    System.out.println(aDiceList);
-                    System.out.println(dDiceList);
+
+
                     try {
-                        System.out.println("count:" + count);
+                        delBoxes();
+                        setLabels();
                         roll(count);
                         aCountry.setText(aggressor.getName() + " (" + aggressor.getTroopCount() + ")");
                         dCountry.setText(defender.getName() + " (" + defender.getTroopCount() + ")");
                     } catch (InterruptedException interruptedException) {
                         interruptedException.printStackTrace();
                     }
+
                 } else if (btn.equals(retreatButton)) {
 
                 }
+                //delLabels(count);
+                //setCheckBox();
             }
         }
     }

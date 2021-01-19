@@ -26,7 +26,7 @@ public class Main {
     private static PlayerSelection playerSelection;
     private static Start start;
     private static Board board;
-    private static LinkedList<WinningConditions> winConCards
+    private static LinkedList<WinningConditions> winConCards;
 
     public static void main(String[] args) throws IOException {
 
@@ -357,23 +357,32 @@ public class Main {
         frame.setSize(550, 750);
         frame.setVisible(true);
         frame.setAlwaysOnTop(true);
+<<<<<<< HEAD
 
+        boolean zwischen2 = false;
+=======
+/*
+>>>>>>> 5a2ba907d9b84b6ff7e303543c85713ceca0e058
         for(WinningConditions winningConditions : winConCards){
             for(Player p : playerss){
-                if (!winningConditions.getColor().equals(p.getFarbe())){
-
-                    
+                if (winningConditions.getColor().equals(p.getFarbe())){
+                    zwischen2 = true;
                 }
             }
+            if (zwischen2 == false){
+                winConCards.remove(winningConditions);
+            }
+            zwischen2 = false;
 
         }
 
         for(Player p : playerss){
 
             int rand = (int)(Math.random() * (winConCards.size()  + 1));
-
+            p.setWinningConditions(winConCards.get(rand));
+            winConCards.remove(winConCards.get(rand));
         }
-
+*/
         m.setVisible(true);
 
         int size = areas.size();
