@@ -67,6 +67,7 @@ public class MoveTroops extends JFrame {
 
         //spinner
         spinner = new JSpinner();
+        spinner.setModel(new SpinnerNumberModel(troops, troops, a1.getTroopCount() - 1, 1));
         spinner.setAlignmentX(Component.CENTER_ALIGNMENT);
         spinner.setMaximumSize(new Dimension(121, 23));
         panel.add(spinner);
