@@ -16,7 +16,7 @@ public class Map implements ComponentListener, WindowStateListener {
     private static final JFrame frame = new JFrame("");
     private static final JLayeredPane layeredPane = new JLayeredPane();
     private static final JPanel pane = new JPanel();
-    private static final int num = 50;
+    private static final int num = 40;
     private static final JButton[][] t = new JButton[num][num];
     private static final LinkedList<JButton> btns = new LinkedList<>();
     private final Image img = ImageIO.read(new File("src\\resources\\other\\map.png"));
@@ -61,179 +61,186 @@ public class Map implements ComponentListener, WindowStateListener {
     }
 
     public static void countries() {
+        //for (int r = 0; r < num; r++) {
+        //    for (int c = 0; c < num; c++) {
+        //        if ((r + c) % 2 != 0) {
+        //            t[r][c].setVisible(false);
+        //        }
+        //    }
+        //}
         //NordAmerika
-        t[8][3].setVisible(true);
-        t[8][3].putClientProperty("country", "ALASKA");
-        btns.add(t[8][3]);
+        t[6][2].setVisible(true);
+        t[6][2].putClientProperty("country", "ALASKA");
+        btns.add(t[6][2]);
 
-        t[12][7].setVisible(true);
-        t[12][7].putClientProperty("country", "ALBERTA");
-        btns.add(t[12][7]);
+        t[10][6].setVisible(true);
+        t[10][6].putClientProperty("country", "ALBERTA");
+        btns.add(t[10][6]);
 
-        t[8][8].setVisible(true);
-        t[8][8].putClientProperty("country", "NORDWESTTERRITORIUM");
-        btns.add(t[8][8]);
+        t[6][6].setVisible(true);
+        t[6][6].putClientProperty("country", "NORDWESTTERRITORIUM");
+        btns.add(t[6][6]);
 
-        t[4][17].setVisible(true);
-        t[4][17].putClientProperty("country", "GRÖNLAND");
-        btns.add(t[4][17]);
+        t[4][14].setVisible(true);
+        t[4][14].putClientProperty("country", "GRÖNLAND");
+        btns.add(t[4][14]);
 
-        t[14][11].setVisible(true);
-        t[14][11].putClientProperty("country", "ONTARIO");
-        btns.add(t[14][11]);
+        t[11][9].setVisible(true);
+        t[11][9].putClientProperty("country", "ONTARIO");
+        btns.add(t[11][9]);
 
-        t[14][14].setVisible(true);
-        t[14][14].putClientProperty("country", "OSTKANADA");
-        btns.add(t[14][14]);
+        t[11][11].setVisible(true);
+        t[11][11].putClientProperty("country", "OSTKANADA");
+        btns.add(t[11][11]);
 
-        t[18][7].setVisible(true);
-        t[18][7].putClientProperty("country", "WESTSTAATEN");
-        btns.add(t[18][7]);
+        t[14][6].setVisible(true);
+        t[14][6].putClientProperty("country", "WESTSTAATEN");
+        btns.add(t[14][6]);
 
-        t[20][11].setVisible(true);
-        t[20][11].putClientProperty("country", "OSTSTAATEN");
-        btns.add(t[20][11]);
+        t[15][9].setVisible(true);
+        t[15][9].putClientProperty("country", "OSTSTAATEN");
+        btns.add(t[15][9]);
 
-        t[24][8].setVisible(true);
-        t[24][8].putClientProperty("country", "MITTELAMERIKA");
-        btns.add(t[24][8]);
+        t[19][7].setVisible(true);
+        t[19][7].putClientProperty("country", "MITTELAMERIKA");
+        btns.add(t[19][7]);
 
         //SüdAmerika
-        t[30][11].setVisible(true);
-        t[30][11].putClientProperty("country", "VENEZUELA");
-        btns.add(t[30][11]);
+        t[24][9].setVisible(true);
+        t[24][9].putClientProperty("country", "VENEZUELA");
+        btns.add(t[24][9]);
 
-        t[34][15].setVisible(true);
-        t[34][15].putClientProperty("country", "BRASILIEN");
-        btns.add(t[34][15]);
+        t[27][12].setVisible(true);
+        t[27][12].putClientProperty("country", "BRASILIEN");
+        btns.add(t[27][12]);
 
-        t[36][13].setVisible(true);
-        t[36][13].putClientProperty("country", "PERU");
-        btns.add(t[36][13]);
+        t[29][11].setVisible(true);
+        t[29][11].putClientProperty("country", "PERU");
+        btns.add(t[29][11]);
 
-        t[41][13].setVisible(true);
-        t[41][13].putClientProperty("country", "ARGENTINIEN");
-        btns.add(t[41][13]);
+        t[33][11].setVisible(true);
+        t[33][11].putClientProperty("country", "ARGENTINIEN");
+        btns.add(t[33][11]);
 
         //Europa
-        t[8][21].setVisible(true);
-        t[8][21].putClientProperty("country", "ISLAND");
-        btns.add(t[8][21]);
+        t[8][17].setVisible(true);
+        t[8][17].putClientProperty("country", "ISLAND");
+        btns.add(t[8][17]);
 
-        t[17][20].setVisible(true);
-        t[17][20].putClientProperty("country", "GROSSBRITANNIEN");
-        btns.add(t[17][20]);
+        t[14][16].setVisible(true);
+        t[14][16].putClientProperty("country", "GROSSBRITANNIEN");
+        btns.add(t[14][16]);
 
-        t[24][21].setVisible(true);
-        t[24][21].putClientProperty("country", "WESTEUROPA");
-        btns.add(t[24][21]);
+        t[17][17].setVisible(true);
+        t[17][17].putClientProperty("country", "WESTEUROPA");
+        btns.add(t[17][17]);
 
-        t[9][26].setVisible(true);
-        t[9][26].putClientProperty("country", "SKANDINAVIEN");
-        btns.add(t[9][26]);
+        t[7][21].setVisible(true);
+        t[7][21].putClientProperty("country", "SKANDINAVIEN");
+        btns.add(t[7][21]);
 
-        t[18][25].setVisible(true);
-        t[18][25].putClientProperty("country", "NORDEUROPA");
-        btns.add(t[18][25]);
+        t[14][20].setVisible(true);
+        t[14][20].putClientProperty("country", "NORDEUROPA");
+        btns.add(t[14][20]);
 
-        t[22][25].setVisible(true);
-        t[22][25].putClientProperty("country", "SÜDEUROPA");
-        btns.add(t[22][25]);
+        t[18][20].setVisible(true);
+        t[18][20].putClientProperty("country", "SÜDEUROPA");
+        btns.add(t[18][20]);
 
-        t[12][30].setVisible(true);
-        t[12][30].putClientProperty("country", "RUSSLAND");
-        btns.add(t[12][30]);
+        t[10][24].setVisible(true);
+        t[10][24].putClientProperty("country", "RUSSLAND");
+        btns.add(t[10][24]);
 
         //Afrika
-        t[30][27].setVisible(true);
-        t[30][27].putClientProperty("country", "ÄGYPTEN");
-        btns.add(t[30][27]);
+        t[24][22].setVisible(true);
+        t[24][22].putClientProperty("country", "ÄGYPTEN");
+        btns.add(t[24][22]);
 
-        t[32][23].setVisible(true);
-        t[32][23].putClientProperty("country", "NORDAFRIKA");
-        btns.add(t[32][23]);
+        t[26][18].setVisible(true);
+        t[26][18].putClientProperty("country", "NORDAFRIKA");
+        btns.add(t[26][18]);
 
-        t[35][29].setVisible(true);
-        t[35][29].putClientProperty("country", "OSTAFRIKA");
-        btns.add(t[35][29]);
+        t[28][23].setVisible(true);
+        t[28][23].putClientProperty("country", "OSTAFRIKA");
+        btns.add(t[28][23]);
 
-        t[39][27].setVisible(true);
-        t[39][27].putClientProperty("country", "ZENTRALAFRIKA");
-        btns.add(t[39][27]);
+        t[31][21].setVisible(true);
+        t[31][21].putClientProperty("country", "ZENTRALAFRIKA");
+        btns.add(t[31][21]);
 
-        t[44][27].setVisible(true);
-        t[44][27].putClientProperty("country", "SÜDAFRIKA");
-        btns.add(t[44][27]);
+        t[36][22].setVisible(true);
+        t[36][22].putClientProperty("country", "SÜDAFRIKA");
+        btns.add(t[36][22]);
 
-        t[48][31].setVisible(true);
-        t[48][31].putClientProperty("country", "MADAGASKAR");
-        btns.add(t[48][31]);
+        t[36][26].setVisible(true);
+        t[36][26].putClientProperty("country", "MADAGASKAR");
+        btns.add(t[36][26]);
 
         //Asien
-        t[26][31].setVisible(true);
-        t[26][31].putClientProperty("country", "MITTLEREROSTEN");
-        btns.add(t[26][31]);
+        t[21][25].setVisible(true);
+        t[21][25].putClientProperty("country", "MITTLEREROSTEN");
+        btns.add(t[21][25]);
 
-        t[20][34].setVisible(true);
-        t[20][34].putClientProperty("country", "AFGHANISTAN");
-        btns.add(t[20][34]);
+        t[16][27].setVisible(true);
+        t[16][27].putClientProperty("country", "AFGHANISTAN");
+        btns.add(t[16][27]);
 
-        t[13][35].setVisible(true);
-        t[13][35].putClientProperty("country", "URAL");
-        btns.add(t[13][35]);
+        t[10][28].setVisible(true);
+        t[10][28].putClientProperty("country", "URAL");
+        btns.add(t[10][28]);
 
-        t[8][38].setVisible(true);
-        t[8][38].putClientProperty("country", "SIBIRIEN");
-        btns.add(t[8][38]);
+        t[7][30].setVisible(true);
+        t[7][30].putClientProperty("country", "SIBIRIEN");
+        btns.add(t[7][30]);
 
-        t[6][41].setVisible(true);
-        t[6][41].putClientProperty("country", "JAKUTIEN");
-        btns.add(t[6][41]);
+        t[5][33].setVisible(true);
+        t[5][33].putClientProperty("country", "JAKUTIEN");
+        btns.add(t[5][33]);
 
-        t[14][40].setVisible(true);
-        t[14][40].putClientProperty("country", "IRKUTSK");
-        btns.add(t[14][40]);
+        t[11][32].setVisible(true);
+        t[11][32].putClientProperty("country", "IRKUTSK");
+        btns.add(t[11][32]);
 
-        t[18][41].setVisible(true);
-        t[18][41].putClientProperty("country", "MONGOLEI");
-        btns.add(t[18][41]);
+        t[15][33].setVisible(true);
+        t[15][33].putClientProperty("country", "MONGOLEI");
+        btns.add(t[15][33]);
 
-        t[24][40].setVisible(true);
-        t[24][40].putClientProperty("country", "CHINA");
-        btns.add(t[24][40]);
+        t[19][32].setVisible(true);
+        t[19][32].putClientProperty("country", "CHINA");
+        btns.add(t[19][32]);
 
-        t[27][37].setVisible(true);
-        t[27][37].putClientProperty("country", "INDIEN");
-        btns.add(t[27][37]);
+        t[22][29].setVisible(true);
+        t[22][29].putClientProperty("country", "INDIEN");
+        btns.add(t[22][29]);
 
-        t[29][40].setVisible(true);
-        t[29][40].putClientProperty("country", "SÜDOSTASIEN");
-        btns.add(t[29][40]);
+        t[24][32].setVisible(true);
+        t[24][32].putClientProperty("country", "SÜDOSTASIEN");
+        btns.add(t[24][32]);
 
-        t[6][46].setVisible(true);
-        t[6][46].putClientProperty("country", "KAMTSCHATKA");
-        btns.add(t[6][46]);
+        t[5][36].setVisible(true);
+        t[5][36].putClientProperty("country", "KAMTSCHATKA");
+        btns.add(t[5][36]);
 
-        t[19][47].setVisible(true);
-        t[19][47].putClientProperty("country", "JAPAN");
-        btns.add(t[19][47]);
+        t[15][37].setVisible(true);
+        t[15][37].putClientProperty("country", "JAPAN");
+        btns.add(t[15][37]);
 
         //Australien
-        t[39][41].setVisible(true);
-        t[39][41].putClientProperty("country", "INDONESIEN");
-        btns.add(t[39][41]);
+        t[31][33].setVisible(true);
+        t[31][33].putClientProperty("country", "INDONESIEN");
+        btns.add(t[31][33]);
 
-        t[36][46].setVisible(true);
-        t[36][46].putClientProperty("country", "NEUGUINEA");
-        btns.add(t[36][46]);
+        t[29][37].setVisible(true);
+        t[29][37].putClientProperty("country", "NEUGUINEA");
+        btns.add(t[29][37]);
 
-        t[46][43].setVisible(true);
-        t[46][43].putClientProperty("country", "WESTAUSTRALIEN");
-        btns.add(t[46][43]);
+        t[37][35].setVisible(true);
+        t[37][35].putClientProperty("country", "WESTAUSTRALIEN");
+        btns.add(t[37][35]);
 
-        t[44][47].setVisible(true);
-        t[44][47].putClientProperty("country", "OSTAUSTRALIEN");
-        btns.add(t[44][47]);
+        t[35][38].setVisible(true);
+        t[35][38].putClientProperty("country", "OSTAUSTRALIEN");
+        btns.add(t[35][38]);
     }
 
     public void updateMap (LinkedList<Area> areas){
