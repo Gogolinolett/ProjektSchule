@@ -26,8 +26,6 @@ public class Main {
     private static Start start;
     private static Board board;
     private static LinkedList<WinningConditions> winConCards;
-    private static LinkedList<Card> cards;
-    private static LinkedList<Card> ablageStapel;
 
     public static void main(String[] args) throws IOException {
         try {
