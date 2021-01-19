@@ -104,8 +104,16 @@ public class Main {
         cards = ablageStapel;
 
         for(int i = 0; i < 200; i ++){
-
+            int rand = (int)(Math.random() * (cards.size()  + 1));
+            int rand2 = (int)(Math.random() * (cards.size()  + 1));
+            Card card = cards.get(rand);
+            cards.set(rand, cards.get(rand2));
+            cards.set(rand2, card);
         }
+    }
+
+    public static void drawCard(Player player){
+        player.
     }
 
     public static void setupAreasAndRegions() {

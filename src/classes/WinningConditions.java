@@ -13,6 +13,10 @@ public class WinningConditions {
     private int wincon;
     private Image img;
 
+    public Image getImg() {
+        return img;
+    }
+
     public Color getColor() {
         return color;
     }
