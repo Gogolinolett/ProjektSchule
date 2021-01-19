@@ -30,16 +30,17 @@ private JCheckBox aDice1;
     private final Area defender;
     private int acount;
 
-    public Würfeln(Area aggressor, Area defender) throws InterruptedException {
+    public Würfeln(Area aggressor, Area defender) throws InterruptedException, IOException {
         this.aggressor = aggressor;
         this.defender = defender;
         initComponents();
     }
 
-    private void initComponents() throws InterruptedException {
+    private void initComponents() throws InterruptedException, IOException {
         setMinimumSize(new Dimension(430, 267));
         setResizable(false);
         setAlwaysOnTop(true);
+        setIconImage(ImageIO.read(new File("src\\resources\\other\\star.png")));
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         contentPane = getContentPane();
         contentPane.setLayout(new GridBagLayout());
@@ -154,7 +155,7 @@ private JCheckBox aDice1;
                         r = new Results(acount, dcount, aDiceList, dDiceList);
                         aCountry.setText(aggressor.getName() + " (" + aggressor.getTroopCount() + ")");
                         dCountry.setText(defender.getName() + " (" + defender.getTroopCount() + ")");
-                    } catch (InterruptedException interruptedException) {
+                    } catch (InterruptedException | IOException interruptedException) {
                         interruptedException.printStackTrace();
                     }
                     setCheckBox();

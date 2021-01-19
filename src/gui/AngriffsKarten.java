@@ -24,10 +24,11 @@ public class AngriffsKarten extends JFrame {
         initComponents();
     }
 
-    private void initComponents() {
+    private void initComponents() throws IOException {
         setVisible(true);
         setMinimumSize(new Dimension(430, 300));
         setResizable(false);
+        setIconImage(ImageIO.read(new File("src\\resources\\other\\star.png")));
         Container contentPane = getContentPane();
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 

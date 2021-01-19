@@ -26,7 +26,7 @@ public class Map implements ComponentListener, WindowStateListener {
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 1000);
-
+        frame.setIconImage(ImageIO.read(new File("src\\resources\\other\\star.png")));
         layeredPane.setBounds(0, 0, 1000, 1000);
 
         //ImagePanel

@@ -47,7 +47,6 @@ public class Stage_1 extends JPanel {
 
     private void initComponents() {
         setOpaque(true);
-
         setLayout(new GridBagLayout());
         ((GridBagLayout) getLayout()).columnWidths = new int[] {0, 0, 0};
         ((GridBagLayout) getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};

@@ -17,10 +17,11 @@ public class MissionsKarte extends JFrame {
         initComponents();
     }
 
-    private void initComponents() {
+    private void initComponents() throws IOException {
         setVisible(true);
         setAlwaysOnTop(true);
         setResizable(false);
+        setIconImage(ImageIO.read(new File("src\\resources\\other\\star.png")));
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setMinimumSize(new Dimension(267, 430));
         setTitle("Mission");

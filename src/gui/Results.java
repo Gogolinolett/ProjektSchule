@@ -32,11 +32,11 @@ public class Results extends JFrame {
         }
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         Results r = new Results();
     }
 
-    public Results(int aCount, int dCount, LinkedList<Integer> aDiceList, LinkedList<Integer> dDiceList) throws InterruptedException {
+    public Results(int aCount, int dCount, LinkedList<Integer> aDiceList, LinkedList<Integer> dDiceList) throws InterruptedException, IOException {
         this.aCount = aCount;
         this.dCount = dCount;
         this.aDiceList = aDiceList;
@@ -44,7 +44,7 @@ public class Results extends JFrame {
         initComponents();
     }
 
-    public Results() throws InterruptedException {
+    public Results() throws InterruptedException, IOException {
         test();
         initComponents();
     }
@@ -61,12 +61,13 @@ public class Results extends JFrame {
         dDiceList.add(4);
     }
 
-    private void initComponents() throws InterruptedException {
+    private void initComponents() throws InterruptedException, IOException {
         //this
         setMinimumSize(new Dimension(430, 267));
         setAlwaysOnTop(true);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
+        setIconImage(ImageIO.read(new File("src\\resources\\other\\star.png")));
         Container contentPane = getContentPane();
         contentPane.setLayout(new GridBagLayout());
         ((GridBagLayout)contentPane.getLayout()).columnWidths = new int[] {0, 0, 0, 0};

@@ -3,11 +3,14 @@ package gui;
 
 import classes.Player;
 
+import javax.imageio.ImageIO;
 import javax.print.attribute.standard.Chromaticity;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 
 public class PlayerSelection extends JFrame {
@@ -29,7 +32,7 @@ public class PlayerSelection extends JFrame {
     LinkedList<JLabel> labels;
 
 
-    public PlayerSelection() {
+    public PlayerSelection() throws IOException {
         initComponents();
         labels = new LinkedList<>();
         labels.add(label1);
@@ -41,10 +44,11 @@ public class PlayerSelection extends JFrame {
 
     }
 
-    private void initComponents() {
+    private void initComponents() throws IOException {
         setMaximizedBounds(new Rectangle(0, 0, 400, 640));
         setMinimumSize(new Dimension(267, 430));
         setResizable(false);
+        setIconImage(ImageIO.read(new File("src\\resources\\other\\star.png")));
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
 

@@ -5,6 +5,9 @@ import classes.Area;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class MoveTroops extends JFrame {
@@ -14,7 +17,7 @@ public class MoveTroops extends JFrame {
     Area a2;
     int troops;
 
-    public MoveTroops(Area a1, Area a2, int attacking) {
+    public MoveTroops(Area a1, Area a2, int attacking) throws IOException {
         this.a1 = a1;
         this.a2 = a2;
         troops = attacking;
@@ -24,10 +27,11 @@ public class MoveTroops extends JFrame {
     JButton cButton;
     JSpinner spinner;
 
-    private void initComponents() {
+    private void initComponents() throws IOException {
         setMinimumSize(new Dimension(430, 267));
         setResizable(false);
         setAlwaysOnTop(true);
+        setIconImage(ImageIO.read(new File("src\\resources\\other\\star.png")));
         Container contentPane = getContentPane();
         contentPane.setLayout(new GridBagLayout());
         ((GridBagLayout) contentPane.getLayout()).columnWidths = new int[]{0, 0, 0, 0, 0};

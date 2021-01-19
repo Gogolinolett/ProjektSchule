@@ -36,6 +36,7 @@ public class Main {
         } catch (Exception e) {
             System.err.println("Look and feel not set.");
         }
+        frame.setIconImage(ImageIO.read(new File("src\\resources\\other\\star.png")));
         m = new Map();
         m.setVisible(false);
 

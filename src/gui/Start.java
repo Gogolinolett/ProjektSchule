@@ -17,7 +17,7 @@ public class Start extends JFrame {
         initComponents();
     }
 
-    private void initComponents() {
+    private void initComponents() throws IOException {
         JPanel vSpacer1 = new JPanel(null);
         button1 = new JButton();
         JPanel vSpacer2 = new JPanel(null);
@@ -30,6 +30,7 @@ public class Start extends JFrame {
         setVisible(true);
         setMinimumSize(new Dimension(267, 430));
         setResizable(false);
+        setIconImage(ImageIO.read(new File("src\\resources\\other\\star.png")));
         Container contentPane = getContentPane();
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
         contentPane.add(vSpacer1);
