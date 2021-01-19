@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class First extends JPanel {
+public class Stage_1 extends JPanel {
     private int troops;
     private String playername;
     private Area land;
@@ -19,7 +19,7 @@ public class First extends JPanel {
     private JButton mKarte;
     private JLabel pName;
 
-    public First(Player player) {
+    public Stage_1(Player player) {
 
         troops = player.getTroopsPerTurn();
         this.playername = player.getPlayername();

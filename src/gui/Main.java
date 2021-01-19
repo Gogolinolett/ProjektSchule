@@ -5,11 +5,9 @@ import classes.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
-import java.util.Random;
 
 public class Main {
 
@@ -18,9 +16,9 @@ public class Main {
     private static LinkedList<Player> players;
     private static int activePlayer = 0;
     private static int stage = 1;
-    private static First f;
-    private static Second s;
-    private static Third t;
+    private static Stage_1 f;
+    private static Stage_2 s;
+    private static Stage_3 t;
     private static JFrame frame = new JFrame();
     private static Map m;
     private static PlayerSelection playerSelection;
@@ -424,7 +422,7 @@ public class Main {
     public static void stage1Gui() {
 
         frame.getContentPane().removeAll();
-        f = new First(players.get(activePlayer));
+        f = new Stage_1(players.get(activePlayer));
         f.setOpaque(true);
         frame.add(f);
         frame.revalidate();
@@ -434,7 +432,7 @@ public class Main {
     public static void stage2Gui() {
 
         frame.getContentPane().removeAll();
-        s = new Second(players.get(activePlayer));
+        s = new Stage_2(players.get(activePlayer));
         s.setOpaque(true);
         frame.add(s);
         frame.revalidate();
@@ -443,7 +441,7 @@ public class Main {
 
     public static void stage3Gui(){
         frame.getContentPane().removeAll();
-        t = new Third(players.get(activePlayer));
+        t = new Stage_3(players.get(activePlayer));
         t.setOpaque(true);
         frame.add(t);
         frame.revalidate();

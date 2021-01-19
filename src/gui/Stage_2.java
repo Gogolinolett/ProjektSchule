@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class Second extends JPanel {
+public class Stage_2 extends JPanel {
     private Area attackingArea;
     private Area defendingArea;
     private Player player;
@@ -20,7 +20,7 @@ public class Second extends JPanel {
     private JButton nStage;
     private JButton mKarte;
 
-    public Second(Player player) {
+    public Stage_2(Player player) {
         this.player = player;
         initComponents();
     }
