@@ -15,6 +15,8 @@ public class AngriffsKarten extends JFrame {
 
     private JButton confirmButton;
     private Player player;
+    private JSpinner spinner;
+    private JButton cancelButton;
 
     public AngriffsKarten(Player player) throws IOException {
         this.player = player;
@@ -49,7 +51,8 @@ public class AngriffsKarten extends JFrame {
         contentPane.add(label2);
 
         //spinner
-        JSpinner spinner = new JSpinner();
+        spinner = new JSpinner();
+        spinner.setModel(new SpinnerNumberModel(0, 10, player.getSterne(), 1));
         spinner.setMaximumSize(new Dimension(121, 23));
         spinner.setAlignmentX(Component.CENTER_ALIGNMENT);
         contentPane.add(spinner);
@@ -62,7 +65,7 @@ public class AngriffsKarten extends JFrame {
         contentPane.add(confirmButton);
 
         //cancelButton
-        JButton cancelButton = new JButton();
+        cancelButton = new JButton();
         cancelButton.setText("Abrechen");
         cancelButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         contentPane.add(cancelButton);
@@ -78,6 +81,30 @@ public class AngriffsKarten extends JFrame {
             JButton btn  = (JButton) e.getSource();
 
             if(btn.equals(confirmButton)){
+                int t = 0;
+                if((int) spinner.getValue() ==  2){
+                    t = 2;
+                }else  if((int) spinner.getValue() ==  3){
+                    t = 4;
+                }else if((int) spinner.getValue() ==  4){
+                    t = 7;
+                }else  if((int) spinner.getValue() ==  5){
+                    t = 10;
+                }else  if((int) spinner.getValue() ==  6){
+                    t = 13;
+                }else  if((int) spinner.getValue() ==  7){
+                    t = 17;
+                }else  if((int) spinner.getValue() ==  8){
+                    t = 21;
+                }else  if((int) spinner.getValue() ==  9){
+                    t = 25;
+                }else if((int) spinner.getValue() ==  10){
+                    t = 30;
+                }
+
+                Main.redeemedCardTroops(t);
+
+            }else if(btn.equals(cancelButton)){
 
             }
         }

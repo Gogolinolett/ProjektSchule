@@ -124,6 +124,11 @@ public class Stage_1 extends JPanel {
         add(sPane2, new GridBagConstraints(0, 9, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
     }
 
+    public void addTroops(int troops){
+        this.troops = troops;
+        aTroopsSpinner.setModel(new SpinnerNumberModel(0, 0, troops, 1));
+    }
+
 
 
     class TileListener implements ActionListener {

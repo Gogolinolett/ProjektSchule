@@ -501,4 +501,8 @@ public class Main {
     public static Board getBoard() {
         return board;
     }
+
+    public static void redeemedCardTroops(int troops){
+        f.addTroops(troops);
+    }
 }
