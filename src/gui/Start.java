@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Start extends JFrame {
-    private final Image img = ImageIO.read(new File("src\\resources\\other\\Risiko_Logo.png"));
+    private Image img = ImageIO.read(new File("src\\resources\\other\\Risiko_Logo.png"));
     private JButton button1;
     private JButton button2;
 
@@ -79,7 +79,6 @@ public class Start extends JFrame {
                         File myFile = new File("src\\resources\\rules.pdf");
                         Desktop.getDesktop().open(myFile);
                     } catch (IOException ex) {
-                        // no application registered for PDFs
                     }
                 }
             }

@@ -30,7 +30,6 @@ public class Main {
     private static LinkedList<Card> ablageStapel;
 
     public static void main(String[] args) throws IOException {
-
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
@@ -40,13 +39,12 @@ public class Main {
         m = new Map();
         m.setVisible(false);
 
-         start = new Start();
+        start = new Start();
 
         setupAreasAndRegions();
         board = new Board(areas, regions);
-
-
     }
+
     public static void setUpWinConCards() throws IOException {
         winConCards = new LinkedList<>();
 
@@ -58,34 +56,30 @@ public class Main {
         winConCards.add(mk_af_as);
         WinningConditions mk_as_sa = new WinningConditions(regions.get(5), regions.get(1), null, 1, ImageIO.read(new File("src\\resources\\miss_karte\\MK_as&sa.png")));
         winConCards.add(mk_as_sa);
-        WinningConditions mk_bl = new WinningConditions(null,null, Color.BLUE , 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_bl.png")));
+        WinningConditions mk_bl = new WinningConditions(null, null, Color.BLUE, 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_bl.png")));
         winConCards.add(mk_bl);
-        WinningConditions mk_bla = new WinningConditions(null,null, Color.BLACK , 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_bla.png")));
+        WinningConditions mk_bla = new WinningConditions(null, null, Color.BLACK, 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_bla.png")));
         winConCards.add(mk_bla);
         WinningConditions mk_eu_oc_3 = new WinningConditions(regions.get(2), regions.get(4), null, 4, ImageIO.read(new File("src\\resources\\miss_karte\\MK_eu&oc&3.png")));
         winConCards.add(mk_eu_oc_3);
         WinningConditions mk_eu_sa_3 = new WinningConditions(regions.get(2), regions.get(1), null, 4, ImageIO.read(new File("src\\resources\\miss_karte\\MK_eu&sa&3.png")));
         winConCards.add(mk_eu_sa_3);
-        WinningConditions mk_gr = new WinningConditions(null,null, Color.GREEN , 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_gr.png")));
+        WinningConditions mk_gr = new WinningConditions(null, null, Color.GREEN, 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_gr.png")));
         winConCards.add(mk_gr);
         WinningConditions mk_na_af = new WinningConditions(regions.get(0), regions.get(3), null, 1, ImageIO.read(new File("src\\resources\\miss_karte\\MK_na&af.jpg")));
         winConCards.add(mk_na_af);
         WinningConditions mk_na_oc = new WinningConditions(regions.get(0), regions.get(4), null, 1, ImageIO.read(new File("src\\resources\\miss_karte\\MK_na&oc.png")));
         winConCards.add(mk_na_oc);
-        WinningConditions mk_pi = new WinningConditions(null,null, Color.PINK , 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_pi.png")));
+        WinningConditions mk_pi = new WinningConditions(null, null, Color.PINK, 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_pi.png")));
         winConCards.add(mk_pi);
-        WinningConditions mk_re = new WinningConditions(null,null, Color.RED , 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_re.png")));
+        WinningConditions mk_re = new WinningConditions(null, null, Color.RED, 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_re.png")));
         winConCards.add(mk_re);
-        WinningConditions mk_ye = new WinningConditions(null,null, Color.YELLOW , 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_ye.png")));
+        WinningConditions mk_ye = new WinningConditions(null, null, Color.YELLOW, 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_ye.png")));
         winConCards.add(mk_ye);
-
     }
 
 
-
-
     public static void setupAreasAndRegions() {
-
         //NordAmerika
         LinkedList<Area> z = new LinkedList<>();
         Area alberta = new Area("ALBERTA");
@@ -135,8 +129,7 @@ public class Main {
         Region südAmerika = new Region(z, 2);
         regions.add(südAmerika);
 
-
-        //europa
+        //Europa
         z = new LinkedList<>();
         Area island = new Area("ISLAND");
         areas.add(island);
@@ -162,8 +155,7 @@ public class Main {
         Region europa = new Region(z, 5);
         regions.add(europa);
 
-
-        //afrika
+        //Afrika
         z = new LinkedList<>();
         Area ägypten = new Area("ÄGYPTEN");
         areas.add(ägypten);
@@ -186,8 +178,7 @@ public class Main {
         Region afrika = new Region(z, 3);
         regions.add(afrika);
 
-
-        //australien
+        //Australien
         z = new LinkedList<>();
         Area ostAustralien = new Area("OSTAUSTRALIEN");
         areas.add(ostAustralien);
@@ -204,8 +195,7 @@ public class Main {
         Region australien = new Region(z, 2);
         regions.add(australien);
 
-
-        //asien
+        //Asien
         z = new LinkedList<>();
         Area mittlererOsten = new Area("MITTLEREROSTEN");
         areas.add(mittlererOsten);
@@ -333,42 +323,38 @@ public class Main {
     }
 
     public static void nextStage() {
-
-        if(players.get(activePlayer).isHatErobert()){
+        if (players.get(activePlayer).isHatErobert()) {
             players.get(activePlayer).drawn();
 
             players.get(activePlayer).setHatErobert(false);
         }
 
-        if(players.get(activePlayer).getWinningConditions().istGewonnen(areas,regions,players.get(activePlayer))){
+        if (players.get(activePlayer).getWinningConditions().istGewonnen(areas, regions, players.get(activePlayer))) {
             wonMessage("Spieler: " + players.get(activePlayer).getPlayername() + " hat gewonnen!", "Vorbei");
             return;
         }
+
         stage = stage + 1;
         if (stage > 3) {
             activePlayer = activePlayer + 1;
-            if(activePlayer >= players.size()) {
+            if (activePlayer >= players.size()) {
                 activePlayer = 0;
             }
             stage = 1;
             stage1Gui();
-        }else if(stage == 2){
+        } else if (stage == 2) {
             stage2Gui();
-        }else {
+        } else {
             stage3Gui();
         }
-
     }
-
-
 
     public static void startPlayerSelection() throws IOException {
         start.setVisible(false);
         playerSelection = new PlayerSelection();
     }
 
-    public static void startGame(LinkedList<Player> playerss)
-    {
+    public static void startGame(LinkedList<Player> playerss) {
         players = playerss;
         playerSelection.setVisible(false);
         frame.setLayout(new GridLayout());
@@ -386,30 +372,28 @@ public class Main {
 
         LinkedList<WinningConditions> zwisch = new LinkedList<>();
 
-        for(WinningConditions winningConditions : winConCards){
-            for(Player p : playerss){
+        for (WinningConditions winningConditions : winConCards) {
+            for (Player p : playerss) {
 
-                if (winningConditions.getColor() == null){
+                if (winningConditions.getColor() == null) {
                     zwischen2 = true;
-                }else
-                if (winningConditions.getColor().equals(p.getFarbe())){
+                } else if (winningConditions.getColor().equals(p.getFarbe())) {
                     zwischen2 = true;
                 }
             }
-            if (zwischen2 == false){
+            if (zwischen2 == false) {
                 zwisch.add(winningConditions);
             }
             zwischen2 = false;
-
         }
 
-        for(WinningConditions winningConditions : zwisch){
+        for (WinningConditions winningConditions : zwisch) {
             winConCards.remove(winningConditions);
         }
 
-        for(Player p : playerss){
+        for (Player p : playerss) {
 
-            int rand = (int)(Math.random() * (winConCards.size() - 1 + 1));
+            int rand = (int) (Math.random() * (winConCards.size() - 1 + 1));
             p.setWinningConditions(winConCards.get(rand));
             winConCards.remove(winConCards.get(rand));
         }
@@ -418,42 +402,36 @@ public class Main {
 
         int size = areas.size();
         LinkedList<Area> zwischen = new LinkedList<>();
-        for(Area a : areas ){
+        for (Area a : areas) {
             zwischen.add(a);
         }
 
-        for(int i = 0; i < size; i ++){
+        for (int i = 0; i < size; i++) {
             int num = (int) (Math.random() * ((zwischen.size() - 1) + 0));
-
             zwischen.get(num).setFarbeOwner(playerss.get(i % playerss.size()).getFarbe());
             zwischen.remove(num);
-
         }
         updateGui();
         stage1Gui();
     }
 
     public static void stage1Gui() {
-
         frame.getContentPane().removeAll();
         f = new Stage_1(players.get(activePlayer));
         f.setOpaque(true);
         frame.add(f);
         frame.revalidate();
-
     }
 
     public static void stage2Gui() {
-
         frame.getContentPane().removeAll();
         s = new Stage_2(players.get(activePlayer));
         s.setOpaque(true);
         frame.add(s);
         frame.revalidate();
-
     }
 
-    public static void stage3Gui(){
+    public static void stage3Gui() {
         frame.getContentPane().removeAll();
         t = new Stage_3(players.get(activePlayer));
         t.setOpaque(true);
@@ -466,38 +444,30 @@ public class Main {
         frame.revalidate();
     }
 
-
     public static void act(Area area) {
-
         if (stage == 1) {
             f.setLand(area);
             updateGui();
         } else if (stage == 2) {
-
             if (area.getFarbeOwner().equals(players.get(activePlayer).getFarbe())) {
                 s.setAttackingArea(area);
             } else {
                 s.setDefendingArea(area);
             }
             updateGui();
-        }else if(stage == 3){
-            if(players.get(activePlayer).getFarbe().equals(area.getFarbeOwner())){
+        } else if (stage == 3) {
+            if (players.get(activePlayer).getFarbe().equals(area.getFarbeOwner())) {
                 t.setArea(area);
             }
-
         }
-
-
     }
 
     public static Area stringToArea(String name) {
-
         for (Area a : areas) {
             if (a.getName().equalsIgnoreCase(name)) {
                 return a;
             }
         }
-
         return null;
     }
 
@@ -520,7 +490,7 @@ public class Main {
         return board;
     }
 
-    public static void redeemedCardTroops(int troops){
+    public static void redeemedCardTroops(int troops) {
         f.addTroops(troops);
     }
 }

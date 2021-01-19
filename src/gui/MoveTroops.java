@@ -2,20 +2,22 @@ package gui;
 
 import classes.Area;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.*;
 
 public class MoveTroops extends JFrame {
+    private Area a1;
+    private Area a2;
+    private int troops;
+    private JButton cButton;
+    private JSpinner spinner;
     private JEditorPane sOriginCountryPane;
     private JEditorPane sDestinationCountryPane;
-    Area a1;
-    Area a2;
-    int troops;
 
     public MoveTroops(Area a1, Area a2, int attacking) throws IOException {
         this.a1 = a1;
@@ -23,9 +25,6 @@ public class MoveTroops extends JFrame {
         troops = attacking;
         initComponents();
     }
-    
-    JButton cButton;
-    JSpinner spinner;
 
     private void initComponents() throws IOException {
         setMinimumSize(new Dimension(430, 267));
@@ -47,7 +46,7 @@ public class MoveTroops extends JFrame {
 
         //sOriginCountryPane
         sOriginCountryPane = new JEditorPane();
-        sOriginCountryPane.setText("Territory:" + a1.getName() +"\nTroops"  + a1.getTroopCount());
+        sOriginCountryPane.setText("Territory:" + a1.getName() + "\nTroops" + a1.getTroopCount());
         sOriginCountryPane.setEditable(false);
         sPane.setViewportView(sOriginCountryPane);
 
@@ -60,7 +59,7 @@ public class MoveTroops extends JFrame {
 
         //sDestinationCountryPane
         sDestinationCountryPane = new JEditorPane();
-        sDestinationCountryPane.setText("Territory:" + a2.getName() +"\nTroops"  + a2.getTroopCount());
+        sDestinationCountryPane.setText("Territory:" + a2.getName() + "\nTroops" + a2.getTroopCount());
         sDestinationCountryPane.setEditable(false);
         sPane2.setViewportView(sDestinationCountryPane);
 
@@ -94,20 +93,20 @@ public class MoveTroops extends JFrame {
     }
 
     public void setOriginArea(Area attackingArea) {
-        sOriginCountryPane.setText("Land:" + attackingArea.getName() +" \nTruppen Anzahl: " + attackingArea.getTroopCount());
+        sOriginCountryPane.setText("Land:" + attackingArea.getName() + " \nTruppen Anzahl: " + attackingArea.getTroopCount());
     }
 
     public void setDestinationArea(Area defendingArea) {
-        sDestinationCountryPane.setText("Land:" + defendingArea.getName() +" \nTruppen Anzahl: " + defendingArea.getTroopCount());
+        sDestinationCountryPane.setText("Land:" + defendingArea.getName() + " \nTruppen Anzahl: " + defendingArea.getTroopCount());
     }
 
     class TileListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             JButton btn = (JButton) e.getSource();
-            if(btn.equals(cButton)){
+            if (btn.equals(cButton)) {
                 a2.setFarbeOwner(a1.getFarbeOwner());
-                if(troops <= (int)spinner.getValue() && (int)spinner.getValue() < a1.getTroopCount()){
+                if (troops <= (int) spinner.getValue() && (int) spinner.getValue() < a1.getTroopCount()) {
                     Main.getBoard().moveTroop(a1, a2, (int) spinner.getValue());
                     setVisible(false);
                 }

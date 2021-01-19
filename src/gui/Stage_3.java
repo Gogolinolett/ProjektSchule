@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class Stage_3 extends JPanel {
     private JButton mKarte;
-    private  Player player;
+    private Player player;
     private JButton cButton;
     private Area origin;
     private Area destination;
@@ -21,37 +21,35 @@ public class Stage_3 extends JPanel {
     private JLabel sDestinationCountry;
     private JButton nStage;
 
-    public void setArea(Area area){
-        if(destination == null){
+    public Stage_3(Player player) {
+        this.player = player;
+        initComponents();
+    }
+
+    public void setArea(Area area) {
+        if (destination == null) {
             origin = area;
-        }else {
+        } else {
             origin = destination;
         }
         destination = area;
         sOriginCountry.setText("Ausgewähltes  Ziel Land: " + origin.getName());
         sDestinationCountry.setText("Ausgewähltes Ursprungsland: " + destination.getName());
-        if(origin.getTroopCount() == 1){
-            aTroopsSpinner.setModel(new SpinnerNumberModel(0, 0,  0, 1));
-        }else {
+        if (origin.getTroopCount() == 1) {
+            aTroopsSpinner.setModel(new SpinnerNumberModel(0, 0, 0, 1));
+        } else {
             aTroopsSpinner.setModel(new SpinnerNumberModel(1, 1, origin.getTroopCount() - 1, 1));
         }
     }
 
-    public Stage_3(Player player) {
-
-        this.player = player;
-        initComponents();
-    }
-
     private void initComponents() {
         setOpaque(true);
-
         setBackground(Color.white);
         setLayout(new GridBagLayout());
-        ((GridBagLayout)getLayout()).columnWidths = new int[] {0, 0, 0};
-        ((GridBagLayout)getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        ((GridBagLayout)getLayout()).columnWeights = new double[] {1.0, 1.0, 1.0E-4};
-        ((GridBagLayout)getLayout()).rowWeights = new double[] {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0E-4};
+        ((GridBagLayout) getLayout()).columnWidths = new int[]{0, 0, 0};
+        ((GridBagLayout) getLayout()).rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        ((GridBagLayout) getLayout()).columnWeights = new double[]{1.0, 1.0, 1.0E-4};
+        ((GridBagLayout) getLayout()).rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0E-4};
 
         //pName
         JLabel pName = new JLabel();
@@ -100,7 +98,7 @@ public class Stage_3 extends JPanel {
         aTroops = new JLabel();
         aTroopsSpinner = new JSpinner();
         aTroops.setText("Anzahl der Truppen:");
-        aTroopsSpinner.setModel(new SpinnerNumberModel(0, 0,  0, 1));
+        aTroopsSpinner.setModel(new SpinnerNumberModel(0, 0, 0, 1));
         add(aTroops, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
         add(aTroopsSpinner, new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
@@ -138,25 +136,22 @@ public class Stage_3 extends JPanel {
     class TileListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(e.getSource() instanceof  JButton){
+            if (e.getSource() instanceof JButton) {
                 JButton btn = (JButton) e.getSource();
-
-                if(btn.equals(cButton) && origin != null){
-                    if(origin.getTroopCount() > (int) aTroopsSpinner.getValue() && origin.isNeighbour(destination)){
-                        Main.getBoard().moveTroop(origin, destination,(int) aTroopsSpinner.getValue());
+                if (btn.equals(cButton) && origin != null) {
+                    if (origin.getTroopCount() > (int) aTroopsSpinner.getValue() && origin.isNeighbour(destination)) {
+                        Main.getBoard().moveTroop(origin, destination, (int) aTroopsSpinner.getValue());
                     }
-                }else if(nStage.equals(btn)){
+                } else if (nStage.equals(btn)) {
                     Main.nextStage();
-                } else if(btn.equals(mKarte)){
+                } else if (btn.equals(mKarte)) {
                     try {
                         MissionsKarte m = new MissionsKarte(player.getWinningConditions().getImg());
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                     }
                 }
-
             }
         }
     }
-
 }

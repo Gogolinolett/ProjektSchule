@@ -2,6 +2,8 @@ package gui;
 
 import classes.Area;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,11 +11,19 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.LinkedList;
-import java.util.concurrent.TimeUnit;
-import javax.imageio.ImageIO;
-import javax.swing.*;
 
 public class Results extends JFrame {
+    private static Image[] g;
+    private static Image[] z;
+
+    static {
+        try {
+            g = new Image[]{ImageIO.read(new File("src\\resources\\würfel\\b1.png")), ImageIO.read(new File("src\\resources\\würfel\\b2.png")), ImageIO.read(new File("src\\resources\\würfel\\b3.png")), ImageIO.read(new File("src\\resources\\würfel\\b4.png")), ImageIO.read(new File("src\\resources\\würfel\\b5.png")), ImageIO.read(new File("src\\resources\\würfel\\b6.png")),};
+            z = new Image[]{ImageIO.read(new File("src\\resources\\würfel\\r1.png")), ImageIO.read(new File("src\\resources\\würfel\\r2.png")), ImageIO.read(new File("src\\resources\\würfel\\r3.png")), ImageIO.read(new File("src\\resources\\würfel\\r4.png")), ImageIO.read(new File("src\\resources\\würfel\\r5.png")), ImageIO.read(new File("src\\resources\\würfel\\r6.png")),};
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private JLabel a1;
     private JLabel d1;
@@ -24,27 +34,28 @@ public class Results extends JFrame {
     private int dCount;
     private LinkedList<Integer> aDiceList;
     private LinkedList<Integer> dDiceList;
-    private  Würfeln w;
+    private Würfeln w;
     private Area aggressor;
     private Area defender;
     private Boolean b;
     private Boolean wOffen = false;
-
-    private static Image[] g;
-    private static Image[] z;
-
-    public Results getThis(){
-        return this;
-    }
-
-    static {
-        try {
-            g = new Image[]{ImageIO.read(new File("src\\resources\\würfel\\b1.png")), ImageIO.read(new File("src\\resources\\würfel\\b2.png")), ImageIO.read(new File("src\\resources\\würfel\\b3.png")), ImageIO.read(new File("src\\resources\\würfel\\b4.png")), ImageIO.read(new File("src\\resources\\würfel\\b5.png")), ImageIO.read(new File("src\\resources\\würfel\\b6.png")),};
-            z = new Image[]{ImageIO.read(new File("src\\resources\\würfel\\r1.png")), ImageIO.read(new File("src\\resources\\würfel\\r2.png")), ImageIO.read(new File("src\\resources\\würfel\\r3.png")), ImageIO.read(new File("src\\resources\\würfel\\r4.png")), ImageIO.read(new File("src\\resources\\würfel\\r5.png")), ImageIO.read(new File("src\\resources\\würfel\\r6.png")),};
-        } catch (IOException e) {
-            e.printStackTrace();
+    Timer t = new Timer(3000, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                try {
+                    if (!wOffen) {
+                        new Würfeln(aggressor, defender, getThis());
+                        wOffen = true;
+                    }
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            } catch (InterruptedException interruptedException) {
+                interruptedException.printStackTrace();
+            }
         }
-    }
+    });
 
     public Results(int aCount, int dCount, LinkedList<Integer> aDiceList, LinkedList<Integer> dDiceList, Würfeln w, Area aggresor, Area defender, Boolean b) throws InterruptedException, IOException {
         this.aCount = aCount;
@@ -58,9 +69,13 @@ public class Results extends JFrame {
         initComponents();
     }
 
-    public void test(){
-        aCount=3;
-        dCount=2;
+    public Results getThis() {
+        return this;
+    }
+
+    public void test() {
+        aCount = 3;
+        dCount = 2;
         aDiceList = new LinkedList<>();
         aDiceList.add(3);
         aDiceList.add(6);
@@ -79,10 +94,10 @@ public class Results extends JFrame {
         setIconImage(ImageIO.read(new File("src\\resources\\other\\star.png")));
         Container contentPane = getContentPane();
         contentPane.setLayout(new GridBagLayout());
-        ((GridBagLayout)contentPane.getLayout()).columnWidths = new int[] {0, 0, 0, 0};
-        ((GridBagLayout)contentPane.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0};
-        ((GridBagLayout)contentPane.getLayout()).columnWeights = new double[] {1.0, 1.0, 1.0, 1.0E-4};
-        ((GridBagLayout)contentPane.getLayout()).rowWeights = new double[] {1.0, 1.0, 1.0, 1.0, 1.0E-4};
+        ((GridBagLayout) contentPane.getLayout()).columnWidths = new int[]{0, 0, 0, 0};
+        ((GridBagLayout) contentPane.getLayout()).rowHeights = new int[]{0, 0, 0, 0, 0};
+        ((GridBagLayout) contentPane.getLayout()).columnWeights = new double[]{1.0, 1.0, 1.0, 1.0E-4};
+        ((GridBagLayout) contentPane.getLayout()).rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0E-4};
 
         //titel
         JLabel titel = new JLabel();
@@ -110,13 +125,11 @@ public class Results extends JFrame {
         d1.setHorizontalAlignment(SwingConstants.LEFT);
         contentPane.add(d1, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
-
         if (dCount != 1) {
             //dDice2
             d2 = new JLabel("");
             d2.setHorizontalAlignment(SwingConstants.LEFT);
             contentPane.add(d2, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
-
         }
 
         pack();
@@ -126,16 +139,15 @@ public class Results extends JFrame {
 
         roll();
 
-        if(!b){
+        if (!b) {
             t.setInitialDelay(3000);
             t.start();
         }
-
     }
 
     public void animation() throws InterruptedException {
         //setLabels();
-        for (int i = 0; i<15; i++) {
+        for (int i = 0; i < 15; i++) {
             if (aCount == 1) {
                 a1.setIcon(rollAttack());
             } else if (aCount == 2) {
@@ -156,7 +168,6 @@ public class Results extends JFrame {
     }
 
     public void roll() throws InterruptedException {
-
         aDiceList.sort(Comparator.reverseOrder());
         dDiceList.sort(Comparator.reverseOrder());
         System.out.println(aDiceList);
@@ -178,8 +189,8 @@ public class Results extends JFrame {
         }
     }
 
-    public ImageIcon rollAttack(){
-        int num = (int)(Math.random() * ((6 - 1) + 1));
+    public ImageIcon rollAttack() {
+        int num = (int) (Math.random() * ((6 - 1) + 1));
         ImageIcon icon = new ImageIcon(g[num]);
         Image i = icon.getImage();
         Image f = i.getScaledInstance(40, 40, Image.SCALE_SMOOTH);
@@ -207,24 +218,6 @@ public class Results extends JFrame {
         Image f = i.getScaledInstance(40, 40, Image.SCALE_SMOOTH);
         return new ImageIcon(f);
     }
-
-    Timer t = new Timer(3000, new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            try {
-                try {
-                    if(!wOffen) {
-                        new Würfeln(aggressor, defender, getThis());
-                        wOffen  = true;
-                    }
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
-            } catch (InterruptedException interruptedException) {
-                interruptedException.printStackTrace();
-            }
-        }
-    });
 
     public void setwOffen(Boolean wOffen) {
         this.wOffen = wOffen;

@@ -11,47 +11,47 @@ public class Area {
     private String name;
     private LinkedList<Area> neighbours = new LinkedList<>();
 
-    public Area(String name){
+    public Area(String name) {
         this.name = name;
         troopCount = 1;
     }
 
-    public void addTroops(int amount){
+    public void addTroops(int amount) {
         troopCount += amount;
         Main.updateGui();
     }
 
-    public String getName(){
+    public String getName() {
         return name;
-    }
-
-    public void setFarbeOwner(Color farbeOwner) {
-        this.farbeOwner = farbeOwner;
     }
 
     public Color getFarbeOwner() {
         return farbeOwner;
     }
 
+    public void setFarbeOwner(Color farbeOwner) {
+        this.farbeOwner = farbeOwner;
+    }
+
+    public int getTroopCount() {
+        return troopCount;
+    }
+
     public void setTroopCount(int troopCount) {
         this.troopCount = troopCount;
     }
 
-    public int getTroopCount(){
-        return troopCount;
-    }
-
-    public void addNeighbour(Area area){
-        if(neighbours.contains(area)){
+    public void addNeighbour(Area area) {
+        if (neighbours.contains(area)) {
             return;
         }
         neighbours.add(area);
         area.addNeighbour(this);
     }
 
-    public boolean isNeighbour(Area area){
-        for(Area a : neighbours){
-            if(a.equals(area)){
+    public boolean isNeighbour(Area area) {
+        for (Area a : neighbours) {
+            if (a.equals(area)) {
                 return true;
             }
         }

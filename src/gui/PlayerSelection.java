@@ -1,10 +1,8 @@
 package gui;
 
-
 import classes.Player;
 
 import javax.imageio.ImageIO;
-import javax.print.attribute.standard.Chromaticity;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,21 +13,20 @@ import java.util.LinkedList;
 
 public class PlayerSelection extends JFrame {
 
+    private JButton remAll;
+    private JButton pAdd;
+    private int pCounter = 0;
+    private JComboBox<String> pColor;
+    private JTextField pName;
+    private LinkedList<Player> players = new LinkedList<>();
+    private JLabel label1;
+    private JLabel label2;
+    private JLabel label3;
+    private JLabel label4;
+    private JLabel label5;
+    private JLabel label6;
+    private LinkedList<JLabel> labels;
     private JButton fertigButton;
-    JButton remAll;
-    JButton pAdd;
-    int pCounter  = 0;
-    JComboBox<String> pColor;
-    JTextField pName;
-    LinkedList<Player> players = new LinkedList<>();
-
-    JLabel label1;
-    JLabel label2;
-    JLabel label3;
-    JLabel label4;
-    JLabel label5;
-    JLabel label6;
-    LinkedList<JLabel> labels;
 
 
     public PlayerSelection() throws IOException {
@@ -41,7 +38,6 @@ public class PlayerSelection extends JFrame {
         labels.add(label4);
         labels.add(label5);
         labels.add(label6);
-
     }
 
     private void initComponents() throws IOException {
@@ -62,10 +58,10 @@ public class PlayerSelection extends JFrame {
         //players
         JPanel players = new JPanel();
         players.setLayout(new GridBagLayout());
-        ((GridBagLayout)players.getLayout()).columnWidths = new int[] {0, 0};
-        ((GridBagLayout)players.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0};
-        ((GridBagLayout)players.getLayout()).columnWeights = new double[] {1.0, 1.0E-4};
-        ((GridBagLayout)players.getLayout()).rowWeights = new double[] {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0E-4};
+        ((GridBagLayout) players.getLayout()).columnWidths = new int[]{0, 0};
+        ((GridBagLayout) players.getLayout()).rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
+        ((GridBagLayout) players.getLayout()).columnWeights = new double[]{1.0, 1.0E-4};
+        ((GridBagLayout) players.getLayout()).rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0E-4};
 
         //label1
         label1 = new JLabel();
@@ -98,7 +94,6 @@ public class PlayerSelection extends JFrame {
         players.add(label6, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         contentPane.add(players, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 14, 0), 0, 0));
-
 
         //optPanel
         JPanel optPanel = new JPanel();
@@ -145,7 +140,21 @@ public class PlayerSelection extends JFrame {
         contentPane.add(optPanel, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
         pack();
         setLocationRelativeTo(getOwner());
+    }
 
+    private Color stringToColor(String s) {
+        if (s.equalsIgnoreCase("Gelb")) {
+            return Color.YELLOW;
+        } else if (s.equalsIgnoreCase("Rot")) {
+            return Color.RED;
+        } else if (s.equalsIgnoreCase("Rosa")) {
+            return Color.PINK;
+        } else if (s.equalsIgnoreCase("Grün")) {
+            return Color.GREEN;
+        } else if (s.equalsIgnoreCase("Schwarz")) {
+            return Color.BLACK;
+        }
+        return Color.BLUE;
     }
 
     class TileListener implements ActionListener {
@@ -153,57 +162,33 @@ public class PlayerSelection extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource().equals(pAdd)) {
                 if (pCounter < 6) {
-
-                    for (Player p : players){
+                    for (Player p : players) {
                         if (stringToColor((String) pColor.getSelectedItem()).equals(p.getFarbe())) {
                             Main.errorMessage("Diese Farbe ist vergeben", "Bitte andere Farbe wählen!!!");
                             return;
-                        }else
-                        if(p.getPlayername().equalsIgnoreCase(pName.getText())){
-                            Main.errorMessage("Dieser Spielernamen ist schon vergeben","ERRRORORROROR");
+                        } else if (p.getPlayername().equalsIgnoreCase(pName.getText())) {
+                            Main.errorMessage("Dieser Spielernamen ist schon vergeben", "ERRRORORROROR");
                             return;
                         }
-
                     }
                     Player player = new Player(stringToColor((String) pColor.getSelectedItem()), Main.getBoard(), pName.getText());
                     players.add(player);
                     labels.get(pCounter).setText(pName.getText());
                     labels.get(pCounter).setForeground(stringToColor((String) pColor.getSelectedItem()));
-                    pCounter ++;
-
+                    pCounter++;
                 }
             } else if (e.getSource().equals(remAll)) {
                 pCounter = 0;
                 players = new LinkedList<>();
-                for(JLabel label : labels){
+                for (JLabel label : labels) {
                     label.setText("Kein Spieler");
                     label.setForeground(Color.BLACK);
                 }
-            }else if(e.getSource().equals(fertigButton)){
-                if(pCounter > 1){
+            } else if (e.getSource().equals(fertigButton)) {
+                if (pCounter > 1) {
                     Main.startGame(players);
                 }
             }
-
-
         }
     }
-
-
-    private Color stringToColor(String s){
-
-        if(s.equalsIgnoreCase("Gelb")){
-            return Color.YELLOW;
-        }else if(s.equalsIgnoreCase("Rot")){
-            return Color.RED;
-        }else if(s.equalsIgnoreCase("Rosa")){
-            return Color.PINK;
-        }else if(s.equalsIgnoreCase("Grün")){
-            return Color.GREEN;
-        }else if(s.equalsIgnoreCase("Schwarz")){
-            return Color.BLACK;
-        }
-        return Color.BLUE;
-    }
-
 }

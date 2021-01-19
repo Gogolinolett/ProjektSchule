@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class Stage_1 extends JPanel {
+    private JLabel aTroops = new JLabel();
+    private JSpinner aTroopsSpinner = new JSpinner();
+    private JButton cButton = new JButton();
     private int troops;
     private String playername;
     private Area land;
@@ -21,7 +24,6 @@ public class Stage_1 extends JPanel {
     private JButton aKarte;
 
     public Stage_1(Player player) {
-
         troops = player.getTroopsPerTurn();
         this.playername = player.getPlayername();
         this.player = player;
@@ -37,22 +39,18 @@ public class Stage_1 extends JPanel {
     }
 
     public void setLand(Area land) {
-        sCountryPane.setText("Land: " + land.getName()  + " \nTruppen Anzahl: " + land.getTroopCount());
+        sCountryPane.setText("Land: " + land.getName() + " \nTruppen Anzahl: " + land.getTroopCount());
         sCountryPane.setForeground(land.getFarbeOwner());
         this.land = land;
     }
 
-    JLabel aTroops = new JLabel();
-    JSpinner aTroopsSpinner = new JSpinner();
-    JButton cButton = new JButton();
-
     private void initComponents() {
         setOpaque(true);
         setLayout(new GridBagLayout());
-        ((GridBagLayout) getLayout()).columnWidths = new int[] {0, 0, 0};
-        ((GridBagLayout) getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        ((GridBagLayout) getLayout()).columnWeights = new double[] {1.0, 1.0, 1.0E-4};
-        ((GridBagLayout) getLayout()).rowWeights = new double[] {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0E-4};
+        ((GridBagLayout) getLayout()).columnWidths = new int[]{0, 0, 0};
+        ((GridBagLayout) getLayout()).rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        ((GridBagLayout) getLayout()).columnWeights = new double[]{1.0, 1.0, 1.0E-4};
+        ((GridBagLayout) getLayout()).rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0E-4};
 
         //pName
         pName = new JLabel();
@@ -125,37 +123,34 @@ public class Stage_1 extends JPanel {
         add(sPane2, new GridBagConstraints(0, 9, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
     }
 
-    public void addTroops(int troops){
+    public void addTroops(int troops) {
         this.troops = troops;
         aTroopsSpinner.setModel(new SpinnerNumberModel(0, 0, troops, 1));
     }
 
-
-
     class TileListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
-            if(e.getSource() instanceof  JButton){
+            if (e.getSource() instanceof JButton) {
                 JButton btn = (JButton) e.getSource();
-                if(btn.equals(cButton)){
-                    if(land != null && land.getFarbeOwner().equals(player.getFarbe())) {
+                if (btn.equals(cButton)) {
+                    if (land != null && land.getFarbeOwner().equals(player.getFarbe())) {
                         int z = (int) aTroopsSpinner.getValue();
                         troops = troops - z;
                         land.addTroops(z);
                         aTroopsSpinner.setModel(new SpinnerNumberModel(0, 0, troops, 1));
                         aTroops.setText("Anzahl der Truppen: " + troops);
                     }
-                }else if(btn.equals(nStage)&& troops == 0){
+                } else if (btn.equals(nStage) && troops == 0) {
                     System.out.println("next stage");
                     Main.nextStage();
-                } else if(btn.equals(mKarte)){
+                } else if (btn.equals(mKarte)) {
                     try {
                         MissionsKarte m = new MissionsKarte(player.getWinningConditions().getImg());
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                     }
-                }else  if(btn.equals(aKarte)){
+                } else if (btn.equals(aKarte)) {
                     try {
                         AngriffsKarten angriffsKarten = new AngriffsKarten(player);
                     } catch (IOException ioException) {

@@ -11,14 +11,14 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 public class Map implements ComponentListener, WindowStateListener {
-    private static final int width = 16;
-    private static final int height = 39;
-    private static final JFrame frame = new JFrame("");
-    private static final JLayeredPane layeredPane = new JLayeredPane();
-    private static final JPanel pane = new JPanel();
-    private static final int num = 40;
-    private static final JButton[][] t = new JButton[num][num];
-    private static final LinkedList<JButton> btns = new LinkedList<>();
+    private static int width = 16;
+    private static int height = 39;
+    private static JFrame frame = new JFrame("");
+    private static JLayeredPane layeredPane = new JLayeredPane();
+    private static JPanel pane = new JPanel();
+    private static int num = 40;
+    private static JButton[][] t = new JButton[num][num];
+    private static LinkedList<JButton> btns = new LinkedList<>();
     private final Image img = ImageIO.read(new File("src\\resources\\other\\map.png"));
     private final ImagePanel lime = new ImagePanel(img);
 
@@ -61,13 +61,6 @@ public class Map implements ComponentListener, WindowStateListener {
     }
 
     public static void countries() {
-        //for (int r = 0; r < num; r++) {
-        //    for (int c = 0; c < num; c++) {
-        //        if ((r + c) % 2 != 0) {
-        //            t[r][c].setVisible(false);
-        //        }
-        //    }
-        //}
         //NordAmerika
         t[6][2].setVisible(true);
         t[6][2].putClientProperty("country", "ALASKA");
@@ -243,23 +236,26 @@ public class Map implements ComponentListener, WindowStateListener {
         btns.add(t[35][38]);
     }
 
-    public void updateMap (LinkedList<Area> areas){
+    private static boolean isMaximized(int state) {
+        return (state & Frame.MAXIMIZED_BOTH) == Frame.MAXIMIZED_BOTH;
+    }
+
+    public void updateMap(LinkedList<Area> areas) {
         for (int i = 0; i < areas.size(); i++) {
             for (int f = 0; f < btns.size(); f++) {
-                if(areas.get(i).equals(Main.stringToArea((String) btns.get(f).getClientProperty("country")))){
+                if (areas.get(i).equals(Main.stringToArea((String) btns.get(f).getClientProperty("country")))) {
                     btns.get(f).setText(String.valueOf(areas.get(i).getTroopCount()));
-
-                    if(areas.get(i).getFarbeOwner() == Color.BLUE){
+                    if (areas.get(i).getFarbeOwner() == Color.BLUE) {
                         btns.get(f).setBackground(Color.BLUE);
-                    } else if (areas.get(i).getFarbeOwner() == Color.BLACK){
+                    } else if (areas.get(i).getFarbeOwner() == Color.BLACK) {
                         btns.get(f).setBackground(Color.BLACK);
-                    }else if (areas.get(i).getFarbeOwner() == Color.GREEN){
+                    } else if (areas.get(i).getFarbeOwner() == Color.GREEN) {
                         btns.get(f).setBackground(Color.GREEN);
-                    }else if (areas.get(i).getFarbeOwner() == Color.PINK){
+                    } else if (areas.get(i).getFarbeOwner() == Color.PINK) {
                         btns.get(f).setBackground(Color.PINK);
-                    }else if (areas.get(i).getFarbeOwner() == Color.RED){
+                    } else if (areas.get(i).getFarbeOwner() == Color.RED) {
                         btns.get(f).setBackground(Color.RED);
-                    }else if (areas.get(i).getFarbeOwner() == Color.YELLOW){
+                    } else if (areas.get(i).getFarbeOwner() == Color.YELLOW) {
                         btns.get(f).setBackground(Color.YELLOW);
                     }
                 }
@@ -271,10 +267,6 @@ public class Map implements ComponentListener, WindowStateListener {
         for (int i = 0; i < btns.size(); i++) {
             btns.get(i).setEnabled(x);
         }
-    }
-
-    private static boolean isMaximized(int state) {
-        return (state & Frame.MAXIMIZED_BOTH) == Frame.MAXIMIZED_BOTH;
     }
 
     public void windowStateChanged(WindowEvent event) {
@@ -309,6 +301,10 @@ public class Map implements ComponentListener, WindowStateListener {
     public void componentHidden(ComponentEvent e) {
     }
 
+    public void setVisible(boolean b) {
+        frame.setVisible(b);
+    }
+
     class ImagePanel extends JPanel {
         private final Image img;
         private Image scaled;
@@ -330,8 +326,7 @@ public class Map implements ComponentListener, WindowStateListener {
 
         @Override
         public Dimension getPreferredSize() {
-            return img == null ? new Dimension(200, 200) : new Dimension(
-                    img.getWidth(this), img.getHeight(this));
+            return img == null ? new Dimension(200, 200) : new Dimension(img.getWidth(this), img.getHeight(this));
         }
 
         @Override
@@ -350,9 +345,5 @@ public class Map implements ComponentListener, WindowStateListener {
             String country = (String) btn.getClientProperty("country");
             System.out.println(country);
         }
-    }
-
-    public void setVisible(boolean b){
-        frame.setVisible(b);
     }
 }

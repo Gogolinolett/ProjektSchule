@@ -13,7 +13,6 @@ public class Stage_2 extends JPanel {
     private Area attackingArea;
     private Area defendingArea;
     private Player player;
-
     private JEditorPane sDefendCountryPane;
     private JEditorPane sAttackCountryPane;
     private JButton cButton;
@@ -30,26 +29,26 @@ public class Stage_2 extends JPanel {
 
         setBackground(Color.white);
         setLayout(new GridBagLayout());
-        ((GridBagLayout) getLayout()).columnWidths = new int[] {0, 0, 0};
-        ((GridBagLayout) getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        ((GridBagLayout) getLayout()).columnWeights = new double[] {1.0, 1.0, 1.0E-4};
-        ((GridBagLayout) getLayout()).rowWeights = new double[] {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0E-4};
+        ((GridBagLayout) getLayout()).columnWidths = new int[]{0, 0, 0};
+        ((GridBagLayout) getLayout()).rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        ((GridBagLayout) getLayout()).columnWeights = new double[]{1.0, 1.0, 1.0E-4};
+        ((GridBagLayout) getLayout()).rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0E-4};
 
         //pName
         JLabel pName = new JLabel();
         pName.setText(player.getPlayername() + "\u00b4s Turn");
         pName.setForeground(player.getFarbe());
-		add(pName, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+        add(pName, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //cStage
         JLabel cStage = new JLabel();
         cStage.setText("Schritt 2/3: Erobern");
-		add(cStage, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.VERTICAL, new Insets(0, 0, 0, 0), 0, 0));
+        add(cStage, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.VERTICAL, new Insets(0, 0, 0, 0), 0, 0));
 
         //sAttackCountry
         JLabel sAttackCountry = new JLabel();
         sAttackCountry.setText("Ausgewähltes  Angreifer Land:");
-		add(sAttackCountry, new GridBagConstraints(0, 1, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+        add(sAttackCountry, new GridBagConstraints(0, 1, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //sPane
         JScrollPane sPane = new JScrollPane();
@@ -60,12 +59,12 @@ public class Stage_2 extends JPanel {
         sAttackCountryPane.setEditable(false);
         sPane.setViewportView(sAttackCountryPane);
 
-		add(sPane, new GridBagConstraints(0, 2, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+        add(sPane, new GridBagConstraints(0, 2, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //sDefendCountry
         JLabel sDefendCountry = new JLabel();
         sDefendCountry.setText("Ausgewähltes  Verteidiger Land:");
-		add(sDefendCountry, new GridBagConstraints(0, 3, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+        add(sDefendCountry, new GridBagConstraints(0, 3, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //sPane2
         JScrollPane sPane2 = new JScrollPane();
@@ -76,25 +75,25 @@ public class Stage_2 extends JPanel {
         sDefendCountryPane.setEditable(false);
         sPane2.setViewportView(sDefendCountryPane);
 
-		add(sPane2, new GridBagConstraints(0, 4, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+        add(sPane2, new GridBagConstraints(0, 4, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //cButton
         cButton = new JButton();
         cButton.setText("Bestätigen");
         cButton.addActionListener(new TileListener());
-		add(cButton, new GridBagConstraints(0, 5, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+        add(cButton, new GridBagConstraints(0, 5, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //mKarte
         mKarte = new JButton();
         mKarte.addActionListener(new TileListener());
         mKarte.setText("Missionskarte\nansehen\n");
-		add(mKarte, new GridBagConstraints(0, 7, 2, 2, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+        add(mKarte, new GridBagConstraints(0, 7, 2, 2, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //nStage
         nStage = new JButton();
         nStage.addActionListener(new TileListener());
         nStage.setText("Nächster Schritt");
-		add(nStage, new GridBagConstraints(0, 9, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+        add(nStage, new GridBagConstraints(0, 9, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //sPane3
         JScrollPane sPane3 = new JScrollPane();
@@ -106,18 +105,29 @@ public class Stage_2 extends JPanel {
         sLogPane.setEditable(false);
         sPane3.setViewportView(sLogPane);
 
-		add(sPane3, new GridBagConstraints(0, 10, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+        add(sPane3, new GridBagConstraints(0, 10, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+    }
+
+    public void setAttackingArea(Area attackingArea) {
+        sAttackCountryPane.setText("Land:" + attackingArea.getName() + " \nTruppen Anzahl: " + attackingArea.getTroopCount());
+        sAttackCountryPane.setForeground((attackingArea.getFarbeOwner()));
+        this.attackingArea = attackingArea;
+    }
+
+    public void setDefendingArea(Area defendingArea) {
+        sDefendCountryPane.setText("Land:" + defendingArea.getName() + " \nTruppen Anzahl: " + defendingArea.getTroopCount());
+        sDefendCountryPane.setForeground(defendingArea.getFarbeOwner());
+        this.defendingArea = defendingArea;
     }
 
     class TileListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(e.getSource() instanceof  JButton){
+            if (e.getSource() instanceof JButton) {
                 JButton btn = (JButton) e.getSource();
-
-                if(btn.equals(cButton)){
-                    if (attackingArea != null && defendingArea != null){
-                        if(attackingArea.getTroopCount() > 1 && attackingArea.isNeighbour(defendingArea)){
+                if (btn.equals(cButton)) {
+                    if (attackingArea != null && defendingArea != null) {
+                        if (attackingArea.getTroopCount() > 1 && attackingArea.isNeighbour(defendingArea)) {
                             try {
                                 Würfeln würfeln = new Würfeln(attackingArea, defendingArea);
                             } catch (InterruptedException | IOException interruptedException) {
@@ -125,29 +135,16 @@ public class Stage_2 extends JPanel {
                             }
                         }
                     }
-                }else if(btn.equals(nStage)){
+                } else if (btn.equals(nStage)) {
                     Main.nextStage();
-                } else if(btn.equals(mKarte)){
+                } else if (btn.equals(mKarte)) {
                     try {
                         MissionsKarte m = new MissionsKarte(player.getWinningConditions().getImg());
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                     }
                 }
-
             }
         }
-    }
-
-    public void setAttackingArea(Area attackingArea) {
-        sAttackCountryPane.setText("Land:" + attackingArea.getName() +" \nTruppen Anzahl: " + attackingArea.getTroopCount());
-        sAttackCountryPane.setForeground((attackingArea.getFarbeOwner()));
-        this.attackingArea = attackingArea;
-    }
-
-    public void setDefendingArea(Area defendingArea) {
-        sDefendCountryPane.setText("Land:" + defendingArea.getName() +" \nTruppen Anzahl: " + defendingArea.getTroopCount());
-        sDefendCountryPane.setForeground(defendingArea.getFarbeOwner());
-        this.defendingArea = defendingArea;
     }
 }

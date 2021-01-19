@@ -10,11 +10,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.Comparator;
 import java.util.LinkedList;
 
 public class Würfeln extends JFrame {
-private JCheckBox aDice1;
+    private Area aggressor;
+    private Area defender;
+    private JCheckBox aDice1;
     private JCheckBox dDice1;
     private JCheckBox aDice2;
     private JCheckBox dDice2;
@@ -26,8 +27,6 @@ private JCheckBox aDice1;
     private Container contentPane;
     private LinkedList<Integer> aDiceList;
     private LinkedList<Integer> dDiceList;
-    private final Area aggressor;
-    private final Area defender;
     private int acount;
     private Results r;
 
@@ -111,7 +110,7 @@ private JCheckBox aDice1;
         aDice2.setHorizontalAlignment(SwingConstants.RIGHT);
         contentPane.add(aDice2, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
-        if(aggressor.getTroopCount() == 2){
+        if (aggressor.getTroopCount() == 2) {
             aDice2.setEnabled(false);
             aDice2.setSelected(false);
         }
@@ -121,7 +120,7 @@ private JCheckBox aDice1;
         aDice3.setHorizontalAlignment(SwingConstants.RIGHT);
         contentPane.add(aDice3, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
-        if(aggressor.getTroopCount() -1 <2){
+        if (aggressor.getTroopCount() - 1 < 2) {
             aDice3.setEnabled(false);
             aDice3.setSelected(false);
         }
@@ -132,7 +131,6 @@ private JCheckBox aDice1;
         dDice1.setSelected(true);
         contentPane.add(dDice1, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
-
         //dDice2
         dDice2 = new JCheckBox();
         dDice2.setEnabled(false);
@@ -141,10 +139,9 @@ private JCheckBox aDice1;
         if (defender.getTroopCount() != 1) {
             dDice2.setSelected(true);
         }
-
     }
 
-    public Würfeln getThis(){
+    public Würfeln getThis() {
         return this;
     }
 
@@ -168,7 +165,7 @@ private JCheckBox aDice1;
                     }
                     int dcount = defender.getTroopCount();
 
-                    if(acount >= aggressor.getTroopCount()){
+                    if (acount >= aggressor.getTroopCount()) {
                         return;
                     }
 
@@ -178,7 +175,6 @@ private JCheckBox aDice1;
                     } catch (Throwable throwable) {
                         throwable.printStackTrace();
                     }
-
 
                     Results r = null;
                     try {
@@ -190,11 +186,8 @@ private JCheckBox aDice1;
                     }
                     setCheckBox();
                 } else if (btn.equals(retreatButton)) {
-
                 }
             }
         }
     }
-
-
 }

@@ -11,16 +11,14 @@ import java.io.File;
 import java.io.IOException;
 
 public class AngriffsKarten extends JFrame {
-    private final Image img = ImageIO.read(new File("src\\resources\\other\\einheiten.png"));
-
+    private Image img = ImageIO.read(new File("src\\resources\\other\\einheiten.png"));
     private JButton confirmButton;
-    private Player player;
+    private  Player player;
     private JSpinner spinner;
     private JButton cancelButton;
 
     public AngriffsKarten(Player player) throws IOException {
         this.player = player;
-
         initComponents();
     }
 
@@ -53,9 +51,9 @@ public class AngriffsKarten extends JFrame {
 
         //spinner
         spinner = new JSpinner();
-        if(player.getSterne() < 10){
+        if (player.getSterne() < 10) {
             spinner.setModel(new SpinnerNumberModel(0, 0, player.getSterne(), 1));
-        }else{
+        } else {
             spinner.setModel(new SpinnerNumberModel(0, 0, 10, 1));
         }
 
@@ -70,8 +68,6 @@ public class AngriffsKarten extends JFrame {
         confirmButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         contentPane.add(confirmButton);
 
-
-
         pack();
         setLocationRelativeTo(getOwner());
     }
@@ -79,34 +75,32 @@ public class AngriffsKarten extends JFrame {
     class TileListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            JButton btn = (JButton) e.getSource();
 
-            JButton btn  = (JButton) e.getSource();
-
-            if(btn.equals(confirmButton)){
+            if (btn.equals(confirmButton)) {
                 int t = 0;
-                if((int) spinner.getValue() ==  2){
+                if ((int) spinner.getValue() == 2) {
                     t = 2;
-                }else  if((int) spinner.getValue() ==  3){
+                } else if ((int) spinner.getValue() == 3) {
                     t = 4;
-                }else if((int) spinner.getValue() ==  4){
+                } else if ((int) spinner.getValue() == 4) {
                     t = 7;
-                }else  if((int) spinner.getValue() ==  5){
+                } else if ((int) spinner.getValue() == 5) {
                     t = 10;
-                }else  if((int) spinner.getValue() ==  6){
+                } else if ((int) spinner.getValue() == 6) {
                     t = 13;
-                }else  if((int) spinner.getValue() ==  7){
+                } else if ((int) spinner.getValue() == 7) {
                     t = 17;
-                }else  if((int) spinner.getValue() ==  8){
+                } else if ((int) spinner.getValue() == 8) {
                     t = 21;
-                }else  if((int) spinner.getValue() ==  9){
+                } else if ((int) spinner.getValue() == 9) {
                     t = 25;
-                }else if((int) spinner.getValue() ==  10){
+                } else if ((int) spinner.getValue() == 10) {
                     t = 30;
                 }
 
                 Main.redeemedCardTroops(t);
-
-            }else if(btn.equals(cancelButton)){
+            } else if (btn.equals(cancelButton)) {
 
             }
         }
