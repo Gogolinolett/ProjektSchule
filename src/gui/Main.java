@@ -359,7 +359,8 @@ public class Main {
         playerSelection = new PlayerSelection();
     }
 
-    public static void startGame(LinkedList<Player> playerss){
+    public static void startGame(LinkedList<Player> playerss)
+    {
         players = playerss;
         playerSelection.setVisible(false);
         frame.setLayout(new GridLayout());
