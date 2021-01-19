@@ -94,12 +94,13 @@ public class Board {
             aggressor.setTroopCount(aggressor.getTroopCount() - 1);
             zz ++;
         }
-
-        if(angreiferErgebniss.get(1) > verteiderEgebniss.get(1)){
-            defender.setTroopCount(defender.getTroopCount() - 1);
-        }else{
-            aggressor.setTroopCount(aggressor.getTroopCount() - 1);
-            zz ++;
+        if(defender.getTroopCount() > 0 && troops > 1) {
+            if (angreiferErgebniss.get(1) > verteiderEgebniss.get(1)) {
+                defender.setTroopCount(defender.getTroopCount() - 1);
+            } else {
+                aggressor.setTroopCount(aggressor.getTroopCount() - 1);
+                zz++;
+            }
         }
         if(defender.getTroopCount() < 1){
 
