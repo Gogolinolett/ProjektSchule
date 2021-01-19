@@ -88,9 +88,7 @@ public class Results extends JFrame {
         JLabel titel = new JLabel();
         titel.setText("Ergebnisse");
         titel.setHorizontalAlignment(SwingConstants.CENTER);
-        contentPane.add(titel, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(0, 0, 5, 5), 0, 0));
+        contentPane.add(titel, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
         //a1
         a1 = new JLabel("");
@@ -127,13 +125,10 @@ public class Results extends JFrame {
         w.dispose();
 
         roll();
-
-
+        
         if(!b){
             t.setInitialDelay(3000);
             t.start();
-
-
         }
 
     }
