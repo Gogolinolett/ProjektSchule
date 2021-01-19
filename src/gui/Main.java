@@ -8,6 +8,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 
@@ -365,6 +366,7 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(550, 750);
         frame.setVisible(true);
+        frame.setAlwaysOnTop(true);
 
         try {
             setUpWinConCards();
@@ -491,7 +493,14 @@ public class Main {
     }
 
     public static void errorMessage(String message, String windowname) {
+        frame.setAlwaysOnTop(false);
         JOptionPane.showMessageDialog(null, message, windowname, JOptionPane.WARNING_MESSAGE);
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        frame.setAlwaysOnTop(true);
     }
 
     public static void wonMessage(String message, String windowname) {
