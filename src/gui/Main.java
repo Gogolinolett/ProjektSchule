@@ -365,7 +365,6 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(550, 750);
         frame.setVisible(true);
-        frame.setAlwaysOnTop(true);
 
         try {
             setUpWinConCards();
