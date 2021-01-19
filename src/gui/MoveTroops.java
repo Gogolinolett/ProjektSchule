@@ -84,27 +84,22 @@ public class MoveTroops extends JFrame {
         setVisible(true);
     }
 
-    public void setAttackingArea(Area attackingArea) {
+    public void setOriginArea(Area attackingArea) {
         sOriginCountryPane.setText("Land:" + attackingArea.getName() +" \nTruppen Anzahl: " + attackingArea.getTroopCount());
         sDestinationCountryPane.setForeground((attackingArea.getFarbeOwner()));
-        this.attackingArea = attackingArea;
     }
 
-    public void setDefendingArea(Area defendingArea) {
-        sDefendCountryPane.setText("Land:" + defendingArea.getName() +" \nTruppen Anzahl: " + defendingArea.getTroopCount());
-        sDefendCountryPane.setForeground(defendingArea.getFarbeOwner());
-        this.defendingArea = defendingArea;
+    public void setDestinationArea(Area defendingArea) {
+        sOriginCountryPane.setText("Land:" + defendingArea.getName() +" \nTruppen Anzahl: " + defendingArea.getTroopCount());
+        sDestinationCountryPane.setForeground(defendingArea.getFarbeOwner());
     }
 
     class TileListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             JButton btn = (JButton) e.getSource();
-            if (a1.getFarbeOwner().equals(players.get(activePlayer).getFarbe())) {
-                s.setAttackingArea(a1);
-            } else {
-                s.setDefendingArea(a2);
-            }
+            setOriginArea(a1);
+            setDestinationArea(a2);
             if(btn.equals(cButton)){
                 a2.setFarbeOwner(a1.getFarbeOwner());
                 if(troops < (int)spinner.getValue() && (int)spinner.getValue() < a1.getTroopCount()){
