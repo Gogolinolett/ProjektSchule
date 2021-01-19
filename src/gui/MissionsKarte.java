@@ -21,7 +21,7 @@ public class MissionsKarte extends JFrame {
         setVisible(true);
         setAlwaysOnTop(true);
         setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setMinimumSize(new Dimension(267, 430));
         setTitle("Mission");
         Container contentPane = getContentPane();
