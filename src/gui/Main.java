@@ -66,7 +66,7 @@ public class Main {
         winConCards.add(mk_eu_sa_3);
         WinningConditions mk_gr = new WinningConditions(null,null, Color.GREEN , 0, ImageIO.read(new File("src\\resources\\miss_karte\\MK_gr.png")));
         winConCards.add(mk_gr);
-        WinningConditions mk_na_af = new WinningConditions(regions.get(0), regions.get(3), null, 1, ImageIO.read(new File("src\\resources\\miss_karte\\MK_na&af.png")));
+        WinningConditions mk_na_af = new WinningConditions(regions.get(0), regions.get(3), null, 1, ImageIO.read(new File("src\\resources\\miss_karte\\MK_na&af.jpg")));
         winConCards.add(mk_na_af);
         WinningConditions mk_na_oc = new WinningConditions(regions.get(0), regions.get(4), null, 1, ImageIO.read(new File("src\\resources\\miss_karte\\MK_na&oc.png")));
         winConCards.add(mk_na_oc);
@@ -357,23 +357,35 @@ public class Main {
         frame.setSize(550, 750);
         frame.setVisible(true);
         frame.setAlwaysOnTop(true);
-<<<<<<< HEAD
 
+        try {
+            setUpWinConCards();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         boolean zwischen2 = false;
-=======
-/*
->>>>>>> 5a2ba907d9b84b6ff7e303543c85713ceca0e058
+
+        LinkedList<WinningConditions> zwisch = new LinkedList<>();
+
         for(WinningConditions winningConditions : winConCards){
             for(Player p : playerss){
+
+                if (winningConditions.getColor() == null){
+                    zwischen2 = true;
+                }else
                 if (winningConditions.getColor().equals(p.getFarbe())){
                     zwischen2 = true;
                 }
             }
             if (zwischen2 == false){
-                winConCards.remove(winningConditions);
+                zwisch.add(winningConditions);
             }
             zwischen2 = false;
 
+        }
+
+        for(WinningConditions winningConditions : zwisch){
+            winConCards.remove(winningConditions);
         }
 
         for(Player p : playerss){
@@ -382,7 +394,7 @@ public class Main {
             p.setWinningConditions(winConCards.get(rand));
             winConCards.remove(winConCards.get(rand));
         }
-*/
+
         m.setVisible(true);
 
         int size = areas.size();
