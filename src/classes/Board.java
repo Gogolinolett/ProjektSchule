@@ -71,6 +71,10 @@ public class Board {
     }
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 722b309aa24b36f49c37aa482092b8432b307810
     public static boolean fight(Area aggressor, Area defender, int troops, LinkedList<Integer> angreiferErgebniss, LinkedList<Integer> verteiderEgebniss, Würfeln würfeln){
 
         if(troops + 1 > aggressor.getTroopCount()){
