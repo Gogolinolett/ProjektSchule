@@ -53,5 +53,7 @@ public class Player {
         }
     }
 
-
+    public int getSterne() {
+        return sterne;
+    }
 }

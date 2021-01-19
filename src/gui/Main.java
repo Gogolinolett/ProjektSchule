@@ -333,6 +333,10 @@ public class Main {
 
     public static void nextStage() {
 
+        if(players.get(activePlayer).getWinningConditions().istGewonnen(areas,regions,players.get(activePlayer))){
+            wonMessage("Spieler: " + players.get(activePlayer).getPlayername() + " hat gewonnen!", "Vorbei");
+            return;
+        }
         stage = stage + 1;
         if (stage > 3) {
             activePlayer = activePlayer + 1;
@@ -491,6 +495,10 @@ public class Main {
 
     public static void errorMessage(String message, String windowname) {
         JOptionPane.showMessageDialog(null, message, windowname, JOptionPane.WARNING_MESSAGE);
+    }
+
+    public static void wonMessage(String message, String windowname) {
+        JOptionPane.showMessageDialog(null, message, windowname, JOptionPane.PLAIN_MESSAGE);
     }
 
     public static Board getBoard() {
