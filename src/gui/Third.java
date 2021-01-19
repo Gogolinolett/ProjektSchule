@@ -111,6 +111,7 @@ public class Third extends JPanel {
 
         //mKarte
         mKarte = new JButton();
+        mKarte.addActionListener(new TileListener());
         mKarte.setText("Missionskarte\nansehen\n");
         add(mKarte, new GridBagConstraints(0, 8, 1, 2, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
