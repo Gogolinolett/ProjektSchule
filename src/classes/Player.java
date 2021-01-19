@@ -7,8 +7,9 @@ public class Player {
     private final Color farbe;
     private Board board;
     private String playername;
+    private int sterne = 0;
     private WinningConditions winningConditions;
-    private LinkedList<Card> cards = new LinkedList<>();
+
 
     public Player(Color farbe, Board board, String playername){
         this.farbe = farbe;
@@ -40,4 +41,17 @@ public class Player {
     public void setWinningConditions(WinningConditions winningConditions) {
         this.winningConditions = winningConditions;
     }
+
+    public void drawn(){
+
+        int rand = (int)(Math.random() * (52 + 1));
+
+        if(rand < 12){
+            sterne  += 2;
+        }else{
+            sterne ++;
+        }
+    }
+
+
 }

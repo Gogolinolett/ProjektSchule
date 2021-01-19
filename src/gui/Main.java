@@ -81,40 +81,8 @@ public class Main {
 
     }
 
-    public static void setUpStarCards(){
-        cards = new LinkedList<>();
-        for(int i = 0; i < 12; i ++){
-            cards.add(new Card(2));
-        }
 
-        for(int i = 0; i < 30; i ++){
-            cards.add(new Card(1));
-        }
 
-        for(int i = 0; i < 200; i ++){
-            int rand = (int)(Math.random() * (cards.size()  + 1));
-            int rand2 = (int)(Math.random() * (cards.size()  + 1));
-            Card card = cards.get(rand);
-            cards.set(rand, cards.get(rand2));
-            cards.set(rand2, card);
-        }
-    }
-
-    public static void shuffle(){
-        cards = ablageStapel;
-
-        for(int i = 0; i < 200; i ++){
-            int rand = (int)(Math.random() * (cards.size()  + 1));
-            int rand2 = (int)(Math.random() * (cards.size()  + 1));
-            Card card = cards.get(rand);
-            cards.set(rand, cards.get(rand2));
-            cards.set(rand2, card);
-        }
-    }
-
-    public static void drawCard(Player player){
-        player.
-    }
 
     public static void setupAreasAndRegions() {
 
