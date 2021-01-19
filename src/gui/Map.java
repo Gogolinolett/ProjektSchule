@@ -56,8 +56,8 @@ public class Map implements ComponentListener, WindowStateListener {
         frame.addComponentListener(this);
         frame.addWindowStateListener(this);
 
-        frame.add(layeredPane);
         countries();
+        frame.add(layeredPane);
     }
 
     public static void countries() {
