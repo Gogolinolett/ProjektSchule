@@ -7,18 +7,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class Third extends JPanel {
-
+    private JButton mKarte;
     private  Player player;
-    JButton cButton;
-    Area origin;
-    Area destination;
-    JLabel aTroops;
-    JSpinner aTroopsSpinner;
-    JLabel sOriginCountry;
-    JLabel sDestinationCountry;
-    JButton nStage;
+    private JButton cButton;
+    private Area origin;
+    private Area destination;
+    private JLabel aTroops;
+    private JSpinner aTroopsSpinner;
+    private JLabel sOriginCountry;
+    private JLabel sDestinationCountry;
+    private JButton nStage;
 
     public void setArea(Area area){
         if(destination == null){
@@ -109,7 +110,7 @@ public class Third extends JPanel {
         add(cButton, new GridBagConstraints(0, 6, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //mKarte
-        JButton mKarte = new JButton();
+        mKarte = new JButton();
         mKarte.setText("Missionskarte\nansehen\n");
         add(mKarte, new GridBagConstraints(0, 8, 1, 2, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
@@ -149,6 +150,12 @@ public class Third extends JPanel {
                     }
                 }else if(nStage.equals(btn)){
                     Main.nextStage();
+                } else if(btn.equals(mKarte)){
+                    try {
+                        MissionsKarte m = new MissionsKarte(player.getWinningConditions().getImg());
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
                 }
 
             }

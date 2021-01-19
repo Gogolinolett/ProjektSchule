@@ -7,16 +7,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class Second extends JPanel {
     private Area attackingArea;
     private Area defendingArea;
     private Player player;
 
-    JEditorPane sDefendCountryPane;
-    JEditorPane sAttackCountryPane;
-    JButton cButton;
-    JButton nStage;
+    private JEditorPane sDefendCountryPane;
+    private JEditorPane sAttackCountryPane;
+    private JButton cButton;
+    private JButton nStage;
+    private JButton mKarte;
 
     public Second(Player player) {
         this.player = player;
@@ -82,7 +84,7 @@ public class Second extends JPanel {
         add(cButton, new GridBagConstraints(0, 5, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //mKarte
-        JButton mKarte = new JButton();
+        mKarte = new JButton();
         mKarte.setText("Missionskarte\nansehen\n");
         add(mKarte, new GridBagConstraints(0, 7, 1, 2, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
@@ -128,6 +130,12 @@ public class Second extends JPanel {
                     }
                 }else if(btn.equals(nStage)){
                     Main.nextStage();
+                } else if(btn.equals(mKarte)){
+                    try {
+                        MissionsKarte m = new MissionsKarte(player.getWinningConditions().getImg());
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
                 }
 
             }

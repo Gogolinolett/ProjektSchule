@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class First extends JPanel {
     private int troops;
@@ -15,7 +16,7 @@ public class First extends JPanel {
     private Player player;
     private JEditorPane sCountryPane;
     private JButton nStage;
-
+    private JButton mKarte;
     private JLabel pName;
 
     public First(Player player) {
@@ -101,7 +102,7 @@ public class First extends JPanel {
         add(cButton, new GridBagConstraints(0, 5, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //mKarte
-        JButton mKarte = new JButton();
+        mKarte = new JButton();
         mKarte.setText("Missionskarte\nansehen\n");
         add(mKarte, new GridBagConstraints(0, 7, 1, 2, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
@@ -150,6 +151,12 @@ public class First extends JPanel {
                 }else if(btn.equals(nStage)&& troops == 0){
                     System.out.println("next stage");
                     Main.nextStage();
+                } else if(btn.equals(mKarte)){
+                    try {
+                        MissionsKarte m = new MissionsKarte(player.getWinningConditions().getImg());
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
                 }
             }
         }
