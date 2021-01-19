@@ -177,6 +177,7 @@ public class Würfeln extends JFrame {
                         interruptedException.printStackTrace();
                     }
                     setCheckBox();
+                    r.dispose();
                 } else if (btn.equals(retreatButton)) {
 
                 }

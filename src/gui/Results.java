@@ -114,7 +114,7 @@ public class Results extends JFrame {
         pack();
         setLocationRelativeTo(getOwner());
         setVisible(true);
-        animation();
+        //animation();
         roll();
     }
 
