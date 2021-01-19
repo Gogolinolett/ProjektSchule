@@ -125,7 +125,7 @@ public class Results extends JFrame {
         w.dispose();
 
         roll();
-        
+
         if(!b){
             t.setInitialDelay(3000);
             t.start();

@@ -176,7 +176,8 @@ public class PlayerSelection extends JFrame {
                 pCounter = 0;
                 players = new LinkedList<>();
                 for(JLabel label : labels){
-                    label.setText("No player");
+                    label.setText("Kein Spieler");
+                    label.setForeground(Color.BLACK);
                 }
             }else if(e.getSource().equals(fertigButton)){
                 if(pCounter > 1){
