@@ -155,7 +155,18 @@ private JCheckBox aDice1;
                         acount++;
                     }
                     int dcount = defender.getTroopCount();
-                    boolean b = Board.fight(aggressor, defender, acount, aDiceList, dDiceList, getThis());
+
+                    if(acount >= aggressor.getTroopCount()){
+                        return;
+                    }
+
+                    boolean b = false;
+                    try {
+                        b = Board.fight(aggressor, defender, acount, aDiceList, dDiceList, getThis());
+                    } catch (Throwable throwable) {
+                        return;
+
+                    }
 
                     Results r = null;
                     try {
@@ -172,4 +183,6 @@ private JCheckBox aDice1;
             }
         }
     }
+
+ 
 }

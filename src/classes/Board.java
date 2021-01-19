@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class Board {
+    private static Throwable ArrayIndexOutOfBoundsException;
     private LinkedList<Region> regions;
     private LinkedList<Area> areas;
     private LinkedList<Card> cardPile;
@@ -71,10 +72,10 @@ public class Board {
     }
 
 
-    public static boolean fight(Area aggressor, Area defender, int troops, LinkedList<Integer> angreiferErgebniss, LinkedList<Integer> verteiderEgebniss, Würfeln würfeln){
+    public static boolean fight(Area aggressor, Area defender, int troops, LinkedList<Integer> angreiferErgebniss, LinkedList<Integer> verteiderEgebniss, Würfeln würfeln) throws Throwable {
 
         if(troops + 1 >= aggressor.getTroopCount()){
-            return false;
+            throw ArrayIndexOutOfBoundsException;
         }
 
 
@@ -88,8 +89,8 @@ public class Board {
             verteiderEgebniss.add(num);
         }
 
-        angreiferErgebniss.sort(Comparator.naturalOrder());
-        verteiderEgebniss.sort(Comparator.naturalOrder());
+        angreiferErgebniss.sort(Comparator.reverseOrder());
+        verteiderEgebniss.sort(Comparator.reverseOrder());
         int zz = 0;
 
         if(angreiferErgebniss.get(0) > verteiderEgebniss.get(0)){
