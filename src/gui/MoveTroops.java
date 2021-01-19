@@ -31,6 +31,7 @@ public class MoveTroops extends JFrame {
         setMinimumSize(new Dimension(430, 267));
         setResizable(false);
         setAlwaysOnTop(true);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setIconImage(ImageIO.read(new File("src\\resources\\other\\star.png")));
         Container contentPane = getContentPane();
         contentPane.setLayout(new GridBagLayout());
