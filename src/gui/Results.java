@@ -65,7 +65,7 @@ public class Results extends JFrame {
         //this
         setMinimumSize(new Dimension(430, 267));
         setAlwaysOnTop(true);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
         Container contentPane = getContentPane();
         contentPane.setLayout(new GridBagLayout());

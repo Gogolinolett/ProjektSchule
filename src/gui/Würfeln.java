@@ -59,7 +59,7 @@ public class Würfeln extends JFrame {
         setMinimumSize(new Dimension(430, 267));
         setResizable(false);
         setAlwaysOnTop(true);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         contentPane = getContentPane();
         contentPane.setLayout(new GridBagLayout());
         ((GridBagLayout) contentPane.getLayout()).columnWidths = new int[]{0, 0, 0, 0};
@@ -167,15 +167,15 @@ public class Würfeln extends JFrame {
                     }
                     int dcount = defender.getTroopCount();
                     Board.fight(aggressor, defender, acount, aDiceList, dDiceList);
+
+                    Results r = null;
                     try {
-                        Results r = new Results(acount, dcount, aDiceList, dDiceList);
+                        r = new Results(acount, dcount, aDiceList, dDiceList);
+                        aCountry.setText(aggressor.getName() + " (" + aggressor.getTroopCount() + ")");
+                        dCountry.setText(defender.getName() + " (" + defender.getTroopCount() + ")");
                     } catch (InterruptedException interruptedException) {
                         interruptedException.printStackTrace();
                     }
-                    aCountry.setText(aggressor.getName() + " (" + aggressor.getTroopCount() + ")");
-                    dCountry.setText(defender.getName() + " (" + defender.getTroopCount() + ")");
-
-
                 } else if (btn.equals(retreatButton)) {
 
                 }
