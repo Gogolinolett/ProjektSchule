@@ -27,6 +27,7 @@ public class MoveTroops extends JFrame {
     private void initComponents() {
         setMinimumSize(new Dimension(430, 267));
         setResizable(false);
+        setAlwaysOnTop(true);
         Container contentPane = getContentPane();
         contentPane.setLayout(new GridBagLayout());
         ((GridBagLayout) contentPane.getLayout()).columnWidths = new int[]{0, 0, 0, 0, 0};
@@ -81,6 +82,8 @@ public class MoveTroops extends JFrame {
         contentPane.add(panel, new GridBagConstraints(0, 2, 4, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
         pack();
         setLocationRelativeTo(getOwner());
+        setOriginArea(a1);
+        setDestinationArea(a2);
         setVisible(true);
     }
 
@@ -98,8 +101,6 @@ public class MoveTroops extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             JButton btn = (JButton) e.getSource();
-            setOriginArea(a1);
-            setDestinationArea(a2);
             if(btn.equals(cButton)){
                 a2.setFarbeOwner(a1.getFarbeOwner());
                 if(troops <= (int)spinner.getValue() && (int)spinner.getValue() < a1.getTroopCount()){
