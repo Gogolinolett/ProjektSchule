@@ -28,9 +28,14 @@ public class Results extends JFrame {
     private Area aggressor;
     private Area defender;
     private Boolean b;
+    private Boolean wOffen = false;
 
     private static Image[] g;
     private static Image[] z;
+
+    public Results getThis(){
+        return this;
+    }
 
     static {
         try {
@@ -122,12 +127,13 @@ public class Results extends JFrame {
         w.dispose();
 
         roll();
-        t.setInitialDelay(0);
-        t.start();
-        t.stop();
+
 
         if(!b){
-            new Würfeln(aggressor, defender, this);
+            t.setInitialDelay(3000);
+            t.start();
+
+
         }
 
     }
@@ -207,16 +213,25 @@ public class Results extends JFrame {
         return new ImageIcon(f);
     }
 
-    Timer t = new Timer(0, new ActionListener() {
+    Timer t = new Timer(3000, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                animation();
-                roll();
+                try {
+                    if(!wOffen) {
+                        new Würfeln(aggressor, defender, getThis());
+                        wOffen  = true;
+                    }
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
             } catch (InterruptedException interruptedException) {
                 interruptedException.printStackTrace();
             }
         }
     });
 
+    public void setwOffen(Boolean wOffen) {
+        this.wOffen = wOffen;
+    }
 }
