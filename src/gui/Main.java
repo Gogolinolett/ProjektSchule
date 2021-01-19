@@ -281,6 +281,7 @@ public class Main {
         nordAfrika.addNeighbour(zentralAfrika);
         ägypten.addNeighbour(südEuropa);
         ägypten.addNeighbour(ostAfrika);
+        ägypten.addNeighbour(mittlererOsten);
         ostAfrika.addNeighbour(mittlererOsten);
         ostAfrika.addNeighbour(zentralAfrika);
         ostAfrika.addNeighbour(südAfrika);
