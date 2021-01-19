@@ -116,18 +116,25 @@ private JCheckBox aDice1;
         aDice3.setHorizontalAlignment(SwingConstants.RIGHT);
         contentPane.add(aDice3, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
+        if(aggressor.getTroopCount()<2){
+            aDice3.setEnabled(false);
+            aDice3.setSelected(false);
+        }
+
         //dDice1
         dDice1 = new JCheckBox();
         dDice1.setEnabled(false);
         dDice1.setSelected(true);
         contentPane.add(dDice1, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
+
+        //dDice2
+        dDice2 = new JCheckBox();
+        dDice2.setEnabled(false);
+        contentPane.add(dDice2, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
+
         if (defender.getTroopCount() != 1) {
-            //dDice2
-            dDice2 = new JCheckBox();
-            dDice2.setEnabled(false);
             dDice2.setSelected(true);
-            contentPane.add(dDice2, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
         }
 
     }
@@ -161,8 +168,12 @@ private JCheckBox aDice1;
                     }
 
                     boolean b = false;
-                    b = Board.fight(aggressor, defender, acount, aDiceList, dDiceList, getThis());
-                    
+                    try {
+                        b = Board.fight(aggressor, defender, acount, aDiceList, dDiceList, getThis());
+                    } catch (Throwable throwable) {
+                        throwable.printStackTrace();
+                    }
+
 
                     Results r = null;
                     try {
