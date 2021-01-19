@@ -111,12 +111,17 @@ private JCheckBox aDice1;
         aDice2.setHorizontalAlignment(SwingConstants.RIGHT);
         contentPane.add(aDice2, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
+        if(aggressor.getTroopCount() == 2){
+            aDice2.setEnabled(false);
+            aDice2.setSelected(false);
+        }
+
         //aDice3
         aDice3 = new JCheckBox();
         aDice3.setHorizontalAlignment(SwingConstants.RIGHT);
         contentPane.add(aDice3, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
-        if(aggressor.getTroopCount()<2){
+        if(aggressor.getTroopCount() -1 <2){
             aDice3.setEnabled(false);
             aDice3.setSelected(false);
         }
