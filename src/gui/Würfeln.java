@@ -162,7 +162,7 @@ private JCheckBox aDice1;
 
                     boolean b = false;
                     b = Board.fight(aggressor, defender, acount, aDiceList, dDiceList, getThis());
-                    
+
 
                     Results r = null;
                     try {
