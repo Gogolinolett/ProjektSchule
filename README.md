@@ -17,8 +17,6 @@ Bei diesem Projekt handelt es sich um eine Java Swing version des Spiels Risiko.
 
 - Java
 
-[Zurück nach oben](#risiko-in-java)
-
 ---
 
 ## Authoren
@@ -26,5 +24,3 @@ Bei diesem Projekt handelt es sich um eine Java Swing version des Spiels Risiko.
 - Jan Ohlert - [@Johlert](https://github.com/Johlert)
 - Sebastian Scheunemann - [@Gogolinolett](https://github.com/Gogolinolett)
 - Arian Timori - [@Shogunpuhh](https://github.com/Shogunpuhh)
-
-[Zurück nach oben](#risiko-in-java)
