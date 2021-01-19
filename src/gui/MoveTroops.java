@@ -98,7 +98,7 @@ public class MoveTroops extends JFrame {
     }
 
     public void setDestinationArea(Area defendingArea) {
-        sOriginCountryPane.setText("Land:" + defendingArea.getName() +" \nTruppen Anzahl: " + defendingArea.getTroopCount());
+        sDestinationCountryPane.setText("Land:" + defendingArea.getName() +" \nTruppen Anzahl: " + defendingArea.getTroopCount());
     }
 
     class TileListener implements ActionListener {
