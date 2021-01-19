@@ -3,6 +3,7 @@ package classes;
 import gui.Main;
 import gui.MoveTroops;
 
+import java.io.IOException;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Random;
@@ -104,7 +105,11 @@ public class Board {
         }
         if(defender.getTroopCount() < 1){
 
-            MoveTroops moveTroops  = new MoveTroops(aggressor, defender, troops -zz);
+            try {
+                MoveTroops moveTroops  = new MoveTroops(aggressor, defender, troops -zz);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         }
 
