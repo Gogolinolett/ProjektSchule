@@ -14,30 +14,11 @@ import java.util.Comparator;
 import java.util.LinkedList;
 
 public class Würfeln extends JFrame {
-
-    private static Image[] g;
-    private static Image[] z;
-
-    static {
-        try {
-            g = new Image[]{ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b1.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b2.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b3.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b4.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b5.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\b6.png")),};
-            z = new Image[]{ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r1.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r2.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r3.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r4.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r5.png")), ImageIO.read(new File("C:\\Users\\janoh\\OneDrive\\Dokumente\\GitHub\\ProjektSchule\\src\\resources\\würfel\\r6.png")),};
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    private JCheckBox aDice1;
+private JCheckBox aDice1;
     private JCheckBox dDice1;
     private JCheckBox aDice2;
     private JCheckBox dDice2;
     private JCheckBox aDice3;
-    private JLabel aDice1L;
-    private JLabel dDice1L;
-    private JLabel aDice2L;
-    private JLabel dDice2L;
-    private JLabel aDice3L;
     private JLabel aCountry;
     private JLabel dCountry;
     private JButton rollButton;
