@@ -18,6 +18,7 @@ public class Stage_1 extends JPanel {
     private JButton nStage;
     private JButton mKarte;
     private JLabel pName;
+    private JButton aKarte;
 
     public Stage_1(Player player) {
 
@@ -100,7 +101,8 @@ public class Stage_1 extends JPanel {
         add(mKarte, new GridBagConstraints(0, 6, 1, 2, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //aKarte
-        JButton aKarte = new JButton();
+        aKarte = new JButton();
+        aKarte.addActionListener(new TileListener());
         aKarte.setText("Angriffskarten\neintauschen");
         add(aKarte, new GridBagConstraints(1, 6, 1, 2, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
@@ -150,6 +152,12 @@ public class Stage_1 extends JPanel {
                 } else if(btn.equals(mKarte)){
                     try {
                         MissionsKarte m = new MissionsKarte(player.getWinningConditions().getImg());
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
+                }else  if(btn.equals(aKarte)){
+                    try {
+                        AngriffsKarten angriffsKarten = new AngriffsKarten(player);
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                     }

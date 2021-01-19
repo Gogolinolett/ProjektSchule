@@ -53,7 +53,12 @@ public class AngriffsKarten extends JFrame {
 
         //spinner
         spinner = new JSpinner();
-        spinner.setModel(new SpinnerNumberModel(0, 10, player.getSterne(), 1));
+        if(player.getSterne() < 10){
+            spinner.setModel(new SpinnerNumberModel(0, 0, player.getSterne(), 1));
+        }else{
+            spinner.setModel(new SpinnerNumberModel(0, 0, 10, 1));
+        }
+
         spinner.setMaximumSize(new Dimension(121, 23));
         spinner.setAlignmentX(Component.CENTER_ALIGNMENT);
         contentPane.add(spinner);
@@ -65,11 +70,7 @@ public class AngriffsKarten extends JFrame {
         confirmButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         contentPane.add(confirmButton);
 
-        //cancelButton
-        cancelButton = new JButton();
-        cancelButton.setText("Abrechen");
-        cancelButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        contentPane.add(cancelButton);
+        
 
         pack();
         setLocationRelativeTo(getOwner());
