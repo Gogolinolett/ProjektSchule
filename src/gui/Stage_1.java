@@ -133,6 +133,11 @@ public class Stage_1 extends JPanel {
 
     }
 
+    public void addTroops(int troops){
+        this.troops = troops;
+        aTroopsSpinner.setModel(new SpinnerNumberModel(0, 0, troops, 1));
+    }
+
 
 
     class TileListener implements ActionListener {
