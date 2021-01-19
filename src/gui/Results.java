@@ -162,7 +162,6 @@ public class Results extends JFrame {
         if (dCount != 1) {
             d2.setIcon(droll(1));
         }
-        Thread.sleep(3000);
     }
 
     public ImageIcon rollAttack(){
