@@ -97,9 +97,9 @@ public class Map implements ComponentListener, WindowStateListener {
         t[14][6].putClientProperty("country", "WESTSTAATEN");
         btns.add(t[14][6]);
 
-        t[15][9].setVisible(true);
-        t[15][9].putClientProperty("country", "OSTSTAATEN");
-        btns.add(t[15][9]);
+        t[16][8].setVisible(true);
+        t[16][8].putClientProperty("country", "OSTSTAATEN");
+        btns.add(t[16][8]);
 
         t[19][7].setVisible(true);
         t[19][7].putClientProperty("country", "MITTELAMERIKA");
@@ -114,18 +114,18 @@ public class Map implements ComponentListener, WindowStateListener {
         t[27][12].putClientProperty("country", "BRASILIEN");
         btns.add(t[27][12]);
 
-        t[29][11].setVisible(true);
-        t[29][11].putClientProperty("country", "PERU");
-        btns.add(t[29][11]);
+        t[29][10].setVisible(true);
+        t[29][10].putClientProperty("country", "PERU");
+        btns.add(t[29][10]);
 
-        t[33][11].setVisible(true);
-        t[33][11].putClientProperty("country", "ARGENTINIEN");
-        btns.add(t[33][11]);
+        t[33][10].setVisible(true);
+        t[33][10].putClientProperty("country", "ARGENTINIEN");
+        btns.add(t[33][10]);
 
         //Europa
-        t[8][17].setVisible(true);
-        t[8][17].putClientProperty("country", "ISLAND");
-        btns.add(t[8][17]);
+        t[6][17].setVisible(true);
+        t[6][17].putClientProperty("country", "ISLAND");
+        btns.add(t[6][17]);
 
         t[14][16].setVisible(true);
         t[14][16].putClientProperty("country", "GROSSBRITANNIEN");
@@ -152,9 +152,9 @@ public class Map implements ComponentListener, WindowStateListener {
         btns.add(t[10][24]);
 
         //Afrika
-        t[24][22].setVisible(true);
-        t[24][22].putClientProperty("country", "ÄGYPTEN");
-        btns.add(t[24][22]);
+        t[24][21].setVisible(true);
+        t[24][21].putClientProperty("country", "ÄGYPTEN");
+        btns.add(t[24][21]);
 
         t[26][18].setVisible(true);
         t[26][18].putClientProperty("country", "NORDAFRIKA");
@@ -172,9 +172,9 @@ public class Map implements ComponentListener, WindowStateListener {
         t[36][22].putClientProperty("country", "SÜDAFRIKA");
         btns.add(t[36][22]);
 
-        t[36][26].setVisible(true);
-        t[36][26].putClientProperty("country", "MADAGASKAR");
-        btns.add(t[36][26]);
+        t[38][25].setVisible(true);
+        t[38][25].putClientProperty("country", "MADAGASKAR");
+        btns.add(t[38][25]);
 
         //Asien
         t[21][25].setVisible(true);
@@ -230,9 +230,9 @@ public class Map implements ComponentListener, WindowStateListener {
         t[31][33].putClientProperty("country", "INDONESIEN");
         btns.add(t[31][33]);
 
-        t[29][37].setVisible(true);
-        t[29][37].putClientProperty("country", "NEUGUINEA");
-        btns.add(t[29][37]);
+        t[29][36].setVisible(true);
+        t[29][36].putClientProperty("country", "NEUGUINEA");
+        btns.add(t[29][36]);
 
         t[37][35].setVisible(true);
         t[37][35].putClientProperty("country", "WESTAUSTRALIEN");
