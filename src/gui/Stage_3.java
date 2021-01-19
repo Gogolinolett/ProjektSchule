@@ -48,10 +48,10 @@ public class Stage_3 extends JPanel {
 
         setBackground(Color.white);
         setLayout(new GridBagLayout());
-        ((GridBagLayout) getLayout()).columnWidths = new int[]{0, 0, 0};
-        ((GridBagLayout) getLayout()).rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        ((GridBagLayout) getLayout()).columnWeights = new double[]{1.0, 1.0, 1.0E-4};
-        ((GridBagLayout) getLayout()).rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0E-4};
+        ((GridBagLayout)getLayout()).columnWidths = new int[] {0, 0, 0};
+        ((GridBagLayout)getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        ((GridBagLayout)getLayout()).columnWeights = new double[] {1.0, 1.0, 1.0E-4};
+        ((GridBagLayout)getLayout()).rowWeights = new double[] {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0E-4};
 
         //pName
         JLabel pName = new JLabel();
@@ -113,12 +113,7 @@ public class Stage_3 extends JPanel {
         mKarte = new JButton();
         mKarte.addActionListener(new TileListener());
         mKarte.setText("Missionskarte\nansehen\n");
-        add(mKarte, new GridBagConstraints(0, 8, 1, 2, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-
-        //aKarte
-        JButton aKarte = new JButton();
-        aKarte.setText("Angriffskarten\neintauschen");
-        add(aKarte, new GridBagConstraints(1, 8, 1, 2, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+        add(mKarte, new GridBagConstraints(0, 8, 2, 2, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
         //nStage
         nStage = new JButton();
