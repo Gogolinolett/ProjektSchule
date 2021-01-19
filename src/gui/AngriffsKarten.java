@@ -48,6 +48,12 @@ public class AngriffsKarten extends JFrame {
         label2.setAlignmentX(Component.CENTER_ALIGNMENT);
         contentPane.add(label2);
 
+        //spinner
+        JSpinner spinner = new JSpinner();
+        spinner.setMaximumSize(new Dimension(121, 23));
+        spinner.setAlignmentX(Component.CENTER_ALIGNMENT);
+        contentPane.add(spinner);
+
         //confirmButton
         confirmButton = new JButton();
         confirmButton.addActionListener(new TileListener());
