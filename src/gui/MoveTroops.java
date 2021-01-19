@@ -47,7 +47,7 @@ public class MoveTroops extends JFrame {
 
         //sOriginCountryPane
         sOriginCountryPane = new JEditorPane();
-        sOriginCountryPane.setText("Territory: \nOwner: \nTroops");
+        sOriginCountryPane.setText("Territory:" + a1.getName() +"\nTroops"  + a1.getTroopCount());
         sOriginCountryPane.setEditable(false);
         sPane.setViewportView(sOriginCountryPane);
 
@@ -60,7 +60,7 @@ public class MoveTroops extends JFrame {
 
         //sDestinationCountryPane
         sDestinationCountryPane = new JEditorPane();
-        sDestinationCountryPane.setText("Territory: \nOwner: \nTroops");
+        sDestinationCountryPane.setText("Territory:" + a2.getName() +"\nTroops"  + a2.getTroopCount());
         sDestinationCountryPane.setEditable(false);
         sPane2.setViewportView(sDestinationCountryPane);
 
