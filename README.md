@@ -1,7 +1,6 @@
 # Risiko in Java
 
 ### Inhaltsverzeichnis
-You're sections headers will be used to reference location of destination.
 
 - [Beschreibung](#beschreibung)
 - [Technologien](#technologien)
